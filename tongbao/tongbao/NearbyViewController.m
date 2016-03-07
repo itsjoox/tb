@@ -8,6 +8,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "NearbyViewController.h"
 #import "SubChooseAddrViewController.h"
+//#import "AFNetworking"
 
 @interface NearbyViewController () <CLLocationManagerDelegate,MKMapViewDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
