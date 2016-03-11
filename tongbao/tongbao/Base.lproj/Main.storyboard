@@ -764,10 +764,10 @@
             </objects>
             <point key="canvasLocation" x="294" y="-165.75"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar View Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController id="49e-Tb-3d3" customClass="TabBarViewController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
@@ -7479,10 +7479,10 @@
         <image name="wallet.png" width="30" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="P7f-Dx-k0W"/>
-        <segue reference="6jm-it-76D"/>
+        <segue reference="op0-js-TIK"/>
         <segue reference="yf7-nk-wLe"/>
-        <segue reference="Gjv-86-KG3"/>
         <segue reference="asn-Ap-mhb"/>
+        <segue reference="Gjv-86-KG3"/>
+        <segue reference="6jm-it-76D"/>
     </inferredMetricsTieBreakers>
 </document>

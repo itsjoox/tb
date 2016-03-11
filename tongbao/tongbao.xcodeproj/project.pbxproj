@@ -68,6 +68,7 @@
 		FB6CA1ED1C8D78BC009AE70F /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = FB6CA1CD1C8D78BC009AE70F /* start.png */; };
 		FB6CA1EE1C8D78BC009AE70F /* tongbao.png in Resources */ = {isa = PBXBuildFile; fileRef = FB6CA1CE1C8D78BC009AE70F /* tongbao.png */; };
 		FB6CA1EF1C8D78BC009AE70F /* wallet.png in Resources */ = {isa = PBXBuildFile; fileRef = FB6CA1CF1C8D78BC009AE70F /* wallet.png */; };
+		FB6CA1F21C931ED3009AE70F /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB6CA1F11C931ED3009AE70F /* TabBarViewController.m */; };
 		FB85045D1C80C9F8008E25E1 /* RequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB85045C1C80C9F8008E25E1 /* RequestViewController.m */; };
 		FB8504601C82B1D7008E25E1 /* SubEditFreqAddrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB85045F1C82B1D7008E25E1 /* SubEditFreqAddrViewController.m */; };
 		FB8504631C82E6D6008E25E1 /* SubDriverDtlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8504621C82E6D6008E25E1 /* SubDriverDtlViewController.m */; };
@@ -180,6 +181,8 @@
 		FB6CA1CD1C8D78BC009AE70F /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		FB6CA1CE1C8D78BC009AE70F /* tongbao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tongbao.png; sourceTree = "<group>"; };
 		FB6CA1CF1C8D78BC009AE70F /* wallet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wallet.png; sourceTree = "<group>"; };
+		FB6CA1F01C931EBA009AE70F /* TabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		FB6CA1F11C931ED3009AE70F /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		FB85045B1C80C9E6008E25E1 /* RequestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestViewController.h; sourceTree = "<group>"; };
 		FB85045C1C80C9F8008E25E1 /* RequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestViewController.m; sourceTree = "<group>"; };
 		FB85045E1C82B1C0008E25E1 /* SubEditFreqAddrViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubEditFreqAddrViewController.h; sourceTree = "<group>"; };
@@ -275,6 +278,8 @@
 				FB5106851C78CA19006991FD /* MeViewController.h */,
 				FB5106861C78CA28006991FD /* MeViewController.m */,
 				FB29214B1C72FA0B0082B0B4 /* Main.storyboard */,
+				FB6CA1F01C931EBA009AE70F /* TabBarViewController.h */,
+				FB6CA1F11C931ED3009AE70F /* TabBarViewController.m */,
 				FB2921501C72FA0B0082B0B4 /* LaunchScreen.storyboard */,
 				FB2921531C72FA0B0082B0B4 /* Info.plist */,
 				FB29214E1C72FA0B0082B0B4 /* Assets.xcassets */,
@@ -601,6 +606,7 @@
 				FB8504601C82B1D7008E25E1 /* SubEditFreqAddrViewController.m in Sources */,
 				FB85046D1C846563008E25E1 /* SubOrderDtlViewController.m in Sources */,
 				FB2921471C72FA0B0082B0B4 /* HomeViewController.m in Sources */,
+				FB6CA1F21C931ED3009AE70F /* TabBarViewController.m in Sources */,
 				FB85046A1C83F422008E25E1 /* SubMsgDtlViewController.m in Sources */,
 				FB2921411C72FA0B0082B0B4 /* main.m in Sources */,
 				FB5106801C78C42F006991FD /* Reachability.m in Sources */,
