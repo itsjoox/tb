@@ -9,8 +9,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MeViewController : UIViewController
+@interface MeViewController : UITableViewController<UITableViewDelegate>
 
 
+@property (strong, nonatomic) IBOutlet UITableView *table;
 
 @end

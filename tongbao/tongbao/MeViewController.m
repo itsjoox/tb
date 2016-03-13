@@ -20,10 +20,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
+    self.table.delegate = self;
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSInteger section = indexPath.section;
+    //NSInteger rowNo = indexPath.row;
+    if (section==3) {
+        NSLog(@"hi");
+    }
+    
+    
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
