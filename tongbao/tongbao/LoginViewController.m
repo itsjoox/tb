@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "User.h"
 
 @interface LoginViewController()
 
@@ -32,26 +33,37 @@
 }
 
 - (IBAction)TapLogin:(UIButton *)sender {
-    //获取用户输入的信息
-    NSString *username = self.usernameTextfield.text;
-    NSString *password = self.userpwdTextfield.text;
-    NSString *usernameTarget = @"admin";
-    NSString *passwordTarget = @"admin";
     
-    //对用户信息的验证
-    if ([username isEqualToString: usernameTarget]&& [password isEqualToString:passwordTarget]){
-        //获取userDefault单例
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        //登陆成功后把用户名和密码存储到UserDefault
-        [userDefaults setObject:username forKey:@"name"];
-        [userDefaults setObject:password forKey:@"password"];
-        [userDefaults synchronize];
+    if ([User loginWithUsername:self.usernameTextfield.text andPassword:self.userpwdTextfield.text]){
         //用模态跳转到主界面
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         id homeViewController = [storyboard instantiateViewControllerWithIdentifier:@"TabView"];
         [self presentViewController:homeViewController animated:YES completion:^{
         }];
     }
+    
+   
+    
+//    //获取用户输入的信息
+//    NSString *username = self.usernameTextfield.text;
+//    NSString *password = self.userpwdTextfield.text;
+//    NSString *usernameTarget = @"admin";
+//    NSString *passwordTarget = @"admin";
+//    
+//    //对用户信息的验证
+//    if ([username isEqualToString: usernameTarget]&& [password isEqualToString:passwordTarget]){
+//        //获取userDefault单例
+//        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//        //登陆成功后把用户名和密码存储到UserDefault
+//        [userDefaults setObject:username forKey:@"username"];
+//        [userDefaults setObject:password forKey:@"password"];
+//        [userDefaults synchronize];
+//        //用模态跳转到主界面
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//        id homeViewController = [storyboard instantiateViewControllerWithIdentifier:@"TabView"];
+//        [self presentViewController:homeViewController animated:YES completion:^{
+//        }];
+//    }
 }
 
 
