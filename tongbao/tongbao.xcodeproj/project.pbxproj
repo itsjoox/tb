@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83865F411C9664D3001115B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83865F401C9664D3001115B3 /* LoginViewController.m */; };
+		83865F441C96672C001115B3 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83865F431C96672C001115B3 /* RegisterViewController.m */; };
+		83865F471C967DE7001115B3 /* MeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83865F461C967DE7001115B3 /* MeInfoViewController.m */; };
 		FB2921411C72FA0B0082B0B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921401C72FA0B0082B0B4 /* main.m */; };
 		FB2921441C72FA0B0082B0B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921431C72FA0B0082B0B4 /* AppDelegate.m */; };
 		FB2921471C72FA0B0082B0B4 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921461C72FA0B0082B0B4 /* HomeViewController.m */; };
@@ -96,6 +99,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		83865F3F1C9664B0001115B3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		83865F401C9664D3001115B3 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		83865F421C96670E001115B3 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		83865F431C96672C001115B3 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		83865F451C967DCB001115B3 /* MeInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeInfoViewController.h; sourceTree = "<group>"; };
+		83865F461C967DE7001115B3 /* MeInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeInfoViewController.m; sourceTree = "<group>"; };
 		FB29213C1C72FA0B0082B0B4 /* tongbao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tongbao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB2921401C72FA0B0082B0B4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FB2921421C72FA0B0082B0B4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -260,6 +269,10 @@
 		FB29213E1C72FA0B0082B0B4 /* tongbao */ = {
 			isa = PBXGroup;
 			children = (
+				83865F421C96670E001115B3 /* RegisterViewController.h */,
+				83865F431C96672C001115B3 /* RegisterViewController.m */,
+				83865F401C9664D3001115B3 /* LoginViewController.m */,
+				83865F3F1C9664B0001115B3 /* LoginViewController.h */,
 				FB6CA19B1C8D786A009AE70F /* AFNetworking */,
 				FB85046E1C849E0F008E25E1 /* HomeViewSub */,
 				FB8504711C849F58008E25E1 /* NearbyViewSub */,
@@ -411,6 +424,8 @@
 			children = (
 				FB54BFEA1C7C6E68003F1826 /* SubAboutViewController.h */,
 				FB54BFEB1C7C6EAF003F1826 /* SubAboutViewController.m */,
+				83865F451C967DCB001115B3 /* MeInfoViewController.h */,
+				83865F461C967DE7001115B3 /* MeInfoViewController.m */,
 			);
 			name = MeViewSub;
 			sourceTree = "<group>";
@@ -588,8 +603,11 @@
 			files = (
 				FB8504631C82E6D6008E25E1 /* SubDriverDtlViewController.m in Sources */,
 				FB6CA1A91C8D786A009AE70F /* AFHTTPSessionManager.m in Sources */,
+				83865F411C9664D3001115B3 /* LoginViewController.m in Sources */,
 				FB6CA1AA1C8D786A009AE70F /* AFNetworkReachabilityManager.m in Sources */,
+				83865F441C96672C001115B3 /* RegisterViewController.m in Sources */,
 				FB54BFEC1C7C6EAF003F1826 /* SubAboutViewController.m in Sources */,
+				83865F471C967DE7001115B3 /* MeInfoViewController.m in Sources */,
 				FB29214A1C72FA0B0082B0B4 /* NearbyViewController.m in Sources */,
 				FB54BFAA1C7ABE21003F1826 /* SubDriverViewController.m in Sources */,
 				FB5106841C78C9BC006991FD /* OrderViewController.m in Sources */,
