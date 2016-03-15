@@ -10,9 +10,13 @@
 @interface RequestViewController ()
 
 
-@property (strong, nonatomic) IBOutlet UITextField *useTime;
-- (IBAction)useTime:(id)sender;
+@property (strong, nonatomic) IBOutlet UITextField *useTimeTxtFld;
 
+- (IBAction)useTime:(id)sender;
+@property (strong, nonatomic) IBOutlet UITextField *fromAddrTxtFld;
+
+@property (strong, nonatomic) IBOutlet UITextField *toAddrTxtFld;
+@property (strong, nonatomic) IBOutlet UITextField *carTypeTxtFld;
 
 @end
 
@@ -26,6 +30,13 @@
 }
 
 
+//处理次级页面传来的信息
+-(void)viewDidAppear:(BOOL)animated
+{
+    self.fromAddrTxtFld.text = self.fromAddr;
+    self.toAddrTxtFld.text = self.toAddr;
+    self.carTypeTxtFld.text = self.carType;
+}
 
 
 - (void)didReceiveMemoryWarning {
@@ -62,7 +73,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyy-MM-dd HH:mm";
     NSString *dateString = [formatter stringFromDate:selectedDate];
-    self.useTime.text = dateString;
+    self.useTimeTxtFld.text = dateString;
 }
 
 

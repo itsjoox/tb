@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SubChooseCarViewController : UIViewController<UITableViewDataSource>
+@interface SubChooseCarViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *table;
 
