@@ -41,4 +41,13 @@
  */
 + (BOOL)loginWithUsername:(NSString *)username andPassword:(NSString *)password;
 
+/**
+* register method
+ 
+*
+ 
+*/
+
++(BOOL) registerwithUsername: (NSString *)username andPassoword: (NSString *) password;
+
 @end

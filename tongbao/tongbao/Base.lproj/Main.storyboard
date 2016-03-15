@@ -148,6 +148,9 @@
                                 <state key="normal" title="注册">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="TapRegister:" destination="0pl-Cx-cj9" eventType="touchUpInside" id="D5e-qC-16w"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSt-Yi-mJg">
                                 <rect key="frame" x="85" y="452" width="150" height="30"/>
@@ -181,6 +184,10 @@
                             <constraint firstItem="NAL-gJ-Z0d" firstAttribute="trailing" secondItem="mP8-Ap-T2B" secondAttribute="trailing" id="yfr-ec-b0y"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="usernameTextfield" destination="M6b-ta-j6E" id="c7M-xR-ki4"/>
+                        <outlet property="userpwdTextfield" destination="mP8-Ap-T2B" id="7Z1-hB-FNp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7n5-b5-8Qq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

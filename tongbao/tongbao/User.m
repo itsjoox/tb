@@ -47,6 +47,23 @@
 }
 
 
+
++(BOOL) registerwithUsername: (NSString *)username andPassoword: (NSString *) password{
+    if (username == nil || username.length == 0 || password == nil || password.length == 0) {
+        return NO;
+    } else{
+        
+        
+        
+        
+        return YES;
+    }
+    
+    return NO;
+}
+
+
+
 +(BOOL) loginWithUsername:(NSString *)username andPassword:(NSString *)password{
     if (username == nil || username.length == 0 || password == nil || password.length == 0) {
         return NO;
@@ -57,12 +74,19 @@
         
             //对用户信息的验证
             if ([username isEqualToString: usernameTarget]&& [password isEqualToString:passwordTarget]){
-                //获取userDefault单例
-                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-                //登陆成功后把用户名和密码存储到UserDefault
-                [userDefaults setObject:username forKey:@"username"];
-                [userDefaults setObject:password forKey:@"password"];
-                [userDefaults synchronize];
+//                //获取userDefault单例
+//                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//                //登陆成功后把用户名和密码存储到UserDefault
+//                [userDefaults setObject:username forKey:@"username"];
+//                [userDefaults setObject:password forKey:@"password"];
+//                [userDefaults synchronize];
+                
+                
+                [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
+//                [SSKeychain setPassword:password forService:@"user" account:username];
+                [User shareInstance].user = [[User alloc] initWithUsername:[[NSUserDefaults standardUserDefaults] objectForKey:@"username"]];
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"newLogin"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
                 return YES;
            }
     }
