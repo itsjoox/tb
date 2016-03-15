@@ -80,7 +80,7 @@
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             UITextField *login = alert.textFields.firstObject;
-            NSLog(@"%@",login);
+            NSLog(@"%@",login.text);
             //            UITextField *password = alert.textFields.lastObject;
         }];
         

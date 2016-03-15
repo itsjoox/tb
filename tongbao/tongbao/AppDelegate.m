@@ -23,7 +23,7 @@
     //判断是否登陆，由登陆状态判断启动页面
     //获取UserDefault
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    NSString *name = [userDefault objectForKey:@"name"];
+    NSString *name = [userDefault objectForKey:@"username"];
     //获取storyboard
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     //如果用户未登陆则把根视图控制器改变成登陆视图控制器
