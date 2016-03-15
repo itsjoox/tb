@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
 @interface RequestViewController : UITableViewController
 
-@property (strong,nonatomic) NSString* fromAddr;
-@property (strong,nonatomic) NSString* toAddr;
+@property (strong,nonatomic) CLPlacemark* srcAddrPlsmk;
+@property (strong,nonatomic) CLPlacemark* destAddrPlsmk;
 @property (strong,nonatomic) NSString* carType;
 
 @end
