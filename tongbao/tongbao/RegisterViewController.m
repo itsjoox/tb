@@ -37,7 +37,11 @@
     NSString * userpwd = self.userpwdTextfield.text;
     
     if ([User registerwithUsername:username andPassoword:userpwd]) {
-        // if register successfully then login
+        // if register successfully then give a hint and then login
+        
+//        hint and load
+        
+//        login
         if([User loginWithUsername:username andPassword:userpwd]){
            
             //用模态跳转到主界面 same as what in loginviewcontroller

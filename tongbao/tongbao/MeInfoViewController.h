@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MeInfoViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
+@interface MeInfoViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
