@@ -23,6 +23,8 @@
  */
 
 @property (copy, nonatomic, readonly) NSString *username;
+@property (copy, nonatomic, readonly) NSString *nickname;
+@property (copy, nonatomic, readonly) NSString *phoneNo;
 
 /**
  *  Judge whether user has login
