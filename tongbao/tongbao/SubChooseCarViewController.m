@@ -7,7 +7,7 @@
 //
 
 #import "SubChooseCarViewController.h"
-
+#import "RequestViewController.h"
 @interface SubChooseCarViewController ()
 
 @end
@@ -23,6 +23,7 @@
     cars = [NSArray arrayWithObjects:@"面包车", @"厢式货车", @"大卡车", nil];
     dtls = [NSArray arrayWithObjects:@"南京市鼓楼区汉口路22号", @"南京市鼓楼区广州路3号", @"南京市玄武区珠江路18号", nil];
     self.table.dataSource = self;
+    self.table.delegate = self;
   
 }
 
@@ -48,9 +49,16 @@
     
 }
 
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    
+            RequestViewController *setRequest = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+    
+            setRequest.carType = [self.cars objectAtIndex:indexPath.row];
 
+            [self.navigationController popToViewController:setRequest animated:true];
+        
     
 }
 

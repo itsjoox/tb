@@ -7,7 +7,7 @@
 //
 
 #import "SubChooseAddrViewController.h"
-
+#import "RequestViewController.h"
 @interface SubChooseAddrViewController ()
 
 @end
@@ -38,7 +38,31 @@
     
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    //NSInteger rowNo = indexPath.row;
+    if (indexPath.section==2) {
+        RequestViewController *setRequest = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3];
+        //初始化其属性
+        //setPrizeVC. = nil;
+        
+        //传递参数过去
+        if (indexPath.row==0) {
+            setRequest.srcAddrPlsmk = self.placemark;
+        }else{
+            setRequest.destAddrPlsmk = self.placemark;
+            
+        }
+        //使用popToViewController返回并传值到上一页面
+        [self.navigationController popToViewController:setRequest animated:true];
+        //
+        //        [self.navigationController pushViewController:subMsgDtl animated:YES];
+    }
+    
+    
+    
+}
 
 
 - (void)didReceiveMemoryWarning {

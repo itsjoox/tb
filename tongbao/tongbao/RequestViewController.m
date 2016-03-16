@@ -10,9 +10,14 @@
 @interface RequestViewController ()
 
 
-@property (strong, nonatomic) IBOutlet UITextField *useTime;
-- (IBAction)useTime:(id)sender;
+@property (strong, nonatomic) IBOutlet UITextField *useTimeTxtFld;
 
+- (IBAction)useTime:(id)sender;
+@property (strong, nonatomic) IBOutlet UITextField *srcAddrTxtFld;
+
+@property (strong, nonatomic) IBOutlet UITextField *destAddrTxtFld;
+@property (strong, nonatomic) IBOutlet UITextField *carTypeTxtFld;
+@property (strong, nonatomic) IBOutlet UILabel *distLbl;
 
 @end
 
@@ -26,6 +31,52 @@
 }
 
 
+//处理次级页面传来的信息
+-(void)viewDidAppear:(BOOL)animated
+{
+    self.srcAddrTxtFld.text = self.srcAddrPlsmk.name;
+    self.destAddrTxtFld.text = self.destAddrPlsmk.name;
+    self.carTypeTxtFld.text = self.carType;
+
+    
+    
+    
+    
+    //计算两点导航距离
+    MKPlacemark* srcPlsmk = [[MKPlacemark alloc] initWithPlacemark:self.srcAddrPlsmk];
+    MKMapItem *mapItemSrc = [[MKMapItem alloc] initWithPlacemark:srcPlsmk];
+    MKPlacemark* destPlsmk = [[MKPlacemark alloc] initWithPlacemark:self.destAddrPlsmk];
+    MKMapItem *mapItemDest = [[MKMapItem alloc] initWithPlacemark:destPlsmk];
+    
+    [mapItemSrc setName:@"name1"];
+    [mapItemDest setName:@"name2"];
+    
+    MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
+    [request setSource:mapItemSrc];
+    [request setDestination:mapItemDest];
+    [request setTransportType:MKDirectionsTransportTypeAutomobile];
+    request.requestsAlternateRoutes = NO;
+    
+    MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
+    
+    [directions calculateDirectionsWithCompletionHandler:
+     ^(MKDirectionsResponse *response, NSError *error) {
+         if (error) {
+             // Handle Error
+         } else {
+             
+             
+            CLLocationDistance dist = [response.routes firstObject].distance;
+             NSLog(@"src to dest %f km",dist/1000);
+             self.distLbl.text = [NSString stringWithFormat:@"%.f",dist/1000];
+         }
+     }];
+    
+    
+    
+    
+    
+}
 
 
 - (void)didReceiveMemoryWarning {
@@ -62,7 +113,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyy-MM-dd HH:mm";
     NSString *dateString = [formatter stringFromDate:selectedDate];
-    self.useTime.text = dateString;
+    self.useTimeTxtFld.text = dateString;
 }
 
 

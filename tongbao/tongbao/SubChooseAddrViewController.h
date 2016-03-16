@@ -10,11 +10,12 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface SubChooseAddrViewController : UITableViewController
+@interface SubChooseAddrViewController : UITableViewController<UITableViewDelegate>
 
 @property (nonatomic, copy) CLPlacemark* placemark;
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UITextView *addr;
+@property (strong, nonatomic) IBOutlet UITableView *table;
 
 
 @end

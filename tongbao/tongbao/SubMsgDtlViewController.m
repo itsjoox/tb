@@ -22,7 +22,7 @@
     self.orderNo.text = self.myMsgDtl;
     self.msgTitle.text = self.myMsgTitle;
     
-    
+   
 }
 
 

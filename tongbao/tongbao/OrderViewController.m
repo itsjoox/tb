@@ -40,6 +40,9 @@
     self.table.delegate = self;
     self.tbl = orders;
     self.cellIdentifier = @"cell1";
+    
+     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"订单列表" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
 }
 
 
