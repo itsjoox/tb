@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "User.h"
+#import "AFNetworking.h"
 
 @interface LoginViewController()
 
@@ -42,8 +43,7 @@
         }];
     }
     
-   
-    
+        
 //    //获取用户输入的信息
 //    NSString *username = self.usernameTextfield.text;
 //    NSString *password = self.userpwdTextfield.text;

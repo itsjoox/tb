@@ -1935,6 +1935,8 @@
                     <navigationItem key="navigationItem" title="个人信息" id="yrR-WE-WUB"/>
                     <connections>
                         <outlet property="myHeadPortrait" destination="24e-Lh-VEE" id="p1S-GL-QqF"/>
+                        <outlet property="myNickname" destination="LYD-jg-DZm" id="4sj-Mb-FR2"/>
+                        <outlet property="myTelephone" destination="l3e-Dl-kwa" id="S3A-wt-qxJ"/>
                         <outlet property="tableview" destination="Ty1-8W-clC" id="StJ-uv-2Oi"/>
                     </connections>
                 </tableViewController>

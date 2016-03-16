@@ -6,6 +6,7 @@
 //  Copyright © 2016年 ZX. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
 @interface User : NSObject
@@ -13,18 +14,23 @@
 /**
  *  Single Instance of User
  *
- *  @return user
+ *  @return us
  */
 + (instancetype)currentUser;
 
 
 /**
- *  username
+ *  username： in our case, it's 电话号码
  */
 
 @property (copy, nonatomic, readonly) NSString *username;
 @property (copy, nonatomic, readonly) NSString *nickname;
-@property (copy, nonatomic, readonly) NSString *phoneNo;
+
+@property (copy, nonatomic, readonly) NSString *iconUrl;
+@property (copy, nonatomic, readonly) NSString *point;
+@property (copy, nonatomic, readonly) NSString *money;
+@property (copy, nonatomic, readonly) NSString *token;
+
 
 /**
  *  Judge whether user has login
@@ -51,5 +57,5 @@
 */
 
 +(BOOL) registerwithUsername: (NSString *)username andPassoword: (NSString *) password;
-
++ (UIImage *) getImageFromURL:(NSString *)fileURL;
 @end

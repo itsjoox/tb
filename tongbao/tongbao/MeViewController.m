@@ -34,7 +34,7 @@
         //获取UserDefaults单例
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         //移除UserDefaults中存储的用户信息
-        [userDefaults removeObjectForKey:@"name"];
+        [userDefaults removeObjectForKey:@"username"];
         [userDefaults removeObjectForKey:@"password"];
         [userDefaults synchronize];
         //获取storyboard
