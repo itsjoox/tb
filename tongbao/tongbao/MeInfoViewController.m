@@ -139,7 +139,9 @@
 //  设置头像样式
 -(void)setHeadPortrait{
 //    NSLog(@"设置头像！！ %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"headPortrait"]);
-    [self.myHeadPortrait setImage: [User getImageFromURL: [[NSUserDefaults standardUserDefaults] objectForKey:@"headPortrait"]]];
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"headPortrait"]){
+        [self.myHeadPortrait setImage: [User getImageFromURL: [[NSUserDefaults standardUserDefaults] objectForKey:@"headPortrait"]]];
+    }
 //    //  把头像设置成圆形
 //    self.myHeadPortrait.layer.cornerRadius=self.myHeadPortrait.frame.size.width/2;
 //    self.myHeadPortrait.layer.masksToBounds=YES;

@@ -25,7 +25,7 @@
     self.table.delegate = self;
     self.nickname.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"nickname"];
     self.telephone.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
-    [self.myHeadportrait setImage: [User getImageFromURL: [[NSUserDefaults standardUserDefaults] objectForKey:@"headPortrait"]]];
+    [self setHeadPortrait];
     
 }
 
@@ -59,6 +59,22 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+//  设置头像样式
+-(void)setHeadPortrait{
+    //    NSLog(@"设置头像！！ %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"headPortrait"]);
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"headPortrait"]){
+        [self.myHeadportrait setImage: [User getImageFromURL: [[NSUserDefaults standardUserDefaults] objectForKey:@"headPortrait"]]];
+    }
+    //    //  把头像设置成圆形
+    //    self.myHeadPortrait.layer.cornerRadius=self.myHeadPortrait.frame.size.width/2;
+    //    self.myHeadPortrait.layer.masksToBounds=YES;
+    //    //  给头像加一个圆形边框
+    //    self.myHeadPortrait.layer.borderWidth = 1.5f;
+    //    self.myHeadPortrait.layer.borderColor = [UIColor whiteColor].CGColor;
+}
+
+
 
 
 @end

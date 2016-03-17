@@ -53,6 +53,34 @@
 //        }
 //    }
     
+    [User registerwithUsername:username andPassoword:userpwd withBlock:^(NSError *error, User *user) {
+        if (error) {
+            NSLog(@"Register FAILED!!!!");
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"注册失败" message:@"请重新输入用户名和密码" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+            
+        }else {
+            NSLog(@"注册过啦 直接登录咯 %@ %@",username,userpwd);
+            [User loginWithUsername:username andPassword:userpwd withBlock:^(NSError *error, User *user) {
+                if (error) {
+                    NSLog(@"LOGIN FAILED!!!!");
+                }else {
+                    NSLog(@"LOGIN SUCCESSFULLY!!!!");
+                    //用模态跳转到主界面 same as what in loginviewcontroller
+                     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+                    id homeViewController = [storyboard instantiateViewControllerWithIdentifier:@"TabView"];
+                    [self presentViewController:homeViewController animated:YES completion:^{
+                        }];
+                }
+            }];
+       
+        }
+
+    }];
+    
+    
 }
 
 
