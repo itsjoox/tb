@@ -8,6 +8,7 @@
 
 #import "MeViewController.h"
 #import "SubAboutViewController.h"
+#import "User.h"
 
 @interface MeViewController ()
 
@@ -22,6 +23,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.table.delegate = self;
+    self.nickname.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"nickname"];
+    self.telephone.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+    [self.myHeadportrait setImage: [User getImageFromURL: [[NSUserDefaults standardUserDefaults] objectForKey:@"headPortrait"]]];
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -35,6 +40,7 @@
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         //移除UserDefaults中存储的用户信息
         [userDefaults removeObjectForKey:@"username"];
+        [userDefaults removeObjectForKey:@"token"];
         [userDefaults removeObjectForKey:@"password"];
         [userDefaults synchronize];
         //获取storyboard

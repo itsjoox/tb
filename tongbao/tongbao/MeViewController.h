@@ -13,5 +13,8 @@
 
 
 @property (strong, nonatomic) IBOutlet UITableView *table;
+@property (weak, nonatomic) IBOutlet UIImageView *myHeadportrait;
+@property (weak, nonatomic) IBOutlet UILabel *nickname;
+@property (weak, nonatomic) IBOutlet UILabel *telephone;
 
 @end

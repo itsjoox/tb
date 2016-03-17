@@ -34,14 +34,26 @@
 }
 
 - (IBAction)TapLogin:(UIButton *)sender {
+    [User loginWithUsername:self.usernameTextfield.text andPassword:self.userpwdTextfield.text  withBlock:^(NSError *error, User *user) {
+        if (error) {
+            NSLog(@"LOGIN FAILED!!!!");
+        }else {
+//            用模态跳转到主界面
+                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+                    id homeViewController = [storyboard instantiateViewControllerWithIdentifier:@"TabView"];
+                    [self presentViewController:homeViewController animated:YES completion:^{
+                }];
+
+        }
+    }];
     
-    if ([User loginWithUsername:self.usernameTextfield.text andPassword:self.userpwdTextfield.text]){
-        //用模态跳转到主界面
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        id homeViewController = [storyboard instantiateViewControllerWithIdentifier:@"TabView"];
-        [self presentViewController:homeViewController animated:YES completion:^{
-        }];
-    }
+//    if ([User loginWithUsername:self.usernameTextfield.text andPassword:self.userpwdTextfield.text]){
+//        //用模态跳转到主界面
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//        id homeViewController = [storyboard instantiateViewControllerWithIdentifier:@"TabView"];
+//        [self presentViewController:homeViewController animated:YES completion:^{
+//        }];
+//    }
     
         
 //    //获取用户输入的信息

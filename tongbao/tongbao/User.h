@@ -47,7 +47,7 @@
  *  @param password       password
  *  @param completedBlock complete block
  */
-+ (BOOL)loginWithUsername:(NSString *)username andPassword:(NSString *)password;
++ (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password withBlock:(void (^)(NSError *error, User *user))completedBlock;
 
 /**
 * register method
@@ -56,6 +56,6 @@
  
 */
 
-+(BOOL) registerwithUsername: (NSString *)username andPassoword: (NSString *) password;
++(void) registerwithUsername: (NSString *)username andPassoword: (NSString *) password withBlock:(void (^)(NSError *error, User *user))completedBlock;
 + (UIImage *) getImageFromURL:(NSString *)fileURL;
 @end

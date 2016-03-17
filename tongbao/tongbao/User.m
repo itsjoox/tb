@@ -8,6 +8,7 @@
 
 #import "User.h"
 #import "AFNetworking.h"
+#import "NSError+custom.h"
 
 
 @interface User ()
@@ -26,7 +27,7 @@
     dispatch_once(&onceToken, ^{
         sharedInstance = [[User alloc] init];
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] length] > 0) {
-            sharedInstance.user = [[User alloc] initWithUsername:[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] andNickname:nil andHeadPortrait:nil];
+            sharedInstance.user = [[User alloc] initWithUsername:[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] andNickname:nil andHeadPortrait:nil andToken:nil];
         }
     });
     return sharedInstance;
@@ -38,38 +39,41 @@
 }
 
 
-- (instancetype)initWithUsername:(NSString *)username andNickname: (NSString *) nickname andHeadPortrait: (NSString *) iconUrl
+- (instancetype)initWithUsername:(NSString *)username andNickname: (NSString *) nickname andHeadPortrait: (NSString *) iconUrl andToken: (NSString *) token
 {
     self = [super init];
     if (self) {
         _username = username;
         _nickname = nickname;
         _iconUrl = iconUrl;
+        _token = token;
         }
     return self;
 }
 
 
 
-+(BOOL) registerwithUsername: (NSString *)username andPassoword: (NSString *) password{
++(void) registerwithUsername: (NSString *)username andPassoword: (NSString *) password withBlock:(void (^)(NSError *error, User *user))completedBlock{
     if (username == nil || username.length == 0 || password == nil || password.length == 0) {
-        return NO;
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
+        }
     } else{
         
         
         
         
-        return YES;
+        
     }
-    
-    return NO;
 }
 
 
 
-+(BOOL) loginWithUsername:(NSString *)username andPassword:(NSString *)password{
-    if (username == nil || username.length == 0 || password == nil || password.length == 0) {
-        return NO;
++(void) loginWithUsername:(NSString *)username andPassword:(NSString *)password withBlock:(void (^)(NSError *error, User *user))completedBlock{
+        if (username == nil || username.length == 0 || password == nil || password.length == 0) {
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
+        }
     } else {
 
         //请求的参数
@@ -83,30 +87,43 @@
         AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
         //请求的方式：POST
         [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"请求成功，服务器返回的信息%@",responseObject);
+            NSLog(@"登录成功啦 %@",responseObject[@"result"]);
             NSDictionary *responseDic = (NSDictionary *)responseObject[@"data"];
-            [User shareInstance].user = [[User alloc] initWithUsername:[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] andNickname:responseDic[@"nickName"] andHeadPortrait:responseDic[@"iconUrl"]];
+            NSString * result = responseObject[@"result"];
+            if ([result intValue] == 1){
+                
+                [User shareInstance].user = [[User alloc] initWithUsername:[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] andNickname:responseDic[@"nickName"] andHeadPortrait:responseDic[@"iconUrl"] andToken:responseDic[@"token"]];
+                
+                //            NSLog(@"user.m 头像地址！！ %@",responseDic[@"iconUrl"]);
+                //            NSLog(@"user.m token！！ %@",responseDic[@"token"]);
+                
+                [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
+                [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"password"];
+                [[NSUserDefaults standardUserDefaults] setObject:responseDic[@"iconUrl"] forKey:@"headPortrait"];
+                [[NSUserDefaults standardUserDefaults] setObject:responseDic[@"nickName"] forKey:@"nickname"];
+                [[NSUserDefaults standardUserDefaults] setObject:responseDic[@"token"] forKey:@"token"];
+                
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"newLogin"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                if (completedBlock) {
+                    completedBlock(nil, [User shareInstance].user);
+                }
+            } else{
+                if (completedBlock) {
+                    completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+                }
 
-//            NSLog(@"user.m 头像地址！！ %@",responseDic[@"iconUrl"]);
-//            NSLog(@"user.m 昵称！！ %@",responseDic[@"nickName"]);
-
-            [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
-            [[NSUserDefaults standardUserDefaults] setObject:responseDic[@"iconUrl"] forKey:@"headPortrait"];
-            [[NSUserDefaults standardUserDefaults] setObject:responseDic[@"nickName"] forKey:@"nickname"];
-
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"newLogin"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            }
             
         } failure:^(NSURLSessionDataTask *task, NSError * error) {
 //            NSLog(@"请求失败,服务器返回的错误信息%@",error);
-            NSLog(@"登录失败");
+//            NSLog(@"登录失败");
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
         }];
         
-        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] length] > 0){
-            return YES;
-        }
-}
-    return NO;
+    }
 }
 
 + (BOOL)hasLogin

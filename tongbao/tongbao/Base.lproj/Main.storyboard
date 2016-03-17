@@ -1710,7 +1710,10 @@
                         <barButtonItem key="rightBarButtonItem" title="设置" id="Dgo-vi-KXY"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="myHeadportrait" destination="CnJ-Pg-ekY" id="xjs-7w-HWF"/>
+                        <outlet property="nickname" destination="Xgd-BR-iPZ" id="ztf-BK-FMX"/>
                         <outlet property="table" destination="Tqu-mu-QEF" id="M3r-UT-225"/>
+                        <outlet property="telephone" destination="S9r-HH-ebt" id="wU3-hy-2ft"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y0Z-yf-Dxg" userLabel="First Responder" sceneMemberID="firstResponder"/>

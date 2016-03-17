@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import "OrderViewController.h"
+#import "User.h"
 
 @interface AppDelegate ()
 
@@ -23,15 +24,27 @@
     //判断是否登陆，由登陆状态判断启动页面
     //获取UserDefault
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    NSString *name = [userDefault objectForKey:@"username"];
+    NSString *username = [userDefault objectForKey:@"username"];
+    NSString *password = [userDefault objectForKey:@"password"];
+
     //获取storyboard
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     //如果用户未登陆则把根视图控制器改变成登陆视图控制器
-    if (name == nil || name.length == 0)
+    if (username == nil || username.length == 0||password == nil || password.length == 0)
     {
-        NSLog(@"%@",name);
+        NSLog(@"还没有登录哦%@",username);
         id view = [storyboard instantiateViewControllerWithIdentifier:@"LoginView"];
         self.window.rootViewController = view;
+    } else{
+         NSLog(@"登陆过啦 直接登录咯 %@ %@",username,password);
+        [User loginWithUsername:username andPassword:[userDefault objectForKey:@"password"]  withBlock:^(NSError *error, User *user) {
+            if (error) {
+                NSLog(@"LOGIN FAILED!!!!");
+            }else {
+                NSLog(@"LOGIN SUCCESSFULLY!!!!");
+            }
+        }];
+
     }
     
     return YES;
