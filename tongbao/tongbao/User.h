@@ -24,11 +24,11 @@
  */
 
 @property (copy, nonatomic, readonly) NSString *username;
-@property (copy, nonatomic, readonly) NSString *nickname;
+@property (copy, nonatomic) NSString *nickname;
 
-@property (copy, nonatomic, readonly) NSString *iconUrl;
-@property (copy, nonatomic, readonly) NSString *point;
-@property (copy, nonatomic, readonly) NSString *money;
+@property (copy, nonatomic) NSString *iconUrl;
+@property (copy, nonatomic) NSString *point;
+@property (copy, nonatomic) NSString *money;
 @property (copy, nonatomic, readonly) NSString *token;
 
 
@@ -57,5 +57,10 @@
 */
 
 +(void) registerwithUsername: (NSString *)username andPassoword: (NSString *) password withBlock:(void (^)(NSError *error, User *user))completedBlock;
+
++(void) modifyNickname: (NSString *)newName withBlock:(void (^)(NSError *error, User *user))completedBlock;
++(void) uploadImage: (UIImage *)newHead withBlock:(void (^)(NSError *error, User *user))completedBlock;
++(void) modifyHeadportrait: (NSString *)newUrl withBlock:(void (^)(NSError *error, User *user))completedBlock;
+
 + (UIImage *) getImageFromURL:(NSString *)fileURL;
 @end

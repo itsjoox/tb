@@ -113,9 +113,20 @@
         
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            UITextField *login = alert.textFields.firstObject;
-            NSLog(@"%@",login.text);
-            //            UITextField *password = alert.textFields.lastObject;
+            UITextField *new = alert.textFields.firstObject;
+            NSLog(@"修改后的昵称！！%@",new.text);
+            [User modifyNickname:new.text withBlock:^(NSError *error, User *user)
+                {
+                    if (error) {
+                        NSLog(@"MODIFY FAILED!!!!");
+                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改失败" message:@"用户名或密码错误" preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
+                        [alertController addAction:okAction];
+                        [self presentViewController:alertController animated:YES completion:nil];
+                    }else{
+                        self.myNickname.text = new.text;
+                    }
+            }];
         }];
         
         [alert addAction:cancelAction];
@@ -126,12 +137,26 @@
     
 }
 
-
+#pragma mark - image picker delegte
 //PickerImage完成后的代理方法
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     //定义一个newPhoto，用来存放我们选择的图片。
     UIImage *newPhoto = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     _myHeadPortrait.image = newPhoto;
+    [User uploadImage:newPhoto withBlock:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"UPLOAD Head portrait FAILED!!!!");
+        }else{
+            NSLog(@"Now modifying head with %@",user.iconUrl);
+            [User modifyHeadportrait:user.iconUrl withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"MODIFY Head portrait FAILED!!!!");
+                }else{
+                    NSLog(@"MODIFY Head portrait SUCCESSFULLY!!!!");
+                }
+            }];
+        }
+    }];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
