@@ -177,6 +177,8 @@
             NSString * result = responseObject[@"result"];
             if ([result intValue] == 1){
                 [User shareInstance].user.nickname = newName;
+                [[NSUserDefaults standardUserDefaults] setObject:newName forKey:@"nickname"];
+
                 if (completedBlock) {
                     completedBlock(nil, [User shareInstance].user);
                 }
@@ -265,6 +267,8 @@
             NSString * result = responseObject[@"result"];
             if ([result intValue] == 1){
                 [User shareInstance].user.iconUrl = newUrl;
+                [[NSUserDefaults standardUserDefaults] setObject:newUrl forKey:@"headPortrait"];
+
                 if (completedBlock) {
                     completedBlock(nil, [User shareInstance].user);
                 }

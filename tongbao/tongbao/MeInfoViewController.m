@@ -37,7 +37,7 @@
     [self setHeadPortrait];
     self.myNickname.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"nickname"];
     self.myTelephone.text =[[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
-    // Do any additional setup after loading the view, typically from a nib.
+        // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -153,6 +153,7 @@
                     NSLog(@"MODIFY Head portrait FAILED!!!!");
                 }else{
                     NSLog(@"MODIFY Head portrait SUCCESSFULLY!!!!");
+                    [self setHeadPortrait];
                 }
             }];
         }
