@@ -15,10 +15,14 @@
 //
 
 #import "MeInfoViewController.h"
+#import "User.h"
 
 @interface MeInfoViewController()
 
 @property (weak, nonatomic) IBOutlet UIImageView *myHeadPortrait;
+@property (weak, nonatomic) IBOutlet UITextField *myNickname;
+@property (weak, nonatomic) IBOutlet UILabel *myTelephone;
+
 
 @end
 
@@ -31,6 +35,8 @@
     self.tableView.dataSource = self;
     
     [self setHeadPortrait];
+    self.myNickname.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"nickname"];
+    self.myTelephone.text =[[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -94,11 +100,6 @@
         [alert addAction:SelectAction];
         [self presentViewController:alert animated:YES completion:nil];
         
-        
-        
-        
-        
-        
     }else if (rowNo == 1){
         NSLog(@"1");
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改昵称" message:@"" preferredStyle:UIAlertControllerStyleAlert];
@@ -135,8 +136,12 @@
 }
 
 
-//  方法：设置头像样式
+//  设置头像样式
 -(void)setHeadPortrait{
+//    NSLog(@"设置头像！！ %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"headPortrait"]);
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"headPortrait"]){
+        [self.myHeadPortrait setImage: [User getImageFromURL: [[NSUserDefaults standardUserDefaults] objectForKey:@"headPortrait"]]];
+    }
 //    //  把头像设置成圆形
 //    self.myHeadPortrait.layer.cornerRadius=self.myHeadPortrait.frame.size.width/2;
 //    self.myHeadPortrait.layer.masksToBounds=YES;
@@ -145,14 +150,6 @@
 //    self.myHeadPortrait.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
-
-
-
-
-//    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"UIActionSheet" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"呵呵" otherButtonTitles:@"嘿嘿", @"哈哈", nil];
-//    [actionSheet showInView:self.view];
-
-//    UIActionSheet 在8.3之后已经被废弃了，而是采用了UIAlertView，如下:
 
 
 
