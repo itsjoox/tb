@@ -15,6 +15,7 @@
 @property (strong, nonatomic)CLLocationManager *locationManager;
 @property (strong, nonatomic) CLGeocoder *geocoder;
 @property (strong, nonatomic) NSArray *placemarcs;
+@property (strong, nonatomic) NSArray *mpItms;
 @property (strong, nonatomic) MKPointAnnotation *point;
 @property (strong, nonatomic) CLPlacemark *placemark;
 
@@ -133,26 +134,84 @@
 // 将字符串地址转换为经度、纬度信息，并执行定位
 -(void)locateAt:(NSString*)address{
     
-    [self.geocoder geocodeAddressString:address completionHandler:
-     ^(NSArray *placemarks, NSError *error)
-     {
-         if ([placemarks count] > 0 && error == nil)
-         {
-             self.placemarcs = placemarks;
-             [self.resultTable reloadData];
+//    [self.geocoder geocodeAddressString:address completionHandler:
+//     ^(NSArray *placemarks, NSError *error)
+//     {
+//         if ([placemarks count] > 0 && error == nil)
+//         {
+//             self.placemarcs = placemarks;
+//             [self.resultTable reloadData];
+//            
+//             
+//             // 处理第一个地址
+//             self.placemark = [placemarks objectAtIndex:0];
+//
+//             [self pinOnMap:self.placemark.location.coordinate pinTitle:self.placemark.name pinSubTitle:nil];
+//
+//         }
+//         else
+//         {
+//             NSLog(@"没有搜索到匹配数据");
+//         }
+//     }];
+    
+    
+    
+    MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+    
+    request.naturalLanguageQuery = address;
+    
+    MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
+    
+    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {  // 得到一个MKMapItem 数组，里面还包含MKPlacemark
+        if ([response.mapItems count]>0 && error == nil) {
             
-             
-             // 处理第一个地址
-             self.placemark = [placemarks objectAtIndex:0];
+            self.mpItms = response.mapItems;
+            [self.resultTable reloadData];
+            
+            NSLog(@"搜索到匹配%lu条地址数据.", (unsigned long)response.mapItems.count);
+            // 处理第一个地址
+            
+            MKMapItem* mpitm = [self.mpItms objectAtIndex:0];
+            self.placemark = mpitm.placemark;
+//            NSArray* addrArray = self.placemark
+//            .addressDictionary[@"FormattedAddressLines"];
+//            // 将详细地址拼接成一个字符串
+//            NSMutableString* address = [[NSMutableString alloc] init];
+//            for(int i = 0 ; i < addrArray.count ; i ++)
+//            {
+//                [address appendString:addrArray[i]];
+//            }
+//      
+//            // 设置地图显示的范围
+//            MKCoordinateSpan span;
+//            // 地图显示范围越小，细节越清楚
+//            span.latitudeDelta = 0.01;
+//            span.longitudeDelta = 0.01;
+//            MKCoordinateRegion region = {self.placemark.location.coordinate,span};
+//            // 设置地图中心位置为搜索到的位置
+//            [self.mapView setRegion:region];  // ①
+//            // 设置地图锚点的坐标
+//            if (self.point!=nil) {
+//                [self.mapView removeAnnotation:self.point];
+//            }
+//            self.point.coordinate = self.placemark.location.coordinate;
+//            // 设置地图锚点的标题
+//            self.point.title = self.placemark.name;
+//            // 设置地图锚点的副标题
+//            self.point.subtitle = nil;
+//            // 将地图锚点添加到地图上
+//            [self.mapView addAnnotation:self.point];
+//            // 选中指定锚点
+//            [self.mapView selectAnnotation:self.point animated:YES];
+            [self pinOnMap:self.placemark.location.coordinate pinTitle:self.placemark.name pinSubTitle:nil];
+            
+        }else{
+            NSLog(@"没有搜索到匹配数据");
+        }
+    }];
+    
 
-             [self pinOnMap:self.placemark.location.coordinate pinTitle:self.placemark.name pinSubTitle:nil];
-
-         }
-         else
-         {
-             NSLog(@"没有搜索到匹配数据");
-         }
-     }];
 }
 
 
@@ -166,7 +225,9 @@
     // 根据identifier获取表格行
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
-    CLPlacemark *plcmk = [self.placemarcs objectAtIndex:rowNo];
+    //CLPlacemark *plcmk = [self.placemarcs objectAtIndex:rowNo];
+    MKMapItem *mpItm = [self.mpItms objectAtIndex:rowNo];
+    CLPlacemark *plcmk = mpItm.placemark;
     NSArray* addrArray = plcmk.addressDictionary[@"FormattedAddressLines"];
     // 将详细地址拼接成一个字符串
     NSMutableString* address = [[NSMutableString alloc] init];
@@ -188,7 +249,8 @@
 
 -(NSInteger)tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.placemarcs.count;
+    //return self.placemarcs.count;
+    return self.mpItms.count;
    
 }
 
@@ -197,7 +259,10 @@
     
     
     NSInteger rowNo = indexPath.row;
-    self.placemark = [self.placemarcs objectAtIndex:rowNo];
+    MKMapItem *mpItm = [self.mpItms objectAtIndex:rowNo];
+    self.placemark = mpItm.placemark;
+    
+    //self.placemark = [self.placemarcs objectAtIndex:rowNo];
     //在地图上定位
     [self pinOnMap:self.placemark.location.coordinate pinTitle:self.placemark.name pinSubTitle:nil];
 
