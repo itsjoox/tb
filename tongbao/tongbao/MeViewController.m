@@ -29,6 +29,13 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+        [super viewWillAppear: animated];
+        self.nickname.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"nickname"];
+        self.telephone.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+        [self setHeadPortrait];
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSInteger rowNo = indexPath.row;

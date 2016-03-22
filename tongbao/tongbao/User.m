@@ -71,8 +71,6 @@
         AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
         //请求的方式：POST
 
-
-
         [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
                     NSLog(@"请求成功啦 注册结果 %@",responseObject[@"result"]);
                     NSString * result = responseObject[@"result"];
@@ -159,6 +157,140 @@
         
     }
 }
+
++(void) modifyNickname: (NSString *)newName withBlock:(void (^)(NSError *error, User *user))completedBlock{
+    if (newName == nil || newName.length == 0 ) {
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
+        }
+    }else{
+        NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
+                                     @"nickName":newName
+                                     };
+        //请求的url
+        NSString *urlString = @"http://120.27.112.9:8080/tongbao/user/auth/modifyNickName";
+        //请求的managers
+        AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+        
+        [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"连接成功啦 %@",responseObject[@"result"]);
+            NSString * result = responseObject[@"result"];
+            if ([result intValue] == 1){
+                [User shareInstance].user.nickname = newName;
+                [[NSUserDefaults standardUserDefaults] setObject:newName forKey:@"nickname"];
+
+                if (completedBlock) {
+                    completedBlock(nil, [User shareInstance].user);
+                }
+            }else{
+                if (completedBlock) {
+                    completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+                }
+            }
+
+        }failure:^(NSURLSessionDataTask *task, NSError * error) {
+             NSLog(@"请求失败,服务器返回的错误信息%@",error);
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }];
+        
+    }
+   
+}
+
++(void) uploadImage: (UIImage *)newHead withBlock:(void (^)(NSError *error, User *user))completedBlock{
+    if (newHead == nil) {
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
+        }
+    }else{
+         NSData *data = UIImagePNGRepresentation(newHead);
+        //请求的url
+        NSString *urlString = @"http://120.27.112.9:8080/tongbao/user/uploadPicture";
+        //请求的managers
+        AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+        
+        [managers POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            
+            NSData *data = UIImageJPEGRepresentation(newHead,0.5);
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            // 设置时间格式
+           formatter.dateFormat = @"yyyyMMddHHmmss";
+            NSString *str = [formatter stringFromDate:[NSDate date]];
+            NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
+            [formData appendPartWithFileData:data name:@"file" fileName:fileName mimeType:@"image/png"];
+            
+        } success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"上传图片连接成功啦 %@ 新的头像地址 %@",responseObject[@"result"],responseObject[@"data"]);
+            NSString * result = responseObject[@"result"];
+                        if ([result intValue] == 1){
+                            [User shareInstance].user.iconUrl = responseObject[@"data"][@"url"];
+                            if (completedBlock) {
+                                completedBlock(nil, [User shareInstance].user);
+                            }
+                        }else{
+                            if (completedBlock) {
+                                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+                            }
+                        }
+
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            NSLog(@"请求失败,服务器返回的错误信息%@",error);
+            if (completedBlock) {
+                                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+                            }
+        }];
+    }
+    
+}
+
+
+
+
++(void) modifyHeadportrait: (NSString *)newUrl withBlock:(void (^)(NSError *error, User *user))completedBlock{
+    if (newUrl == nil || newUrl.length == 0 ) {
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
+        }
+    }else{
+        NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
+                                     @"iconUrl":newUrl
+                                     };
+        //请求的url
+        NSString *urlString = @"http://120.27.112.9:8080/tongbao/user/auth/modifyIcon";
+        //请求的managers
+        AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+        
+        [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"修改头像连接成功啦 %@",responseObject[@"result"]);
+            NSString * result = responseObject[@"result"];
+            if ([result intValue] == 1){
+                [User shareInstance].user.iconUrl = newUrl;
+                [[NSUserDefaults standardUserDefaults] setObject:newUrl forKey:@"headPortrait"];
+
+                if (completedBlock) {
+                    completedBlock(nil, [User shareInstance].user);
+                }
+            }else{
+                if (completedBlock) {
+                    completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+                }
+            }
+            
+        }failure:^(NSURLSessionDataTask *task, NSError * error) {
+            NSLog(@"请求失败,服务器返回的错误信息%@",error);
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }];
+        
+    }
+    
+}
+
+
+
 
 + (BOOL)hasLogin
 {
