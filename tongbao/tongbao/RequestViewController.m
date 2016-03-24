@@ -146,25 +146,46 @@
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
 //            UITextField *new = alert.textFields.firstObject;
 //            NSLog(@"修改后的昵称！！%@",new.text);
-            NSDictionary* orderDetail = @{@"addressFrom":self.srcAddrTxtFld.text,
-                                          @"adressFromLat":@"",
-                                          @"adressFromLng":@"",
-                                          @"adressTo":self.destAddrTxtFld.text,
-                                          @"adressToLat":@"",
-                                          @"adressToLng":@"",
-                                          @"fromContactName":self.senderNameTxtFld.text,
-                                          @"fromContactPhone":self.senderTelTxtFld.text,
-                                          @"toContactName":self.receiverNameTxtFld.text,
-                                          @"toContactPhone":self.recevierTelTxtFld.text,
-                                          @"loadTime":self.useTimeTxtFld.text,
-                                          @"goodsType":self.cargoTypeTxtFld.text,
-                                          @"goodsWeight":self.cargoWeightTxtFld.text,
-                                          @"goodsSize":self.cargoVolumeTxtFld.text,
-                                          @"truckTypes":self.carTypeTxtFld.text,
-                                          @"remark":self.psTxtView.text,
-                                          @"payType":@"",
-                                          @"price":self.moneyLbl.text
-                                          };
+//            NSDictionary* orderDetail = @{@"addressFrom":self.srcAddrTxtFld.text,
+//                                          @"addressFromLat":@"",
+//                                          @"addressFromLng":@"",
+//                                          @"addressTo":self.destAddrTxtFld.text,
+//                                          @"addressToLat":@"",
+//                                          @"addressToLng":@"",
+//                                          @"fromContactName":self.senderNameTxtFld.text,
+//                                          @"fromContactPhone":self.senderTelTxtFld.text,
+//                                          @"toContactName":self.receiverNameTxtFld.text,
+//                                          @"toContactPhone":self.recevierTelTxtFld.text,
+//                                          @"loadTime":self.useTimeTxtFld.text,
+//                                          @"goodsType":self.cargoTypeTxtFld.text,
+//                                          @"goodsWeight":self.cargoWeightTxtFld.text,
+//                                          @"goodsSize":self.cargoVolumeTxtFld.text,
+//                                          @"truckTypes":self.carTypeTxtFld.text,
+//                                          @"remark":self.psTxtView.text,
+//                                          @"payType":@"",
+//                                          @"price":self.moneyLbl.text
+//                                          };
+//            
+            //NSDictionary这种初始化方式不能有nil
+            NSDictionary *orderDetail = @{@"addressFrom":@"1",
+                                          @"addressFromLat":@"1",
+                                          @"addressFromLng":@"1",
+                                          @"addressTo":@"1",
+                                          @"addressToLat":@"1",
+                                          @"addressToLng":@"1",
+                                          @"fromContactName":@"1",
+                                          @"fromContactPhone":@"1",
+                                          @"toContactName":@"1",
+                                          @"toContactPhone":@"1",
+                                          @"loadTime":@"1",
+                                          @"goodsType":@"1",
+                                          @"goodsWeight":@"1",
+                                          @"goodsSize":@"1",
+                                          @"truckTypes":@"1",
+                                          @"remark":@"1",
+                                          @"payType":@"1",
+                                          @"price":@"1"};
+            
             
             [User placeOrder:(NSDictionary *) orderDetail withBlock:^(NSError *error, User *user){
                 if (error) {
