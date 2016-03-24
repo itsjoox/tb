@@ -14,7 +14,7 @@
 		83865F471C967DE7001115B3 /* MeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83865F461C967DE7001115B3 /* MeInfoViewController.m */; };
 		83865F4B1C968ACC001115B3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 83865F4A1C968ACC001115B3 /* User.m */; };
 		83865F511C9A7614001115B3 /* NSError+custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 83865F501C9A7614001115B3 /* NSError+custom.m */; };
-		FB0E228B1CA44EA70091B30C /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E228A1CA44EA70091B30C /* Address.m */; };
+		FB0E228B1CA44EA70091B30C /* address.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E228A1CA44EA70091B30C /* address.m */; };
 		FB2921411C72FA0B0082B0B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921401C72FA0B0082B0B4 /* main.m */; };
 		FB2921441C72FA0B0082B0B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921431C72FA0B0082B0B4 /* AppDelegate.m */; };
 		FB2921471C72FA0B0082B0B4 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921461C72FA0B0082B0B4 /* HomeViewController.m */; };
@@ -121,8 +121,8 @@
 		83865F4A1C968ACC001115B3 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		83865F4F1C9A75F9001115B3 /* NSError+custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+custom.h"; sourceTree = "<group>"; };
 		83865F501C9A7614001115B3 /* NSError+custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+custom.m"; sourceTree = "<group>"; };
-		FB0E22891CA44E990091B30C /* Address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
-		FB0E228A1CA44EA70091B30C /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
+		FB0E22891CA44E990091B30C /* address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = address.h; sourceTree = "<group>"; };
+		FB0E228A1CA44EA70091B30C /* address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = address.m; sourceTree = "<group>"; };
 		FB29213C1C72FA0B0082B0B4 /* tongbao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tongbao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB2921401C72FA0B0082B0B4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FB2921421C72FA0B0082B0B4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -270,8 +270,8 @@
 				83865F4A1C968ACC001115B3 /* User.m */,
 				8306A5BF1CA3C2B3008ADD3B /* Bill.h */,
 				8306A5C01CA3C2EB008ADD3B /* Bil.m */,
-				FB0E22891CA44E990091B30C /* Address.h */,
-				FB0E228A1CA44EA70091B30C /* Address.m */,
+				FB0E22891CA44E990091B30C /* address.h */,
+				FB0E228A1CA44EA70091B30C /* address.m */,
 				FB4205131CA3EA7300478BBC /* Order.h */,
 				FB4205141CA3EA8100478BBC /* Order.m */,
 				FB4205101CA3E62300478BBC /* Message.h */,
@@ -667,7 +667,7 @@
 			files = (
 				FB8504631C82E6D6008E25E1 /* SubDriverDtlViewController.m in Sources */,
 				FB6CA1A91C8D786A009AE70F /* AFHTTPSessionManager.m in Sources */,
-				FB0E228B1CA44EA70091B30C /* Address.m in Sources */,
+				FB0E228B1CA44EA70091B30C /* address.m in Sources */,
 				83865F511C9A7614001115B3 /* NSError+custom.m in Sources */,
 				83865F411C9664D3001115B3 /* LoginViewController.m in Sources */,
 				FB6CA1AA1C8D786A009AE70F /* AFNetworkReachabilityManager.m in Sources */,

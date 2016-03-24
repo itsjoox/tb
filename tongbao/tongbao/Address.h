@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface Address : NSObject
+@interface address : NSObject
 @property (copy, nonatomic) NSString *name;
 @property (copy, nonatomic) NSString *lat;
 
