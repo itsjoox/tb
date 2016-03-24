@@ -9,6 +9,7 @@
 #import "User.h"
 #import "AFNetworking.h"
 #import "NSError+custom.h"
+#import "Bill.h"
 
 
 @interface User ()
@@ -38,6 +39,11 @@
     return [User shareInstance].user;
 }
 
+- (NSMutableArray *)billList
+{
+    if (!_billList) _billList = [[NSMutableArray alloc] init];
+    return _billList;
+}
 
 - (instancetype)initWithUsername:(NSString *)username andNickname: (NSString *) nickname andHeadPortrait: (NSString *) iconUrl andToken: (NSString *) token
 {
@@ -372,6 +378,50 @@
 }
 
 +(void) showBills:(void (^)(NSError *error, User *user))completedBlock{
+    NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
+                                 };
+    //请求的url
+    NSString *urlString = @"http://120.27.112.9:8080/tongbao/user/auth/showAccount";
+    //请求的managers
+    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+    
+    [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"查看账单连接成功啦 %@",responseObject[@"result"]);
+        NSArray* resultArray = responseObject[@"data"];
+//        NSLog(@"账单如下 %@",resultArray);
+        for (NSDictionary *dic in resultArray) {
+//            NSLog(@"value: %@", [dic objectForKey:@"type"]);
+            NSLog(@"账单如下 %@",dic);
+            Bill* test = [[Bill alloc] init];
+            test.type = [Bill getType:[dic objectForKey:@"type"]];
+            test.time = [dic objectForKey:@"time"];
+            test.money = [dic objectForKey:@"money"];
+            [[User shareInstance].user.billList addObject:test];
+        }
+       
+
+        //            NSLog(@"error message %@",responseObject[@"errorMsg"]);
+        
+        NSString * result = responseObject[@"result"];
+        if ([result intValue] == 1){
+            NSLog(@"查看成功啦 %@",responseObject[@"result"]);
+            
+            if (completedBlock) {
+                completedBlock(nil, [User shareInstance].user);
+            }
+        }else{
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }
+        
+    }failure:^(NSURLSessionDataTask *task, NSError * error) {
+        NSLog(@"请求失败,服务器返回的错误信息%@",error);
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+        }
+    }];
+
     
 }
 + (BOOL)hasLogin

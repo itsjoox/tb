@@ -15,9 +15,12 @@
 
 @interface Bill : NSObject
 
+
 @property (copy, nonatomic) NSString *type;
 
 @property (copy, nonatomic) NSString *time;
 @property (copy, nonatomic) NSString *money;
 
+@property (strong, nonatomic) NSString *contents;
++(NSString*) getType:(NSString*) type;
 @end

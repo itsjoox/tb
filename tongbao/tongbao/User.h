@@ -31,6 +31,8 @@
 @property (copy, nonatomic) NSString *point;
 @property (copy, nonatomic) NSString *money;
 @property (copy, nonatomic, readonly) NSString *token;
+@property (strong, nonatomic) NSMutableArray *billList;
+
 
 
 /**
