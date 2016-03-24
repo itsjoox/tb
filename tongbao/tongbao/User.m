@@ -388,6 +388,7 @@
     [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"查看账单连接成功啦 %@",responseObject[@"result"]);
         NSArray* resultArray = responseObject[@"data"];
+        [[User shareInstance].user.billList removeAllObjects];
 //        NSLog(@"账单如下 %@",resultArray);
         for (NSDictionary *dic in resultArray) {
 //            NSLog(@"value: %@", [dic objectForKey:@"type"]);

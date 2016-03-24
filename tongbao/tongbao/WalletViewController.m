@@ -37,8 +37,9 @@
             NSLog(@"Now getting bills");
              weakSelf.billList = user.billList;
             [weakSelf.billTable reloadData];
+            int count=0;
             for(Bill* b in weakSelf.billList){
-                NSLog(@"%@",b.contents);
+                NSLog(@"%d %@",count++,b.contents);
             }
             
             
