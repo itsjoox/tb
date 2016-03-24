@@ -11,7 +11,7 @@
 
 @interface NearbyViewController : UIViewController
 
-
+@property (nonatomic, copy) NSString* caller;
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 

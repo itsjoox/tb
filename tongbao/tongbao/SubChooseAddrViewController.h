@@ -11,7 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface SubChooseAddrViewController : UITableViewController<UITableViewDelegate>
-
+@property (nonatomic, copy) NSString* caller;
 @property (nonatomic, copy) CLPlacemark* placemark;
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UITextView *addr;

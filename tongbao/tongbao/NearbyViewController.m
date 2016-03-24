@@ -29,7 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     self.view.backgroundColor = UIColor.whiteColor;
     self.navigationController.view.backgroundColor = UIColor.whiteColor;
     
@@ -85,7 +84,7 @@
 
     if(searchText==nil||searchText.length == 0)
         {
-            self.placemarcs = nil;
+            self.mpItms = nil;
             [self.mapView removeAnnotation:self.point];
             [self.resultTable reloadData];
         }
@@ -369,6 +368,9 @@
     //NSLog(@"您点击了锚点信息！");
     SubChooseAddrViewController* subChooseAddr = [self.storyboard instantiateViewControllerWithIdentifier: @"SubChooseAddr"];
     
+    //设置调用者
+     subChooseAddr.caller = self.caller;
+    
     subChooseAddr.placemark = self.placemark;
     [self.navigationController pushViewController:subChooseAddr animated:YES];
     
@@ -404,6 +406,9 @@
              CLPlacemark* plcmk = [placemarks objectAtIndex:0];
              // 获取地址信息中的FormattedAddressLines对应的详细地址
              SubChooseAddrViewController* subChooseAddr = [self.storyboard instantiateViewControllerWithIdentifier: @"SubChooseAddr"];
+             
+             //设置调用者
+             subChooseAddr.caller = self.caller;
              
              subChooseAddr.placemark = plcmk;
              [self.navigationController pushViewController:subChooseAddr animated:YES];
