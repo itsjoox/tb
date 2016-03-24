@@ -11,7 +11,7 @@
 @interface SubMessageViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *table;
-@property (strong, nonatomic) NSArray* msgs;
+@property (strong, nonatomic) NSMutableArray* msgList;
 @property (strong, nonatomic) NSArray* dtls;
 
 @end

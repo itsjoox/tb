@@ -21,7 +21,7 @@
     [super viewDidLoad];
     self.orderNo.text = self.myMsgDtl;
     self.msgTitle.text = self.myMsgTitle;
-    
+    self.msgDtl.text = self.myMsgDtl;
    
 }
 
