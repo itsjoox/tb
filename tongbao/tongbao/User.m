@@ -222,7 +222,7 @@
             [formData appendPartWithFileData:data name:@"file" fileName:fileName mimeType:@"image/png"];
             
         } success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"上传图片连接成功啦 %@ 新的头像地址 %@",responseObject[@"result"],responseObject[@"data"]);
+            NSLog(@"上传图片连接成功啦 %@ 图片地址 %@",responseObject[@"result"],responseObject[@"data"]);
             NSString * result = responseObject[@"result"];
                         if ([result intValue] == 1){
                             [User shareInstance].user.iconUrl = responseObject[@"data"][@"url"];
@@ -290,8 +290,90 @@
 }
 
 
++(void) withdrawMoney: (NSInteger) money withBlock:(void (^)(NSError *error, User *user))completedBlock{
+    if(money < 0){
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
+        }
+    }else{
+        NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
+                                     @"money": @(money),
+                                     };
+        //请求的url
+        NSString *urlString = @"http://120.27.112.9:8080/tongbao/user/auth/withdraw";
+        //请求的managers
+        AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+        
+        [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"提现连接成功啦 %@",responseObject[@"result"]);
+//            NSLog(@"error message %@",responseObject[@"errorMsg"]);
 
+            NSString * result = responseObject[@"result"];
+            if ([result intValue] == 1){
+                NSLog(@"提现成功啦 %@",responseObject[@"result"]);                
+                if (completedBlock) {
+                    completedBlock(nil, [User shareInstance].user);
+                }
+            }else{
+                if (completedBlock) {
+                    completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+                }
+            }
+            
+        }failure:^(NSURLSessionDataTask *task, NSError * error) {
+            NSLog(@"请求失败,服务器返回的错误信息%@",error);
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }];
 
+    }
+}
+
++(void) rechargeMoney: (NSInteger) money withBlock:(void (^)(NSError *error, User *user))completedBlock{
+    if(money < 0){
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
+        }
+    }else{
+        NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
+                                     @"money": @(money),
+                                     };
+        //请求的url
+        NSString *urlString = @"http://120.27.112.9:8080/tongbao/user/auth/recharge";
+        //请求的managers
+        AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+        
+        [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"充值连接成功啦 %@",responseObject[@"result"]);
+//            NSLog(@"error message %@",responseObject[@"errorMsg"]);
+            
+            NSString * result = responseObject[@"result"];
+            if ([result intValue] == 1){
+                NSLog(@"充值成功啦 %@",responseObject[@"result"]);
+                if (completedBlock) {
+                    completedBlock(nil, [User shareInstance].user);
+                }
+            }else{
+                if (completedBlock) {
+                    completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+                }
+            }
+            
+        }failure:^(NSURLSessionDataTask *task, NSError * error) {
+            NSLog(@"请求失败,服务器返回的错误信息%@",error);
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }];
+        
+    }
+
+}
+
++(void) showBills:(void (^)(NSError *error, User *user))completedBlock{
+    
+}
 + (BOOL)hasLogin
 {
     return [User currentUser] != nil;
