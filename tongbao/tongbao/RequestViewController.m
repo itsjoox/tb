@@ -7,6 +7,7 @@
 //
 #import "RequestViewController.h"
 #import "User.h"
+#import "Order.h"
 
 @interface RequestViewController ()
 
@@ -163,6 +164,27 @@
         
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            
+            Order* order = [[Order alloc]init];
+            order.addressFrom = self.srcAddrTxtFld.text;
+            order.addressFromLat = @"0";
+            order.addressFromLng= @"0";
+            order.addressTo = self.destAddrTxtFld.text;
+            order.addressToLat = @"0";
+            order.addressToLng=@"0";
+            order.fromContactName = self.senderNameTxtFld.text;
+            order.fromContactPhone = self.senderTelTxtFld.text;
+            order.toContactName = self.receiverNameTxtFld.text;
+            order.toContactPhone = self.recevierTelTxtFld.text;
+            order.loadTime = self.useTimeTxtFld.text;
+            order.goodsType = self.cargoTypeTxtFld.text;
+            order.goodsWeight = self.cargoWeightTxtFld.text;
+            order.goodsSize = self.cargoVolumeTxtFld.text;
+            order.truckTypes = self.carTypeTxtFld.text;
+            order.remark = self.psTxtView.text;
+            order.payType = @"0";
+            order.price = self.moneyLbl.text;
+            
 //            UITextField *new = alert.textFields.firstObject;
 //            NSLog(@"修改后的昵称！！%@",new.text);
 //            NSDictionary* orderDetail = @{@"addressFrom":self.srcAddrTxtFld.text,
@@ -185,28 +207,28 @@
 //                                          @"price":self.moneyLbl.text
 //                                          };
 //            
-            //NSDictionary这种初始化方式不能有nil
-            NSDictionary *orderDetail = @{@"addressFrom":@"1",
-                                          @"addressFromLat":@"1",
-                                          @"addressFromLng":@"1",
-                                          @"addressTo":@"1",
-                                          @"addressToLat":@"1",
-                                          @"addressToLng":@"1",
-                                          @"fromContactName":@"1",
-                                          @"fromContactPhone":@"1",
-                                          @"toContactName":@"1",
-                                          @"toContactPhone":@"1",
-                                          @"loadTime":@"1",
-                                          @"goodsType":@"1",
-                                          @"goodsWeight":@"1",
-                                          @"goodsSize":@"1",
-                                          @"truckTypes":@"1",
-                                          @"remark":@"1",
-                                          @"payType":@"1",
-                                          @"price":@"1"};
+            
+//            NSDictionary *orderDetail = @{@"addressFrom":@"1",
+//                                          @"addressFromLat":@"1",
+//                                          @"addressFromLng":@"1",
+//                                          @"addressTo":@"1",
+//                                          @"addressToLat":@"1",
+//                                          @"addressToLng":@"1",
+//                                          @"fromContactName":@"1",
+//                                          @"fromContactPhone":@"1",
+//                                          @"toContactName":@"1",
+//                                          @"toContactPhone":@"1",
+//                                          @"loadTime":@"1",
+//                                          @"goodsType":@"1",
+//                                          @"goodsWeight":@"1",
+//                                          @"goodsSize":@"1",
+//                                          @"truckTypes":@"1",
+//                                          @"remark":@"1",
+//                                          @"payType":@"1",
+//                                          @"price":@"1"};
             
             
-            [User placeOrder:(NSDictionary *) orderDetail withBlock:^(NSError *error, User *user){
+            [User placeOrder:(Order *) order withBlock:^(NSError *error, User *user){
                 if (error) {
                      NSLog(@"PLACE FAILED!!!!");
                      UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"下单失败" message:@"用户名或密码错误" preferredStyle:UIAlertControllerStyleAlert];

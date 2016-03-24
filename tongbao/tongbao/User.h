@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import "Order.h"
 
 @interface User : NSObject
 
@@ -71,5 +72,5 @@
 
 + (UIImage *) getImageFromURL:(NSString *)fileURL;
 
-+(void) placeOrder: (NSDictionary*) orderDetail withBlock:(void (^)(NSError *error, User *user))completedBlock;
++(void) placeOrder: (Order*) order withBlock:(void (^)(NSError *error, User *user))completedBlock;
 @end
