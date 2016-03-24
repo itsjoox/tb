@@ -29,14 +29,15 @@
 //    _billList = [NSMutableArray arrayWithObjects:test, nil];
     self.billTable.dataSource = self;
     self.billTable.delegate = self;
+    __weak typeof(self) weakSelf = self;
     [User showBills:^(NSError *error, User *user) {
         if(error){
             NSLog(@"show bills FAILED!!!!");
         }else{
             NSLog(@"Now getting bills");
-             _billList = user.billList;
-            
-            for(Bill* b in _billList){
+             weakSelf.billList = user.billList;
+            [weakSelf.billTable reloadData];
+            for(Bill* b in weakSelf.billList){
                 NSLog(@"%@",b.contents);
             }
             
@@ -50,12 +51,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (NSMutableArray *)billList{
-    if(!_billList) _billList =[[NSMutableArray alloc] init];
-    return _billList;
-}
-
 
 - (IBAction)recharge:(UIButton *)sender {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"充值金额" message:@"" preferredStyle:UIAlertControllerStyleAlert];
@@ -171,6 +166,9 @@
     return _billList.count;
 }
 
-
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
 
 @end

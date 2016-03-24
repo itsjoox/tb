@@ -19,6 +19,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *billTable;
 
-@property (strong, nonatomic) NSMutableArray *billList;
+@property (strong, nonatomic) NSArray *billList;
 
 @end

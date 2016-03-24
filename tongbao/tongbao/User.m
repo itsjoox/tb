@@ -395,7 +395,7 @@
             Bill* test = [[Bill alloc] init];
             test.type = [Bill getType:[dic objectForKey:@"type"]];
             test.time = [dic objectForKey:@"time"];
-            test.money = [dic objectForKey:@"money"];
+            test.money = [[dic objectForKey:@"money"] stringValue];
             [[User shareInstance].user.billList addObject:test];
         }
        
