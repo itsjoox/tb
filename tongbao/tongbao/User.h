@@ -62,5 +62,10 @@
 +(void) uploadImage: (UIImage *)newHead withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) modifyHeadportrait: (NSString *)newUrl withBlock:(void (^)(NSError *error, User *user))completedBlock;
 
++(void) withdrawMoney: (NSInteger) money withBlock:(void (^)(NSError *error, User *user))completedBlock;
++(void) rechargeMoney: (NSInteger) money withBlock:(void (^)(NSError *error, User *user))completedBlock;
++(void) showBills:(void (^)(NSError *error, User *user))completedBlock;
+
+
 + (UIImage *) getImageFromURL:(NSString *)fileURL;
 @end
