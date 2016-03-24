@@ -21,14 +21,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    Bill* test = [[Bill alloc] init];
-    test.type = @"提现";
-    test.time = @"2015-08-09";
-    test.money = @"10";
-    _billList = [NSMutableArray arrayWithObjects:test, nil];
+//    Bill* test = [[Bill alloc] init];
+//    test.type = @"提现";
+//    test.time = @"2015-08-09";
+//    test.money = @"10";
+   
+//    _billList = [NSMutableArray arrayWithObjects:test, nil];
     self.billTable.dataSource = self;
     self.billTable.delegate = self;
+    [User showBills:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"show bills FAILED!!!!");
+        }else{
+            NSLog(@"Now getting bills");
+             _billList = user.billList;
+            
+            for(Bill* b in _billList){
+                NSLog(@"%@",b.contents);
+            }
+            
+            
+        }
+    }];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -127,7 +143,6 @@
 //        UILabel* label = (UILabel*)[cell viewWithTag:1];
 //        label.text = [self.tbl objectAtIndex:rowNo];
 
-        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
@@ -157,8 +172,5 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
 
-}
 @end
