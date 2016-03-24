@@ -47,8 +47,27 @@
 //处理次级页面传来的信息
 -(void)viewDidAppear:(BOOL)animated
 {
-    self.srcAddrTxtFld.text = self.srcAddrPlsmk.name;
-    self.destAddrTxtFld.text = self.destAddrPlsmk.name;
+    NSArray* srcAddrArray = self.srcAddrPlsmk
+    .addressDictionary[@"FormattedAddressLines"];
+    // 将详细地址拼接成一个字符串
+    NSMutableString* srcAddress = [[NSMutableString alloc] init];
+    for(int i = 0 ; i < srcAddrArray.count ; i ++)
+    {
+        [srcAddress appendString:srcAddrArray[i]];
+    }
+    NSArray* destAddrArray = self.destAddrPlsmk
+    .addressDictionary[@"FormattedAddressLines"];
+    // 将详细地址拼接成一个字符串
+    NSMutableString* destAddress = [[NSMutableString alloc] init];
+    for(int i = 0 ; i < destAddrArray.count ; i ++)
+    {
+        [destAddress appendString:destAddrArray[i]];
+    }
+   
+    
+    
+    self.srcAddrTxtFld.text = srcAddress;
+    self.destAddrTxtFld.text = destAddress;
     self.carTypeTxtFld.text = self.carType;
 
     
