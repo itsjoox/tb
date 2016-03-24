@@ -70,4 +70,6 @@
 
 
 + (UIImage *) getImageFromURL:(NSString *)fileURL;
+
++(void) placeOrder: (NSDictionary*) orderDetail withBlock:(void (^)(NSError *error, User *user))completedBlock;
 @end

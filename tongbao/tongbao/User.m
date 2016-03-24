@@ -449,7 +449,94 @@
     
     return result;
     
-}  
+}
+
++(void) placeOrder: (NSDictionary*) orderDetail withBlock:(void (^)(NSError *error, User *user))completedBlock{
+    if (orderDetail == nil || orderDetail.count == 0 ) {
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
+        }
+    }else{
+        //部分改为int
+        NSString* addressFrom = [orderDetail objectForKey:@"addressFrom"];
+        NSString* addressFromLat = [orderDetail objectForKey:@"addressFromLat"];
+        NSString* addressFromLng = [orderDetail objectForKey:@"addressFromLng"];
+        NSString* addressTo = [orderDetail objectForKey:@"addressTo"];
+        NSString* addressToLat = [orderDetail objectForKey:@"addressToLat"];
+        NSString* addressToLng = [orderDetail objectForKey:@"addressToLng"];
+        NSString* fromContactName = [orderDetail objectForKey:@"fromContactName"];
+        NSString* fromContactPhone = [orderDetail objectForKey:@"fromContactPhone"];
+        NSString* toContactName = [orderDetail objectForKey:@"toContactName"];
+        NSString* toContactPhone = [orderDetail objectForKey:@"toContactPhone"];
+        NSString* loadTime = [orderDetail objectForKey:@"loadTime"];
+        NSString* goodsType = [orderDetail objectForKey:@"goodsType"];
+        NSString* goodsWeight = [orderDetail objectForKey:@"goodsWeight"];
+        NSString* goodsSize = [orderDetail objectForKey:@"goodsSize"];
+        NSString* truckTypes = [orderDetail objectForKey:@"truckTypes"];
+        NSString* remark = [orderDetail objectForKey:@"remark"];
+        NSString* payType = [orderDetail objectForKey:@"payType"];
+        NSString* price = [orderDetail objectForKey:@"price"];
+        
+        
+        
+        
+        //第一个没登陆为空。。会出错
+        NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
+                                     @"addressFrom":addressFrom,
+                                     @"addressFromLat":addressFromLat,
+                                     @"addressFromLng":addressFromLng,
+                                     @"addressTo":addressTo,
+                                     @"adressToLat":addressToLat,
+                                     @"adressToLng":addressToLng,
+                                     @"fromContactName":fromContactName,
+                                     @"fromContactPhone":fromContactPhone,
+                                     @"toContactName":toContactName,
+                                     @"toContactPhone":toContactPhone,
+                                     @"loadTime":loadTime,
+                                     @"goodsType":goodsType,
+                                     @"goodsWeight":goodsWeight,
+                                     @"goodsSize":goodsSize,
+                                     @"truckTypes":truckTypes,
+                                     @"remark":remark,
+                                     @"payType":payType,
+                                     @"price":price
+                                     };
+        
+        //请求的url
+        NSString *urlString = @"http://120.27.112.9:8080/tongbao/user/auth/placeOrder";
+        //请求的managers
+        AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+        
+        [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"连接成功啦 %@",responseObject[@"result"]);
+            NSString * result = responseObject[@"result"];
+            if ([result intValue] == 1){
+
+                NSLog(@"下单成功");
+                if (completedBlock) {
+                    completedBlock(nil, [User shareInstance].user);
+                }
+            }else if([result intValue] == 2){
+                NSLog(@"没有合适司机，分割订单");
+                
+            }else{
+                if (completedBlock) {
+                    NSLog(@"下单失败");
+                    completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+                }
+            }
+            
+        }failure:^(NSURLSessionDataTask *task, NSError * error) {
+            NSLog(@"请求失败,服务器返回的错误信息%@",error);
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }];
+        
+   }
+
+}
+
 
 
 @end
