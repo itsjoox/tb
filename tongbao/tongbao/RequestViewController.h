@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface RequestViewController : UITableViewController
+@interface RequestViewController : UITableViewController<UITableViewDelegate>
 
 @property (strong,nonatomic) CLPlacemark* srcAddrPlsmk;
 @property (strong,nonatomic) CLPlacemark* destAddrPlsmk;

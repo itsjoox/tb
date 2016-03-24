@@ -63,4 +63,6 @@
 +(void) modifyHeadportrait: (NSString *)newUrl withBlock:(void (^)(NSError *error, User *user))completedBlock;
 
 + (UIImage *) getImageFromURL:(NSString *)fileURL;
+
++(void) placeOrder: (NSDictionary*) orderDetail withBlock:(void (^)(NSError *error, User *user))completedBlock;
 @end

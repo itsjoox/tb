@@ -317,7 +317,51 @@
     
     return result;
     
-}  
+}
+
++(void) placeOrder: (NSDictionary*) orderDetail withBlock:(void (^)(NSError *error, User *user))completedBlock{
+//    if (newName == nil || newName.length == 0 ) {
+//        if (completedBlock) {
+//            completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
+//        }
+//    }else{
+        NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
+                                     @"addressFrom":[orderDetail objectForKey:@"addressFrom"],@"adressFromLat":[orderDetail objectForKey:@"addressFromLat"],@"adressFromLng":[orderDetail objectForKey:@"addressFromLng"],@"adressTo":[orderDetail objectForKey:@"addressTo"],@"adressToLat":[orderDetail objectForKey:@"addressToLat"],@"adressToLng":[orderDetail objectForKey:@"addressToLng"],@"fromContactName":[orderDetail objectForKey:@"fromContactName"],@"fromContactPhone":[orderDetail objectForKey:@"fromContactPhone"],@"toContactName":[orderDetail objectForKey:@"toContactName"],@"toContactPhone":[orderDetail objectForKey:@"toContactPhone"],@"loadTime":[orderDetail objectForKey:@"loadTime"],@"goodsType":[orderDetail objectForKey:@"goodsType"],@"goodsWeight":[orderDetail objectForKey:@"goodsWeight"],@"goodsSize":[orderDetail objectForKey:@"goodsSize"],@"truckTypes":[orderDetail objectForKey:@"truckTypes"],@"remark":[orderDetail objectForKey:@"remark"],@"payType":[orderDetail objectForKey:@"payType"],@"price":[orderDetail objectForKey:@"price"]
+                                     };
+        //请求的url
+        NSString *urlString = @"http://120.27.112.9:8080/tongbao/user/auth/placeOrder";
+        //请求的managers
+        AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+        
+        [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"连接成功啦 %@",responseObject[@"result"]);
+            NSString * result = responseObject[@"result"];
+            if ([result intValue] == 1){
+//                [User shareInstance].user.nickname = newName;
+//                [[NSUserDefaults standardUserDefaults] setObject:newName forKey:@"nickname"];
+                NSLog(@"chenggongxiadan");
+                if (completedBlock) {
+                    completedBlock(nil, [User shareInstance].user);
+                }
+            }else if([result intValue] == 2){
+                NSLog(@"fengedingdan");
+            }else{
+                if (completedBlock) {
+                    completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+                }
+            }
+            
+        }failure:^(NSURLSessionDataTask *task, NSError * error) {
+            NSLog(@"请求失败,服务器返回的错误信息%@",error);
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }];
+        
+//    }
+
+}
+
 
 
 @end
