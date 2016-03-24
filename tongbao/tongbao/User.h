@@ -32,7 +32,7 @@
 @property (copy, nonatomic) NSString *money;
 @property (copy, nonatomic, readonly) NSString *token;
 @property (strong, nonatomic) NSMutableArray *billList;
-
+@property (strong, nonatomic) NSMutableArray *msgList;
 
 
 /**
@@ -73,4 +73,6 @@
 + (UIImage *) getImageFromURL:(NSString *)fileURL;
 
 +(void) placeOrder: (Order*) order withBlock:(void (^)(NSError *error, User *user))completedBlock;
+
++(void) getMyMessages:(void (^)(NSError *error, User *user))completedBlock;
 @end

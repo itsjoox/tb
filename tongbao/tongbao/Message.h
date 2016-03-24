@@ -16,10 +16,14 @@
 
 
 @interface Message : NSObject
-
+@property (copy, nonatomic) NSString *id;
 @property (copy, nonatomic) NSString *type;
 
 @property (copy, nonatomic) NSString *content;
+@property (copy, nonatomic) NSString *hasRead;
+@property (copy, nonatomic) NSString *time;
 @property (copy, nonatomic) NSString *objectId;
 
++(NSString*) getType:(NSString*) type;
++(NSString*) getReadStatus:(NSString*) type;
 @end

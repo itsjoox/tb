@@ -16,5 +16,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *msgTitle;
 @property (strong, nonatomic) IBOutlet UILabel *orderNo;
+@property (strong, nonatomic) IBOutlet UITextView *msgDtl;
 
 @end
