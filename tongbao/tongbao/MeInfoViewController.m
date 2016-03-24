@@ -46,15 +46,7 @@
 }
 
 
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSInteger rowNo = indexPath.row;
-//    if (rowNo == 0){
-//        NSLog(@"toux");
-//    }
-//
-//
-//}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

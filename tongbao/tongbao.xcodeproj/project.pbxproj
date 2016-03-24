@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8306A5C11CA3C2EB008ADD3B /* Bil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8306A5C01CA3C2EB008ADD3B /* Bil.m */; };
 		83236D221CA3B8A400C83F65 /* WalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83236D211CA3B8A400C83F65 /* WalletViewController.m */; };
 		83865F411C9664D3001115B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83865F401C9664D3001115B3 /* LoginViewController.m */; };
 		83865F441C96672C001115B3 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83865F431C96672C001115B3 /* RegisterViewController.m */; };
@@ -102,6 +103,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8306A5BF1CA3C2B3008ADD3B /* Bill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bill.h; sourceTree = "<group>"; };
+		8306A5C01CA3C2EB008ADD3B /* Bil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bil.m; sourceTree = "<group>"; };
 		83236D201CA3B88800C83F65 /* WalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletViewController.h; sourceTree = "<group>"; };
 		83236D211CA3B8A400C83F65 /* WalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletViewController.m; sourceTree = "<group>"; };
 		83865F3F1C9664B0001115B3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -253,6 +256,8 @@
 			children = (
 				83865F491C96892F001115B3 /* User.h */,
 				83865F4A1C968ACC001115B3 /* User.m */,
+				8306A5BF1CA3C2B3008ADD3B /* Bill.h */,
+				8306A5C01CA3C2EB008ADD3B /* Bil.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -663,6 +668,7 @@
 				FB2921441C72FA0B0082B0B4 /* AppDelegate.m in Sources */,
 				FBEAF7871C7F18890063A913 /* SubChooseAddrViewController.m in Sources */,
 				FB8504601C82B1D7008E25E1 /* SubEditFreqAddrViewController.m in Sources */,
+				8306A5C11CA3C2EB008ADD3B /* Bil.m in Sources */,
 				FB85046D1C846563008E25E1 /* SubOrderDtlViewController.m in Sources */,
 				FB2921471C72FA0B0082B0B4 /* HomeViewController.m in Sources */,
 				FB6CA1F21C931ED3009AE70F /* TabBarViewController.m in Sources */,

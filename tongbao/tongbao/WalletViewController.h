@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Bill.h"
 
 @interface WalletViewController : UIViewController<UITableViewDelegate, UITableViewDataSource,UIActionSheetDelegate>
 
@@ -15,6 +16,9 @@
 
 - (IBAction)withdraw:(UIButton *)sender;
 
+
 @property (weak, nonatomic) IBOutlet UITableView *billTable;
+
+@property (strong, nonatomic) NSMutableArray *billList;
 
 @end
