@@ -15,6 +15,7 @@
 		83865F4B1C968ACC001115B3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 83865F4A1C968ACC001115B3 /* User.m */; };
 		83865F511C9A7614001115B3 /* NSError+custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 83865F501C9A7614001115B3 /* NSError+custom.m */; };
 		FB0E228E1CA451970091B30C /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E228D1CA451970091B30C /* Address.m */; };
+		FB0E22911CA453390091B30C /* Shipper.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E22901CA453390091B30C /* Shipper.m */; };
 		FB2921411C72FA0B0082B0B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921401C72FA0B0082B0B4 /* main.m */; };
 		FB2921441C72FA0B0082B0B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921431C72FA0B0082B0B4 /* AppDelegate.m */; };
 		FB2921471C72FA0B0082B0B4 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921461C72FA0B0082B0B4 /* HomeViewController.m */; };
@@ -123,6 +124,8 @@
 		83865F501C9A7614001115B3 /* NSError+custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+custom.m"; sourceTree = "<group>"; };
 		FB0E228C1CA451830091B30C /* Address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
 		FB0E228D1CA451970091B30C /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
+		FB0E228F1CA4527D0091B30C /* Shipper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shipper.h; sourceTree = "<group>"; };
+		FB0E22901CA453390091B30C /* Shipper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shipper.m; sourceTree = "<group>"; };
 		FB29213C1C72FA0B0082B0B4 /* tongbao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tongbao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB2921401C72FA0B0082B0B4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FB2921421C72FA0B0082B0B4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -268,6 +271,8 @@
 			children = (
 				83865F491C96892F001115B3 /* User.h */,
 				83865F4A1C968ACC001115B3 /* User.m */,
+				FB0E228F1CA4527D0091B30C /* Shipper.h */,
+				FB0E22901CA453390091B30C /* Shipper.m */,
 				FB0E228C1CA451830091B30C /* Address.h */,
 				FB0E228D1CA451970091B30C /* Address.m */,
 				8306A5BF1CA3C2B3008ADD3B /* Bill.h */,
@@ -701,6 +706,7 @@
 				FB5106801C78C42F006991FD /* Reachability.m in Sources */,
 				FB4205121CA3E63000478BBC /* Message.m in Sources */,
 				FB6CA1AD1C8D786A009AE70F /* AFURLResponseSerialization.m in Sources */,
+				FB0E22911CA453390091B30C /* Shipper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

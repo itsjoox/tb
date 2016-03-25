@@ -6,13 +6,18 @@
 //  Copyright © 2016年 ZX. All rights reserved.
 //
 #import "SubAddFreqAddrViewController.h"
+#import "SubAddrViewController.h"
 #import "NearbyViewController.h"
+#import "User.h"
+#import "Address.h"
+
 @interface SubAddFreqAddrViewController ()
 
 @property (strong, nonatomic) IBOutlet UITextField *addr;
 @property (strong, nonatomic) IBOutlet UITextField *contact;
 @property (strong, nonatomic) IBOutlet UITextField *tel;
 @property (strong, nonatomic) NSString *callerName;
+@property (strong, nonatomic) Address *addrItem;
 
 @end
 
@@ -22,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    self.addrItem = [[Address alloc] init];
     self.addr.text = self.address;
     self.table.delegate = self;
     self.callerName = @"SubAddFreqAddrViewController";
@@ -43,7 +48,14 @@
     
     self.addr.text = freqAddress;
     
+    self.addrItem.name = freqAddress;
     
+    NSLog(freqAddress);
+    
+    NSNumber* latNum =  [NSNumber numberWithDouble:self.freqAddrPlsmk.location.coordinate.latitude];
+    NSNumber* lngNum =  [NSNumber numberWithDouble:self.freqAddrPlsmk.location.coordinate.longitude];
+    self.addrItem.lat = [latNum stringValue];
+    self.addrItem.lng = [lngNum stringValue];
     
 }
 
@@ -60,7 +72,29 @@
             [self.navigationController pushViewController:nearbyVC animated:YES];
         }
     }else if (section == 1){
-        
+        [User addFrequentAddress: self.addrItem withBlock:^(NSError *error, User *user)
+         {
+             
+             if (error) {
+                 NSLog(@"ADD FREQADDR FAILED!!!!");
+                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"添加失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
+                 [alertController addAction:okAction];
+                 [self presentViewController:alertController animated:YES completion:nil];
+             }else{
+                 //self.myNickname.text = new.text;
+                 NSLog(@"ADD FREQADDR SUCCESSFULLY!");
+                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"添加成功" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                     SubAddrViewController *setsubAddrVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+                     
+                     //使用popToViewController返回并传值到上一页面
+                     [self.navigationController popToViewController:setsubAddrVC animated:true];
+                 }];
+                 [alertController addAction:okAction];
+                 [self presentViewController:alertController animated:YES completion:nil];
+             }
+         }];
     }
     
     

@@ -8,6 +8,11 @@
 
 #import "SubAddrViewController.h"
 #import "SubEditFreqAddrViewController.h"
+#import "User.h"
+#import "Address.h"
+
+
+
 @interface SubAddrViewController ()
 
 @end
@@ -27,8 +32,56 @@
     addrs = [NSArray arrayWithObjects:@"南京市鼓楼区汉口路22号", @"南京市鼓楼区广州路3号", @"南京市玄武区珠江路18号", nil];
     self.table.dataSource = self;
     self.table.delegate = self;
+    self.freqAddrList = [[NSMutableArray alloc]init];
+    
+    [User getFrequentAddresses:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"Get Messages FAILED!!!!");
+        }else{
+            NSLog(@"Now getting frequent addresses");
+           
+            self.freqAddrList = user.freqAddrList;
+            //weakSelf.billList = user.billList;
+            //[weakSelf.billTable reloadData];
+            [self.table reloadData];
+            //int count=0;
+            //            for(Bill* b in weakSelf.billList){
+            //                NSLog(@"%d %@",count++,b.contents);
+            //            }
+            
+            
+        }
+    }];
+    
     
 }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [User getFrequentAddresses:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"Get Messages FAILED!!!!");
+        }else{
+            NSLog(@"Now getting frequent addresses");
+            
+            self.freqAddrList = user.freqAddrList;
+            //weakSelf.billList = user.billList;
+            //[weakSelf.billTable reloadData];
+            [self.table reloadData];
+            //int count=0;
+            //            for(Bill* b in weakSelf.billList){
+            //                NSLog(@"%d %@",count++,b.contents);
+            //            }
+            
+            
+        }
+    }];
+    
+
+}
+
+
+
 
 - (UITableViewCell *)tableView: (UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
@@ -37,16 +90,18 @@
     // 根据identifier获取表格行
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:
                              identifier forIndexPath:indexPath];
+     Address* addr = [self.freqAddrList objectAtIndex:rowNo];
+    
     // 获取cell内包含的Tag为1的UILabel
-    UILabel* label = (UILabel*)[cell viewWithTag:1];
-    label.text = [addrs objectAtIndex:rowNo];
+    UILabel* addrLbl = (UILabel*)[cell viewWithTag:1];
+    addrLbl.text =addr.name;
     return cell;
      
 }
 
 -(NSInteger)tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger)section{
     
-    return addrs.count;
+    return self.freqAddrList.count;
     
 }
 
@@ -83,8 +138,8 @@
     
 
     SubEditFreqAddrViewController* subEditFreqAddr = [self.storyboard instantiateViewControllerWithIdentifier: @"SubEditFreqAddr"];
-    
-    subEditFreqAddr.address = [addrs objectAtIndex:rowNo];
+    Address* addr = [self.freqAddrList objectAtIndex:rowNo];
+    subEditFreqAddr.address = addr.name;
     //NSLog(@"%@", subEditFreqAddr.address);
     [self.navigationController pushViewController:subEditFreqAddr animated:YES];
    

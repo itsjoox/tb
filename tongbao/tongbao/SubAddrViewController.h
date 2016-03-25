@@ -13,6 +13,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *table;
 @property (strong, nonatomic) NSArray* addrs;
 @property (strong, nonatomic) NSArray* dtls;
+@property (strong, nonatomic) NSMutableArray* freqAddrList;
 
 - (IBAction)fromHere:(id)sender;
 

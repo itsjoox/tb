@@ -37,16 +37,16 @@
             NSLog(@"Get Messages FAILED!!!!");
         }else{
             NSLog(@"Now getting msgs");
-            
-            for (int i=0; i<msgList.count; i++) {
-                Message* msgItem = [msgList objectAtIndex:i];
+            [self.msgList removeAllObjects];
+            for (int i=0; i<user.msgList.count; i++) {
+                Message* msgItem = [user.msgList objectAtIndex:i];
                 if ([msgItem.type isEqualToString:@"订单被抢到"]||[msgItem.type isEqualToString:@"其他消息"]) {
-                    [self.msgList addObject:[msgList objectAtIndex:i]];
+                    [self.msgList addObject:[user.msgList objectAtIndex:i]];
                 }
             }
             
             
-            self.msgList = user.msgList;
+            //self.msgList = user.msgList;
             //weakSelf.billList = user.billList;
             //[weakSelf.billTable reloadData];
             [self.table reloadData];

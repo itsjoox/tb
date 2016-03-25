@@ -857,7 +857,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="132"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5vH-tz-0WX" id="7Fi-Kb-J6k">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="131.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="131"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="订单号：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zf-Wp-tza">
@@ -1015,7 +1015,7 @@
                                         <rect key="frame" x="0.0" y="224" width="600" height="132"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="loD-6b-kxr" id="ti5-rc-fs1">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="131.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="131"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="订单号：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cnc-l3-OZd">
@@ -1172,7 +1172,7 @@
                                         <rect key="frame" x="0.0" y="356" width="600" height="132"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cap-Yg-tIH" id="x3k-sG-MWQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="131.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="131"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="订单号：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w20-Y9-it2">
@@ -2561,7 +2561,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aaF-vl-TT0" id="SJf-hE-lb9">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="71"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="数量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ybz-Mo-3Lk">
@@ -4718,7 +4718,7 @@
                             <outlet property="delegate" destination="shb-hO-p04" id="vD3-C0-7h5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="添加常用地址" id="wmQ-LK-92P"/>
+                    <navigationItem key="navigationItem" title="常用地址信息" id="wmQ-LK-92P"/>
                     <connections>
                         <outlet property="addr" destination="EMb-vf-DNx" id="LFn-FN-JG4"/>
                         <outlet property="contactName" destination="16x-sl-zuU" id="sUH-Bw-GBg"/>

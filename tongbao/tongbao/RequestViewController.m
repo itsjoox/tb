@@ -230,8 +230,8 @@
             
             [User placeOrder:(Order *) order withBlock:^(NSError *error, User *user){
                 if (error) {
-                     NSLog(@"PLACE FAILED!!!!");
-                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"下单失败" message:@"用户名或密码错误" preferredStyle:UIAlertControllerStyleAlert];
+                     NSLog(@"PLACE ORDER FAILED!!!!");
+                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"下单失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                      UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
                      [alertController addAction:okAction];
                      [self presentViewController:alertController animated:YES completion:nil];

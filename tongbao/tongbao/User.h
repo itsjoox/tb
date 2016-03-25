@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "Order.h"
+#import "Address.h"
 
 @interface User : NSObject
 
@@ -33,7 +34,7 @@
 @property (copy, nonatomic, readonly) NSString *token;
 @property (strong, nonatomic) NSMutableArray *billList;
 @property (strong, nonatomic) NSMutableArray *msgList;
-
+@property (strong, nonatomic) NSMutableArray *freqAddrList;
 
 /**
  *  Judge whether user has login
@@ -72,7 +73,17 @@
 
 + (UIImage *) getImageFromURL:(NSString *)fileURL;
 
+
+
+
+/**
+ * functions add by ZX
+ *
+ */
++(void) getMyMessages:(void (^)(NSError *error, User *user))completedBlock;
++(void) getFrequentAddresses:(void (^)(NSError *error, User *user))completedBlock;
++(void) addFrequentAddress: (Address*) address withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) placeOrder: (Order*) order withBlock:(void (^)(NSError *error, User *user))completedBlock;
 
-+(void) getMyMessages:(void (^)(NSError *error, User *user))completedBlock;
+
 @end

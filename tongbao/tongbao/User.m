@@ -11,6 +11,7 @@
 #import "NSError+custom.h"
 #import "Bill.h"
 #import "Message.h"
+#import "Address.h"
 
 @interface User ()
 
@@ -49,6 +50,13 @@
 {
     if (!_msgList) _msgList = [[NSMutableArray alloc] init];
     return _msgList;
+}
+
+
+- (NSMutableArray *)freqAddrList
+{
+    if (!_freqAddrList) _freqAddrList = [[NSMutableArray alloc] init];
+    return _freqAddrList;
 }
 
 
@@ -459,92 +467,13 @@
     
 }
 
-+(void) placeOrder: (Order*) order withBlock:(void (^)(NSError *error, User *user))completedBlock{
-    if (order == nil) {
-        if (completedBlock) {
-            completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
-        }
-    }else{
-        //部分改为int
-//        NSString* addressFrom = [orderDetail objectForKey:@"addressFrom"];
-//        NSString* addressFromLat = [orderDetail objectForKey:@"addressFromLat"];
-//        NSString* addressFromLng = [orderDetail objectForKey:@"addressFromLng"];
-//        NSString* addressTo = [orderDetail objectForKey:@"addressTo"];
-//        NSString* addressToLat = [orderDetail objectForKey:@"addressToLat"];
-//        NSString* addressToLng = [orderDetail objectForKey:@"addressToLng"];
-//        NSString* fromContactName = [orderDetail objectForKey:@"fromContactName"];
-//        NSString* fromContactPhone = [orderDetail objectForKey:@"fromContactPhone"];
-//        NSString* toContactName = [orderDetail objectForKey:@"toContactName"];
-//        NSString* toContactPhone = [orderDetail objectForKey:@"toContactPhone"];
-//        NSString* loadTime = [orderDetail objectForKey:@"loadTime"];
-//        NSString* goodsType = [orderDetail objectForKey:@"goodsType"];
-//        NSString* goodsWeight = [orderDetail objectForKey:@"goodsWeight"];
-//        NSString* goodsSize = [orderDetail objectForKey:@"goodsSize"];
-//        NSString* truckTypes = [orderDetail objectForKey:@"truckTypes"];
-//        NSString* remark = [orderDetail objectForKey:@"remark"];
-//        NSString* payType = [orderDetail objectForKey:@"payType"];
-//        NSString* price = [orderDetail objectForKey:@"price"];
-        
-        
-        
-        //NSDictionary这种初始化方式不能有nil
-        //第一个没登陆为空。。会出错
-        NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
-                                     @"addressFrom":order.addressFrom,
-                                     @"addressFromLat":order.addressFromLat,
-                                     @"addressFromLng":order.addressFromLng,
-                                     @"addressTo":order.addressTo,
-                                     @"adressToLat":order.addressToLat,
-                                     @"adressToLng":order.addressToLng,
-                                     @"fromContactName":order.fromContactName,
-                                     @"fromContactPhone":order.fromContactPhone,
-                                     @"toContactName":order.toContactName,
-                                     @"toContactPhone":order.toContactPhone,
-                                     @"loadTime":order.loadTime,
-                                     @"goodsType":order.goodsType,
-                                     @"goodsWeight":order.goodsWeight,
-                                     @"goodsSize":order.goodsSize,
-                                     @"truckTypes":order.truckTypes,
-                                     @"remark":order.remark,
-                                     @"payType":order.payType,
-                                     @"price":order.price
-                                     };
-        
-        //请求的url
-        NSString *urlString = @"http://120.27.112.9:8080/tongbao/shipper/auth/placeOrder";
-        //请求的managers
-        AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
-        
-        [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"连接成功啦 %@",responseObject[@"result"]);
-            NSString * result = responseObject[@"result"];
-            if ([result intValue] == 1){
 
-                NSLog(@"下单成功");
-                if (completedBlock) {
-                    completedBlock(nil, [User shareInstance].user);
-                }
-            }else if([result intValue] == 2){
-                NSLog(@"没有合适司机，分割订单");
-                
-            }else{
-                if (completedBlock) {
-                    NSLog(@"下单失败");
-                    completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
-                }
-            }
-            
-        }failure:^(NSURLSessionDataTask *task, NSError * error) {
-            NSLog(@"请求失败,服务器返回的错误信息%@",error);
-            if (completedBlock) {
-                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
-            }
-        }];
-        
-   }
 
-}
 
+/**
+ * functions add by ZX
+ *
+ */
 
 +(void) getMyMessages:(void (^)(NSError *error, User *user))completedBlock{
     NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
@@ -608,6 +537,199 @@
 
 }
 
+
+
+
++(void) getFrequentAddresses:(void (^)(NSError *error, User *user))completedBlock{
+    
+    NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
+                                 };
+    //请求的url
+    NSString *urlString = @"http://120.27.112.9:8080/tongbao/shipper/auth/getFrequentAddresses";
+    //请求的managers
+    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+    
+    [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"获取常用地址连接成功啦 %@",responseObject[@"result"]);
+        NSArray* resultArray = responseObject[@"data"];
+        [[User shareInstance].user.freqAddrList removeAllObjects];
+        
+        for (NSDictionary *dic in resultArray) {
+            //            NSLog(@"value: %@", [dic objectForKey:@"type"]);
+            NSLog(@"地址如下 %@",dic);
+            Address* addr = [[Address alloc] init];
+            
+            //
+        
+            addr.name = [dic objectForKey:@"name"];
+        
+            
+            addr.lat = [dic objectForKey:@"lat"];
+            
+            addr.lng =[dic objectForKey:@"lng"];
+            
+            [[User shareInstance].user.freqAddrList addObject:addr];
+        }
+        
+        
+        //            NSLog(@"error message %@",responseObject[@"errorMsg"]);
+        
+        NSString * result = responseObject[@"result"];
+        if ([result intValue] == 1){
+            NSLog(@"查看成功啦 %@",responseObject[@"result"]);
+            
+            if (completedBlock) {
+                completedBlock(nil, [User shareInstance].user);
+            }
+        }else{
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }
+        
+    }failure:^(NSURLSessionDataTask *task, NSError * error) {
+        NSLog(@"请求失败,服务器返回的错误信息%@",error);
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+        }
+    }];
+    
+    
+    
+    
+}
+
++(void) addFrequentAddress: (Address*) address withBlock:(void (^)(NSError *error, User *user))completedBlock{
+    if (address == nil) {
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
+        }
+    }else{
+        NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
+                                     @"lat":address.lat,
+                                     @"address":address.name,
+                                     @"lng":address.lng,
+                                    
+                                     };
+        
+        //请求的url
+        NSString *urlString = @"http://120.27.112.9:8080/tongbao/shipper/auth/addFrequentAddress";
+        //请求的managers
+        AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+        
+        [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"连接成功啦 %@",responseObject[@"result"]);
+            NSString * result = responseObject[@"result"];
+            if ([result intValue] == 1){
+                
+                NSLog(@"添加地址成功");
+                if (completedBlock) {
+                    completedBlock(nil, [User shareInstance].user);
+                }
+            }else{
+                if (completedBlock) {
+                    NSLog(@"添加地址失败");
+                    completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+                }
+            }
+            
+        }failure:^(NSURLSessionDataTask *task, NSError * error) {
+            NSLog(@"请求失败,服务器返回的错误信息%@",error);
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }];
+        
+    }
+}
+
+
+
++(void) placeOrder: (Order*) order withBlock:(void (^)(NSError *error, User *user))completedBlock{
+    if (order == nil) {
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
+        }
+    }else{
+        //部分改为int
+        //        NSString* addressFrom = [orderDetail objectForKey:@"addressFrom"];
+        //        NSString* addressFromLat = [orderDetail objectForKey:@"addressFromLat"];
+        //        NSString* addressFromLng = [orderDetail objectForKey:@"addressFromLng"];
+        //        NSString* addressTo = [orderDetail objectForKey:@"addressTo"];
+        //        NSString* addressToLat = [orderDetail objectForKey:@"addressToLat"];
+        //        NSString* addressToLng = [orderDetail objectForKey:@"addressToLng"];
+        //        NSString* fromContactName = [orderDetail objectForKey:@"fromContactName"];
+        //        NSString* fromContactPhone = [orderDetail objectForKey:@"fromContactPhone"];
+        //        NSString* toContactName = [orderDetail objectForKey:@"toContactName"];
+        //        NSString* toContactPhone = [orderDetail objectForKey:@"toContactPhone"];
+        //        NSString* loadTime = [orderDetail objectForKey:@"loadTime"];
+        //        NSString* goodsType = [orderDetail objectForKey:@"goodsType"];
+        //        NSString* goodsWeight = [orderDetail objectForKey:@"goodsWeight"];
+        //        NSString* goodsSize = [orderDetail objectForKey:@"goodsSize"];
+        //        NSString* truckTypes = [orderDetail objectForKey:@"truckTypes"];
+        //        NSString* remark = [orderDetail objectForKey:@"remark"];
+        //        NSString* payType = [orderDetail objectForKey:@"payType"];
+        //        NSString* price = [orderDetail objectForKey:@"price"];
+        
+        
+        
+        //NSDictionary这种初始化方式不能有nil
+        //第一个没登陆为空。。会出错
+        NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
+                                     @"addressFrom":order.addressFrom,
+                                     @"addressFromLat":order.addressFromLat,
+                                     @"addressFromLng":order.addressFromLng,
+                                     @"addressTo":order.addressTo,
+                                     @"adressToLat":order.addressToLat,
+                                     @"adressToLng":order.addressToLng,
+                                     @"fromContactName":order.fromContactName,
+                                     @"fromContactPhone":order.fromContactPhone,
+                                     @"toContactName":order.toContactName,
+                                     @"toContactPhone":order.toContactPhone,
+                                     @"loadTime":order.loadTime,
+                                     @"goodsType":order.goodsType,
+                                     @"goodsWeight":order.goodsWeight,
+                                     @"goodsSize":order.goodsSize,
+                                     @"truckTypes":order.truckTypes,
+                                     @"remark":order.remark,
+                                     @"payType":order.payType,
+                                     @"price":order.price
+                                     };
+        
+        //请求的url
+        NSString *urlString = @"http://120.27.112.9:8080/tongbao/shipper/auth/placeOrder";
+        //请求的managers
+        AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+        
+        [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"连接成功啦 %@",responseObject[@"result"]);
+            NSString * result = responseObject[@"result"];
+            if ([result intValue] == 1){
+                
+                NSLog(@"下单成功");
+                if (completedBlock) {
+                    completedBlock(nil, [User shareInstance].user);
+                }
+            }else if([result intValue] == 2){
+                NSLog(@"没有合适司机，分割订单");
+                
+            }else{
+                if (completedBlock) {
+                    NSLog(@"下单失败");
+                    completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+                }
+            }
+            
+        }failure:^(NSURLSessionDataTask *task, NSError * error) {
+            NSLog(@"请求失败,服务器返回的错误信息%@",error);
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }];
+        
+    }
+    
+}
 
 
 @end
