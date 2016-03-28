@@ -58,11 +58,11 @@
             //setPrizeVC. = nil;
         
             //传递参数过去
-            if (indexPath.row==0) {
+            if ([self.caller isEqualToString:@"srcAddr"]) {
             
                 
                 setRequest.srcAddrPlsmk = self.placemark;
-            }else{
+            }else if([self.caller isEqualToString:@"destAddr"]){
                 setRequest.destAddrPlsmk = self.placemark;
                 
             }

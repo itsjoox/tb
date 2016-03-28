@@ -8,7 +8,7 @@
 #import "RequestViewController.h"
 #import "User.h"
 #import "Order.h"
-
+#import "NearbyViewController.h"
 @interface RequestViewController ()
 
 
@@ -151,8 +151,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger section = indexPath.section;
-    //NSInteger rowNo = indexPath.row;
-    if (section==6) {
+    NSInteger rowNo = indexPath.row;
+    if (section==0) {
+        if (rowNo==0) {
+            NearbyViewController* nearbyVC = [self.storyboard instantiateViewControllerWithIdentifier: @"Nearby"];
+            
+            nearbyVC.caller = @"srcAddr";
+            [self.navigationController pushViewController:nearbyVC animated:YES];
+        }
+    }else if (section==1){
+        if (rowNo==0) {
+            NearbyViewController* nearbyVC = [self.storyboard instantiateViewControllerWithIdentifier: @"Nearby"];
+            
+            nearbyVC.caller = @"destAddr";
+            [self.navigationController pushViewController:nearbyVC animated:YES];
+        }
+    }else if (section==6) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认下单" message:@"" preferredStyle:UIAlertControllerStyleAlert];
 //        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField){
 //            textField.placeholder = @"请输入新的昵称";

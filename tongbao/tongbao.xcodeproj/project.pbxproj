@@ -31,7 +31,6 @@
 		FB4205121CA3E63000478BBC /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4205111CA3E63000478BBC /* Message.m */; };
 		FB4205151CA3EA8100478BBC /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4205141CA3EA8100478BBC /* Order.m */; };
 		FB4205181CA446C800478BBC /* SubAddFreqAddrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4205171CA446C800478BBC /* SubAddFreqAddrViewController.m */; };
-		FB5106801C78C42F006991FD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FB51067F1C78C42F006991FD /* Reachability.m */; };
 		FB5106821C78C709006991FD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB5106811C78C709006991FD /* SystemConfiguration.framework */; };
 		FB5106841C78C9BC006991FD /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5106831C78C9BC006991FD /* OrderViewController.m */; };
 		FB5106871C78CA28006991FD /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5106861C78CA28006991FD /* MeViewController.m */; };
@@ -160,8 +159,6 @@
 		FB4205161CA446B300478BBC /* SubAddFreqAddrViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubAddFreqAddrViewController.h; sourceTree = "<group>"; };
 		FB4205171CA446C800478BBC /* SubAddFreqAddrViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubAddFreqAddrViewController.m; sourceTree = "<group>"; };
 		FB51067D1C78C0CC006991FD /* OrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
-		FB51067E1C78C42F006991FD /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		FB51067F1C78C42F006991FD /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		FB5106811C78C709006991FD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		FB5106831C78C9BC006991FD /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
 		FB5106851C78CA19006991FD /* MeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
@@ -354,8 +351,6 @@
 				FB8504711C849F58008E25E1 /* NearbyViewSub */,
 				FB85046F1C849EBE008E25E1 /* OrderViewSub */,
 				FB8504701C849F02008E25E1 /* MeViewSub */,
-				FB51067E1C78C42F006991FD /* Reachability.h */,
-				FB51067F1C78C42F006991FD /* Reachability.m */,
 				FB2921421C72FA0B0082B0B4 /* AppDelegate.h */,
 				FB2921431C72FA0B0082B0B4 /* AppDelegate.m */,
 				FB2921451C72FA0B0082B0B4 /* HomeViewController.h */,
@@ -366,9 +361,9 @@
 				FB5106831C78C9BC006991FD /* OrderViewController.m */,
 				FB5106851C78CA19006991FD /* MeViewController.h */,
 				FB5106861C78CA28006991FD /* MeViewController.m */,
-				FB29214B1C72FA0B0082B0B4 /* Main.storyboard */,
 				FB6CA1F01C931EBA009AE70F /* TabBarViewController.h */,
 				FB6CA1F11C931ED3009AE70F /* TabBarViewController.m */,
+				FB29214B1C72FA0B0082B0B4 /* Main.storyboard */,
 				FB2921501C72FA0B0082B0B4 /* LaunchScreen.storyboard */,
 				FB2921531C72FA0B0082B0B4 /* Info.plist */,
 				FB29214E1C72FA0B0082B0B4 /* Assets.xcassets */,
@@ -721,7 +716,6 @@
 				83865F4B1C968ACC001115B3 /* User.m in Sources */,
 				FB85046A1C83F422008E25E1 /* SubMsgDtlViewController.m in Sources */,
 				FB2921411C72FA0B0082B0B4 /* main.m in Sources */,
-				FB5106801C78C42F006991FD /* Reachability.m in Sources */,
 				FB4205121CA3E63000478BBC /* Message.m in Sources */,
 				FB6CA1AD1C8D786A009AE70F /* AFURLResponseSerialization.m in Sources */,
 				FB0E22911CA453390091B30C /* Shipper.m in Sources */,

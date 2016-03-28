@@ -2817,9 +2817,6 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="8rJ-Kc-sve" kind="show" id="P7f-Dx-k0W"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Nna-ra-Ma9">
                                         <rect key="frame" x="0.0" y="143" width="600" height="44"/>
@@ -3016,9 +3013,6 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="8rJ-Kc-sve" kind="show" id="vsd-fR-feb"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="siG-49-Kxy">
                                         <rect key="frame" x="0.0" y="311" width="600" height="44"/>
@@ -4396,7 +4390,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="使用这个地址作为起点" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOk-XC-u5B">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="使用这个地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOk-XC-u5B">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="104" id="olC-WF-rfP"/>
@@ -4439,60 +4433,6 @@
                                                     <exclude reference="U2d-d5-UYI"/>
                                                     <include reference="ZOj-Oz-o3F"/>
                                                     <include reference="rVE-TH-rBV"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ufG-Si-E2b">
-                                        <rect key="frame" x="0.0" y="339" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ufG-Si-E2b" id="koh-CD-qQ0">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="使用这个地址作为终点" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFR-td-WxW">
-                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="155" id="guQ-hI-GFe"/>
-                                                        <constraint firstAttribute="width" constant="104" id="j9h-6g-djA"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="guQ-hI-GFe"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
-                                                        <mask key="constraints">
-                                                            <include reference="guQ-hI-GFe"/>
-                                                            <exclude reference="j9h-6g-djA"/>
-                                                        </mask>
-                                                    </variation>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="EFR-td-WxW" firstAttribute="leading" secondItem="koh-CD-qQ0" secondAttribute="leadingMargin" constant="12" id="Fdg-nC-j5v"/>
-                                                <constraint firstItem="EFR-td-WxW" firstAttribute="centerX" secondItem="koh-CD-qQ0" secondAttribute="centerX" id="OmM-cH-nUb"/>
-                                                <constraint firstItem="EFR-td-WxW" firstAttribute="top" secondItem="koh-CD-qQ0" secondAttribute="topMargin" constant="3" id="QTV-zj-iu4"/>
-                                                <constraint firstItem="EFR-td-WxW" firstAttribute="centerY" secondItem="koh-CD-qQ0" secondAttribute="centerY" id="h3i-W6-qco"/>
-                                                <constraint firstItem="EFR-td-WxW" firstAttribute="centerY" secondItem="koh-CD-qQ0" secondAttribute="centerY" id="jHO-of-d2K"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="Fdg-nC-j5v"/>
-                                                    <exclude reference="QTV-zj-iu4"/>
-                                                    <exclude reference="h3i-W6-qco"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="constraints">
-                                                    <include reference="Fdg-nC-j5v"/>
-                                                    <exclude reference="OmM-cH-nUb"/>
-                                                    <include reference="QTV-zj-iu4"/>
-                                                    <include reference="h3i-W6-qco"/>
-                                                    <exclude reference="jHO-of-d2K"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -5493,7 +5433,6 @@
         <image name="wallet.png" width="30" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="op0-js-TIK"/>
         <segue reference="Gjv-86-KG3"/>
         <segue reference="yf7-nk-wLe"/>
         <segue reference="asn-Ap-mhb"/>
