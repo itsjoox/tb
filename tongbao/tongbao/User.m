@@ -867,9 +867,12 @@
     AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
     
     [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
         NSLog(@"获取常用司机连接成功啦 %@",responseObject[@"result"]);
+        
         NSArray* resultArray = responseObject[@"data"];
-        [[User shareInstance].user.freqAddrList removeAllObjects];
+        
+        [[User shareInstance].user.freqDriverList removeAllObjects];
         
         for (NSDictionary *dic in resultArray) {
             //            NSLog(@"value: %@", [dic objectForKey:@"type"]);

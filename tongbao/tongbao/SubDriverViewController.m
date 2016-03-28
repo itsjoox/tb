@@ -48,6 +48,30 @@
     
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [User getFrequentDrivers:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"Get Messages FAILED!!!!");
+        }else{
+            NSLog(@"Now getting frequent addresses");
+            
+            self.freqDriverList = user.freqDriverList;
+            //weakSelf.billList = user.billList;
+            //[weakSelf.billTable reloadData];
+            [self.table reloadData];
+            //int count=0;
+            //            for(Bill* b in weakSelf.billList){
+            //                NSLog(@"%d %@",count++,b.contents);
+            //            }
+            
+            
+        }
+    }];
+    
+    
+}
+
 - (UITableViewCell *)tableView: (UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     
