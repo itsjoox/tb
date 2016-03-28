@@ -12,6 +12,7 @@
 #import "Bill.h"
 #import "Message.h"
 #import "Address.h"
+#import "Driver.h"
 
 @interface User ()
 
@@ -57,6 +58,18 @@
 {
     if (!_freqAddrList) _freqAddrList = [[NSMutableArray alloc] init];
     return _freqAddrList;
+}
+
+- (NSMutableArray *)freqDriverList
+{
+    if (!_freqDriverList) _freqDriverList = [[NSMutableArray alloc] init];
+    return _freqDriverList;
+}
+
+- (NSMutableArray *)driverList
+{
+    if (!_driverList) _driverList = [[NSMutableArray alloc] init];
+    return _driverList;
 }
 
 
@@ -731,5 +744,74 @@
     
 }
 
+
++(void) searchDriver: (NSString *) phoneNum withBlock:(void (^)(NSError *error, User *user))completedBlock{
+    if (phoneNum == nil) {
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
+        }
+    }else{
+     
+        NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"], @"phoneNum":phoneNum
+                                     };
+        //请求的url
+        NSString *urlString = @"http://120.27.112.9:8080/tongbao/shipper/auth/searchDriver";
+        //请求的managers
+        AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+        
+        [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"搜索司机连接成功啦 %@",responseObject[@"result"]);
+            NSArray* resultArray = responseObject[@"data"];
+            [[User shareInstance].user.driverList removeAllObjects];
+            
+            for (NSDictionary *dic in resultArray) {
+                //            NSLog(@"value: %@", [dic objectForKey:@"type"]);
+                NSLog(@"地址如下 %@",dic);
+                Driver* driver = [[Driver alloc] init];
+                
+                //
+                
+                driver.id = [dic objectForKey:@"id"];
+                
+                if ([[dic objectForKey:@"nickName"] isEqual:[NSNull null]]) {
+                    driver.nickName = @"无名氏";
+                }else{
+                   driver.nickName = [dic objectForKey:@"nickName"];
+                }
+                
+                
+                driver.phoneNum =[dic objectForKey:@"phoneNum"];
+                
+                [[User shareInstance].user.driverList addObject:driver];
+            }
+            
+            
+            //            NSLog(@"error message %@",responseObject[@"errorMsg"]);
+            
+            NSString * result = responseObject[@"result"];
+            if ([result intValue] == 1){
+                NSLog(@"搜索成功啦 %@",responseObject[@"result"]);
+                
+                if (completedBlock) {
+                    completedBlock(nil, [User shareInstance].user);
+                }
+            }else{
+                if (completedBlock) {
+                    completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+                }
+            }
+            
+        }failure:^(NSURLSessionDataTask *task, NSError * error) {
+            NSLog(@"请求失败,服务器返回的错误信息%@",error);
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }];
+        
+    }
+    
+    
+    
+}
 
 @end

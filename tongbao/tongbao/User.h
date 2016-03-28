@@ -35,7 +35,8 @@
 @property (strong, nonatomic) NSMutableArray *billList;
 @property (strong, nonatomic) NSMutableArray *msgList;
 @property (strong, nonatomic) NSMutableArray *freqAddrList;
-
+@property (strong, nonatomic) NSMutableArray *freqDriverList;
+@property (strong, nonatomic) NSMutableArray *driverList;
 /**
  *  Judge whether user has login
  *
@@ -84,6 +85,6 @@
 +(void) getFrequentAddresses:(void (^)(NSError *error, User *user))completedBlock;
 +(void) addFrequentAddress: (Address*) address withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) placeOrder: (Order*) order withBlock:(void (^)(NSError *error, User *user))completedBlock;
-
++(void) searchDriver: (NSString *) phoneNum withBlock:(void (^)(NSError *error, User *user))completedBlock;
 
 @end

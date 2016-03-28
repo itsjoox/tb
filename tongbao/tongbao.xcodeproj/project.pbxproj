@@ -16,6 +16,8 @@
 		83865F511C9A7614001115B3 /* NSError+custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 83865F501C9A7614001115B3 /* NSError+custom.m */; };
 		FB0E228E1CA451970091B30C /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E228D1CA451970091B30C /* Address.m */; };
 		FB0E22911CA453390091B30C /* Shipper.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E22901CA453390091B30C /* Shipper.m */; };
+		FB0E22941CA9581E0091B30C /* Driver.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E22931CA9581E0091B30C /* Driver.m */; };
+		FB0E22971CA95A400091B30C /* SubAddFreqDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E22961CA95A400091B30C /* SubAddFreqDriverViewController.m */; };
 		FB2921411C72FA0B0082B0B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921401C72FA0B0082B0B4 /* main.m */; };
 		FB2921441C72FA0B0082B0B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921431C72FA0B0082B0B4 /* AppDelegate.m */; };
 		FB2921471C72FA0B0082B0B4 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921461C72FA0B0082B0B4 /* HomeViewController.m */; };
@@ -126,6 +128,10 @@
 		FB0E228D1CA451970091B30C /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
 		FB0E228F1CA4527D0091B30C /* Shipper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shipper.h; sourceTree = "<group>"; };
 		FB0E22901CA453390091B30C /* Shipper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shipper.m; sourceTree = "<group>"; };
+		FB0E22921CA958150091B30C /* Driver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Driver.h; sourceTree = "<group>"; };
+		FB0E22931CA9581E0091B30C /* Driver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Driver.m; sourceTree = "<group>"; };
+		FB0E22951CA95A210091B30C /* SubAddFreqDriverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubAddFreqDriverViewController.h; sourceTree = "<group>"; };
+		FB0E22961CA95A400091B30C /* SubAddFreqDriverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubAddFreqDriverViewController.m; sourceTree = "<group>"; };
 		FB29213C1C72FA0B0082B0B4 /* tongbao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tongbao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB2921401C72FA0B0082B0B4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FB2921421C72FA0B0082B0B4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -278,6 +284,8 @@
 				8306A5BF1CA3C2B3008ADD3B /* Bill.h */,
 				8306A5C01CA3C2EB008ADD3B /* Bil.m */,
 				FB4205131CA3EA7300478BBC /* Order.h */,
+				FB0E22921CA958150091B30C /* Driver.h */,
+				FB0E22931CA9581E0091B30C /* Driver.m */,
 				FB4205141CA3EA8100478BBC /* Order.m */,
 				FB4205101CA3E62300478BBC /* Message.h */,
 				FB4205111CA3E63000478BBC /* Message.m */,
@@ -469,6 +477,8 @@
 				FB8504691C83F422008E25E1 /* SubMsgDtlViewController.m */,
 				FB8504611C82E6C0008E25E1 /* SubDriverDtlViewController.h */,
 				FB8504621C82E6D6008E25E1 /* SubDriverDtlViewController.m */,
+				FB0E22951CA95A210091B30C /* SubAddFreqDriverViewController.h */,
+				FB0E22961CA95A400091B30C /* SubAddFreqDriverViewController.m */,
 				FB85045B1C80C9E6008E25E1 /* RequestViewController.h */,
 				FB85045C1C80C9F8008E25E1 /* RequestViewController.m */,
 				FB54BFED1C7DC5BE003F1826 /* SubChooseCarViewController.h */,
@@ -679,6 +689,7 @@
 				FB54BFEC1C7C6EAF003F1826 /* SubAboutViewController.m in Sources */,
 				83236D221CA3B8A400C83F65 /* WalletViewController.m in Sources */,
 				83865F471C967DE7001115B3 /* MeInfoViewController.m in Sources */,
+				FB0E22941CA9581E0091B30C /* Driver.m in Sources */,
 				FB29214A1C72FA0B0082B0B4 /* NearbyViewController.m in Sources */,
 				FB54BFAA1C7ABE21003F1826 /* SubDriverViewController.m in Sources */,
 				FB5106841C78C9BC006991FD /* OrderViewController.m in Sources */,
@@ -700,6 +711,7 @@
 				FB2921471C72FA0B0082B0B4 /* HomeViewController.m in Sources */,
 				FB6CA1F21C931ED3009AE70F /* TabBarViewController.m in Sources */,
 				FB4205181CA446C800478BBC /* SubAddFreqAddrViewController.m in Sources */,
+				FB0E22971CA95A400091B30C /* SubAddFreqDriverViewController.m in Sources */,
 				83865F4B1C968ACC001115B3 /* User.m in Sources */,
 				FB85046A1C83F422008E25E1 /* SubMsgDtlViewController.m in Sources */,
 				FB2921411C72FA0B0082B0B4 /* main.m in Sources */,

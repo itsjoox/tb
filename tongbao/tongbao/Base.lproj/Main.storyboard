@@ -2496,7 +2496,7 @@
         <!--SubAddFreqDriver-->
         <scene sceneID="q1z-sv-G72">
             <objects>
-                <viewController title="SubAddFreqDriver" id="tXa-74-Ayo" sceneMemberID="viewController">
+                <viewController title="SubAddFreqDriver" id="tXa-74-Ayo" customClass="SubAddFreqDriverViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yrl-uT-j6t"/>
                         <viewControllerLayoutGuide type="bottom" id="toa-W1-pJU"/>
@@ -2513,12 +2513,32 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="gp8-xr-L9n">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell1" textLabel="Fvy-3b-ck2" detailTextLabel="yvQ-2x-skW" style="IBUITableViewCellStyleSubtitle" id="gp8-xr-L9n">
                                         <rect key="frame" x="0.0" y="28" width="240" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gp8-xr-L9n" id="hz2-tw-eqo">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" tag="1" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fvy-3b-ck2">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    </variation>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" tag="2" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yvQ-2x-skW">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    </variation>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -2536,6 +2556,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="添加常用司机" id="z1E-pm-Q7s"/>
+                    <connections>
+                        <outlet property="searchBar" destination="5xl-8v-BiQ" id="OOn-du-zvU"/>
+                        <outlet property="table" destination="57s-SR-FK8" id="4Tp-7A-8pu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ufw-tH-DOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -5332,10 +5356,10 @@
         <image name="wallet.png" width="30" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yf7-nk-wLe"/>
+        <segue reference="op0-js-TIK"/>
         <segue reference="Gjv-86-KG3"/>
+        <segue reference="yf7-nk-wLe"/>
         <segue reference="asn-Ap-mhb"/>
         <segue reference="6jm-it-76D"/>
-        <segue reference="vsd-fR-feb"/>
     </inferredMetricsTieBreakers>
 </document>
