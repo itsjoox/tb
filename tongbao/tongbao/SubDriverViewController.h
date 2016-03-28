@@ -12,7 +12,6 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *table;
 
-@property (strong, nonatomic) NSArray* drivers;
-@property (strong, nonatomic) NSArray* dtls;
+@property (strong, nonatomic) NSArray* freqDriverList;
 
 @end

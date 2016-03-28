@@ -857,4 +857,64 @@
 }
 
 
++(void) getFrequentDrivers:(void (^)(NSError *error, User *user))completedBlock{
+    
+    NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
+                                 };
+    //请求的url
+    NSString *urlString = @"http://120.27.112.9:8080/tongbao/shipper/auth/getFrequentDrivers";
+    //请求的managers
+    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+    
+    [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"获取常用司机连接成功啦 %@",responseObject[@"result"]);
+        NSArray* resultArray = responseObject[@"data"];
+        [[User shareInstance].user.freqAddrList removeAllObjects];
+        
+        for (NSDictionary *dic in resultArray) {
+            //            NSLog(@"value: %@", [dic objectForKey:@"type"]);
+            NSLog(@"司机如下 %@",dic);
+            Driver* driverItem = [[Driver alloc] init];
+            
+            //
+            
+            driverItem.id = [dic objectForKey:@"id"];
+            
+            
+            driverItem.nickName = [dic objectForKey:@"nickName"];
+            
+            driverItem.phoneNum =[dic objectForKey:@"phoneNum"];
+            
+            [[User shareInstance].user.freqDriverList addObject:driverItem];
+        }
+        
+        
+        //            NSLog(@"error message %@",responseObject[@"errorMsg"]);
+        
+        NSString * result = responseObject[@"result"];
+        if ([result intValue] == 1){
+            NSLog(@"查看成功啦 %@",responseObject[@"result"]);
+            
+            if (completedBlock) {
+                completedBlock(nil, [User shareInstance].user);
+            }
+        }else{
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }
+        
+    }failure:^(NSURLSessionDataTask *task, NSError * error) {
+        NSLog(@"请求失败,服务器返回的错误信息%@",error);
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+        }
+    }];
+    
+    
+    
+    
+}
+
+
 @end

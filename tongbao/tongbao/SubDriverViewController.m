@@ -8,25 +8,44 @@
 
 #import "SubDriverViewController.h"
 #import "SubDriverDtlViewController.h"
-
+#import "User.h"
+#import "Driver.h"
 @interface SubDriverViewController ()
 
 @end
 
 @implementation SubDriverViewController
 
-@synthesize drivers;
-@synthesize dtls;
+@synthesize freqDriverList;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     //需要重新定义数据结构
-    drivers = [NSArray arrayWithObjects:@"李华", @"赵红梅", @"王磊", nil];
-    dtls = [NSArray arrayWithObjects:@"18951997878", @"13645361336", @"18997783231", nil];
+    self.freqDriverList = [[NSArray alloc]init];
     self.table.dataSource = self;
     self.table.delegate = self;
 
+    [User getFrequentDrivers:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"Get Messages FAILED!!!!");
+        }else{
+            NSLog(@"Now getting frequent addresses");
+            
+            self.freqDriverList = user.freqDriverList;
+            //weakSelf.billList = user.billList;
+            //[weakSelf.billTable reloadData];
+            [self.table reloadData];
+            //int count=0;
+            //            for(Bill* b in weakSelf.billList){
+            //                NSLog(@"%d %@",count++,b.contents);
+            //            }
+            
+            
+        }
+    }];
+    
 }
 
 - (UITableViewCell *)tableView: (UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -38,12 +57,14 @@
     // 根据identifier获取表格行
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:
                              identifier forIndexPath:indexPath];
-    // 获取cell内包含的Tag为1的UILabel
-    UILabel* label1 = (UILabel*)[cell viewWithTag:1];
-    label1.text = [drivers objectAtIndex:rowNo];
+    Driver *driverItem = [self.freqDriverList objectAtIndex:rowNo];
     
-    UILabel* label2 = (UILabel*)[cell viewWithTag:2];
-    label2.text = [dtls objectAtIndex:rowNo];
+    // 获取cell内包含的Tag为1的UILabel
+    UILabel* driverNameLbl = (UILabel*)[cell viewWithTag:1];
+    driverNameLbl.text =driverItem.nickName;
+    
+    UILabel* driverTelLbl = (UILabel*)[cell viewWithTag:2];
+    driverTelLbl.text = driverItem.phoneNum;
     
     
     return cell;
@@ -54,7 +75,7 @@
 -(NSInteger)tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return drivers.count;
+    return self.freqDriverList.count;
     
 }
 
@@ -67,8 +88,9 @@
     
     SubDriverDtlViewController* subDriverDtl = [self.storyboard instantiateViewControllerWithIdentifier: @"SubDriverDtl"];
 
-    subDriverDtl.name = [drivers objectAtIndex:rowNo];
-    subDriverDtl.tel = [dtls objectAtIndex:rowNo];
+    Driver *driverItem = [self.freqDriverList objectAtIndex:rowNo];
+    subDriverDtl.name = driverItem.nickName;
+    subDriverDtl.tel = driverItem.phoneNum;
   
     [self.navigationController pushViewController:subDriverDtl animated:YES];
     
