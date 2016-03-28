@@ -9,6 +9,9 @@
 #import "SubAddFreqDriverViewController.h"
 #import "User.h"
 #import "Driver.h"
+#import "SubAddDriverDtlViewController.h"
+
+
 @interface SubAddFreqDriverViewController ()
 
 @end
@@ -171,7 +174,18 @@
 //    subDriverDtl.tel = [dtls objectAtIndex:rowNo];
 //    
 //    [self.navigationController pushViewController:subDriverDtl animated:YES];
-//    
+//
+    
+    NSInteger rowNo = indexPath.row;
+    
+    
+    SubAddDriverDtlViewController* subAddDriverDtlVC = [self.storyboard instantiateViewControllerWithIdentifier: @"SubAddDriverDtl"];
+    Driver* driverItem = [self.drivers objectAtIndex:rowNo];
+    subAddDriverDtlVC.driver = driverItem;
+    //NSLog(@"%@", subEditFreqAddr.address);
+    [self.navigationController pushViewController:subAddDriverDtlVC animated:YES];
+
+    
 }
 
 

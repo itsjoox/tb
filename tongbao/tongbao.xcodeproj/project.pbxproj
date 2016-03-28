@@ -18,6 +18,7 @@
 		FB0E22911CA453390091B30C /* Shipper.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E22901CA453390091B30C /* Shipper.m */; };
 		FB0E22941CA9581E0091B30C /* Driver.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E22931CA9581E0091B30C /* Driver.m */; };
 		FB0E22971CA95A400091B30C /* SubAddFreqDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E22961CA95A400091B30C /* SubAddFreqDriverViewController.m */; };
+		FB0E229F1CA97A3A0091B30C /* SubAddDriverDtlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E229E1CA97A3A0091B30C /* SubAddDriverDtlViewController.m */; };
 		FB2921411C72FA0B0082B0B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921401C72FA0B0082B0B4 /* main.m */; };
 		FB2921441C72FA0B0082B0B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921431C72FA0B0082B0B4 /* AppDelegate.m */; };
 		FB2921471C72FA0B0082B0B4 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921461C72FA0B0082B0B4 /* HomeViewController.m */; };
@@ -132,6 +133,8 @@
 		FB0E22931CA9581E0091B30C /* Driver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Driver.m; sourceTree = "<group>"; };
 		FB0E22951CA95A210091B30C /* SubAddFreqDriverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubAddFreqDriverViewController.h; sourceTree = "<group>"; };
 		FB0E22961CA95A400091B30C /* SubAddFreqDriverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubAddFreqDriverViewController.m; sourceTree = "<group>"; };
+		FB0E229B1CA979860091B30C /* SubAddDriverDtlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SubAddDriverDtlViewController.h; path = ../SubAddDriverDtlViewController.h; sourceTree = "<group>"; };
+		FB0E229E1CA97A3A0091B30C /* SubAddDriverDtlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubAddDriverDtlViewController.m; sourceTree = "<group>"; };
 		FB29213C1C72FA0B0082B0B4 /* tongbao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tongbao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB2921401C72FA0B0082B0B4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FB2921421C72FA0B0082B0B4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -477,6 +480,8 @@
 				FB8504691C83F422008E25E1 /* SubMsgDtlViewController.m */,
 				FB8504611C82E6C0008E25E1 /* SubDriverDtlViewController.h */,
 				FB8504621C82E6D6008E25E1 /* SubDriverDtlViewController.m */,
+				FB0E229B1CA979860091B30C /* SubAddDriverDtlViewController.h */,
+				FB0E229E1CA97A3A0091B30C /* SubAddDriverDtlViewController.m */,
 				FB0E22951CA95A210091B30C /* SubAddFreqDriverViewController.h */,
 				FB0E22961CA95A400091B30C /* SubAddFreqDriverViewController.m */,
 				FB85045B1C80C9E6008E25E1 /* RequestViewController.h */,
@@ -681,6 +686,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB8504631C82E6D6008E25E1 /* SubDriverDtlViewController.m in Sources */,
+				FB0E229F1CA97A3A0091B30C /* SubAddDriverDtlViewController.m in Sources */,
 				FB6CA1A91C8D786A009AE70F /* AFHTTPSessionManager.m in Sources */,
 				83865F511C9A7614001115B3 /* NSError+custom.m in Sources */,
 				83865F411C9664D3001115B3 /* LoginViewController.m in Sources */,

@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "Order.h"
 #import "Address.h"
+#import "Driver.h"
 
 @interface User : NSObject
 
@@ -86,5 +87,6 @@
 +(void) addFrequentAddress: (Address*) address withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) placeOrder: (Order*) order withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) searchDriver: (NSString *) phoneNum withBlock:(void (^)(NSError *error, User *user))completedBlock;
++(void) addFrequentDriver: (Driver*) driver withBlock:(void (^)(NSError *error, User *user))completedBlock;
 
 @end

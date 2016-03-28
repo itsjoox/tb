@@ -814,4 +814,47 @@
     
 }
 
+
++(void) addFrequentDriver: (Driver*) driver withBlock:(void (^)(NSError *error, User *user))completedBlock{
+    if (driver == nil) {
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
+        }
+    }else{
+        NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
+                                     @"id":driver.id
+                                     };
+        
+        //请求的url
+        NSString *urlString = @"http://120.27.112.9:8080/tongbao/shipper/auth/addFrequentDriver";
+        //请求的managers
+        AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+        
+        [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"连接成功啦 %@",responseObject[@"result"]);
+            NSString * result = responseObject[@"result"];
+            if ([result intValue] == 1){
+                
+                NSLog(@"添加司机成功");
+                if (completedBlock) {
+                    completedBlock(nil, [User shareInstance].user);
+                }
+            }else{
+                if (completedBlock) {
+                    NSLog(@"添加司机失败");
+                    completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+                }
+            }
+            
+        }failure:^(NSURLSessionDataTask *task, NSError * error) {
+            NSLog(@"请求失败,服务器返回的错误信息%@",error);
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }];
+        
+    }
+}
+
+
 @end
