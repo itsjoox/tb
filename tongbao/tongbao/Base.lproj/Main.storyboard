@@ -4313,11 +4313,35 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2Gh-oF-Uhj" firstAttribute="top" secondItem="rSU-cg-ber" secondAttribute="bottom" id="3b2-ka-652"/>
                             <constraint firstItem="2Gh-oF-Uhj" firstAttribute="centerY" secondItem="Vfk-6a-rzh" secondAttribute="centerY" id="TL4-8u-wV9"/>
+                            <constraint firstAttribute="trailing" secondItem="2Gh-oF-Uhj" secondAttribute="trailing" id="WM8-iu-MTp"/>
                             <constraint firstItem="2Gh-oF-Uhj" firstAttribute="leading" secondItem="Vfk-6a-rzh" secondAttribute="leading" id="a6a-KC-Y7r"/>
                             <constraint firstAttribute="trailing" secondItem="2Gh-oF-Uhj" secondAttribute="trailing" id="bb5-z7-nLh"/>
+                            <constraint firstAttribute="bottom" secondItem="2Gh-oF-Uhj" secondAttribute="bottom" id="dCq-Gb-mZ5"/>
                             <constraint firstItem="2Gh-oF-Uhj" firstAttribute="top" secondItem="rSU-cg-ber" secondAttribute="bottom" id="i3r-dP-Ctw"/>
+                            <constraint firstItem="2Gh-oF-Uhj" firstAttribute="leading" secondItem="Vfk-6a-rzh" secondAttribute="leading" id="vhl-e6-Php"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3b2-ka-652"/>
+                                <exclude reference="WM8-iu-MTp"/>
+                                <exclude reference="dCq-Gb-mZ5"/>
+                                <exclude reference="vhl-e6-Php"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="3b2-ka-652"/>
+                                <exclude reference="TL4-8u-wV9"/>
+                                <include reference="WM8-iu-MTp"/>
+                                <exclude reference="a6a-KC-Y7r"/>
+                                <exclude reference="bb5-z7-nLh"/>
+                                <include reference="dCq-Gb-mZ5"/>
+                                <exclude reference="i3r-dP-Ctw"/>
+                                <include reference="vhl-e6-Php"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="选择车型" id="X3K-MS-qM4">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="ApC-Wc-aTs">
