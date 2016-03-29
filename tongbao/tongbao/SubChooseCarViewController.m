@@ -8,22 +8,48 @@
 
 #import "SubChooseCarViewController.h"
 #import "RequestViewController.h"
+#import "User.h"
+#import "Truck.h"
+
+
 @interface SubChooseCarViewController ()
 
 @end
 
 @implementation SubChooseCarViewController
 
-@synthesize cars;
-@synthesize dtls;
+@synthesize truckList;
+@synthesize selectedTruckList;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    cars = [NSArray arrayWithObjects:@"面包车", @"厢式货车", @"大卡车", nil];
-    dtls = [NSArray arrayWithObjects:@"南京市鼓楼区汉口路22号", @"南京市鼓楼区广州路3号", @"南京市玄武区珠江路18号", nil];
+   
     self.table.dataSource = self;
     self.table.delegate = self;
+    [self.table setEditing:YES animated:YES];
+    self.truckList = [[NSArray alloc]init];
+    self.selectedTruckList = [[NSMutableArray alloc]init];
+    
+    [User getAllTruckTypes:^(NSError *error, User *user){
+        if(error){
+            NSLog(@"Get Messages FAILED!!!!");
+        }else{
+            NSLog(@"Now getting frequent addresses");
+            
+            self.truckList = user.truckList;
+            //weakSelf.billList = user.billList;
+            //[weakSelf.billTable reloadData];
+            [self.table reloadData];
+            //int count=0;
+            //            for(Bill* b in weakSelf.billList){
+            //                NSLog(@"%d %@",count++,b.contents);
+            //            }
+            
+            
+        }
+    }];
+    
   
 }
 
@@ -34,9 +60,22 @@
     // 根据identifier获取表格行
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:
                              identifier forIndexPath:indexPath];
+    
+    Truck *truckItem = [self.truckList objectAtIndex:rowNo];
     // 获取cell内包含的Tag为2的UILabel
-    UILabel* label = (UILabel*)[cell viewWithTag:2];
-    label.text = [cars objectAtIndex:rowNo];
+    UILabel* nameLbl = (UILabel*)[cell viewWithTag:2];
+    nameLbl.text = truckItem.name;
+//    NSLog(truckItem.basePrice);
+//    UILabel* basePriceLbl = (UILabel*)[cell viewWithTag:3];
+//    basePriceLbl.text = truckItem.name;
+//    NSLog(truckItem.basePrice);
+//    UILabel* capacityLbl = (UILabel*)[cell viewWithTag:4];
+//    capacityLbl.text = truckItem.capacity;
+//    UILabel* lwhLbl = (UILabel*)[cell viewWithTag:5];
+//    lwhLbl.text = truckItem.name;
+//    UILabel* overPriceLbl = (UILabel*)[cell viewWithTag:6];
+//    overPriceLbl.text = truckItem.overPrice;
+    
     
     return cell;
 
@@ -45,27 +84,51 @@
 -(NSInteger)tableView:(UITableView*) tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return cars.count;
+    return self.truckList.count;
     
 }
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    Truck *truckItem = [self.truckList objectAtIndex:indexPath.row];
+    [self.selectedTruckList addObject:truckItem];
     
     
-            RequestViewController *setRequest = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
     
-            setRequest.carType = [self.cars objectAtIndex:indexPath.row];
-
-            [self.navigationController popToViewController:setRequest animated:true];
-        
     
 }
+
+//取消一项
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    Truck *truckItem = [self.truckList objectAtIndex:indexPath.row];
+    [self.selectedTruckList removeObject:truckItem];
+    //        NSLog(@"Deselect---->:%@",self.selectedDic);
+    
+}
+
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
+}
+
+
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)doneSelectedTruck:(id)sender {
+    RequestViewController *setRequest = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+    
+    setRequest.selectedTruckList = self.selectedTruckList;
+
+    [self.navigationController popToViewController:setRequest animated:true];
+    
+}
 @end
 

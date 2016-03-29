@@ -34,10 +34,14 @@
 @property (copy, nonatomic) NSString *money;
 @property (copy, nonatomic, readonly) NSString *token;
 @property (strong, nonatomic) NSMutableArray *billList;
+
 @property (strong, nonatomic) NSMutableArray *msgList;
 @property (strong, nonatomic) NSMutableArray *freqAddrList;
 @property (strong, nonatomic) NSMutableArray *freqDriverList;
 @property (strong, nonatomic) NSMutableArray *driverList;
+@property (strong, nonatomic) NSMutableArray *truckList;
+
+
 /**
  *  Judge whether user has login
  *
@@ -89,5 +93,6 @@
 +(void) searchDriver: (NSString *) phoneNum withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) addFrequentDriver: (Driver*) driver withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) getFrequentDrivers:(void (^)(NSError *error, User *user))completedBlock;
++(void) getAllTruckTypes:(void (^)(NSError *error, User *user))completedBlock;
 
 @end

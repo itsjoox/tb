@@ -12,7 +12,9 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *table;
 
-@property (strong, nonatomic) NSArray* cars;
-@property (strong, nonatomic) NSArray* dtls;
+- (IBAction)doneSelectedTruck:(id)sender;
+
+@property (strong, nonatomic) NSArray* truckList;
+@property (strong, nonatomic) NSMutableArray* selectedTruckList;
 
 @end

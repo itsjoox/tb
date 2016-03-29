@@ -9,6 +9,7 @@
 #import "User.h"
 #import "Order.h"
 #import "NearbyViewController.h"
+#import "Truck.h"
 @interface RequestViewController ()
 
 
@@ -41,7 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.table.delegate = self;
-    
+    self.selectedTruckList = [[NSArray alloc]init];
 }
 
 
@@ -66,10 +67,26 @@
     }
    
     
+    //显示选中货车种类
+    NSMutableString *carType =[[NSMutableString alloc] init];
+    
+    if(self.selectedTruckList.count>0){
+        
+        for(int i = 0 ; i < self.selectedTruckList.count-1 ; i ++)
+        {
+            Truck *truckItem = [self.selectedTruckList objectAtIndex:i];
+            [carType appendString:truckItem.name];
+            [carType appendString:@","];
+        }
+        Truck *truckItem = [self.selectedTruckList objectAtIndex:self.selectedTruckList.count-1 ];
+        [carType appendString:truckItem.name];
+    }
+    
+    
     
     self.srcAddrTxtFld.text = srcAddress;
     self.destAddrTxtFld.text = destAddress;
-    self.carTypeTxtFld.text = self.carType;
+    self.carTypeTxtFld.text = carType;
 
     
     

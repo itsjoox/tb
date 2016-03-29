@@ -13,6 +13,6 @@
 
 @property (strong,nonatomic) CLPlacemark* srcAddrPlsmk;
 @property (strong,nonatomic) CLPlacemark* destAddrPlsmk;
-@property (strong,nonatomic) NSString* carType;
+@property (copy,nonatomic) NSArray* selectedTruckList;
 
 @end

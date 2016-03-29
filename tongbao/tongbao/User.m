@@ -13,6 +13,7 @@
 #import "Message.h"
 #import "Address.h"
 #import "Driver.h"
+#import "Truck.h"
 
 @interface User ()
 
@@ -70,6 +71,12 @@
 {
     if (!_driverList) _driverList = [[NSMutableArray alloc] init];
     return _driverList;
+}
+
+- (NSMutableArray *)truckList
+{
+    if (!_truckList) _truckList = [[NSMutableArray alloc] init];
+    return _truckList;
 }
 
 
@@ -914,8 +921,71 @@
         }
     }];
     
+}
+
++(void) getAllTruckTypes:(void (^)(NSError *error, User *user))completedBlock{
     
+    NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
+                                 };
+    //请求的url
+    NSString *urlString = @"http://120.27.112.9:8080/tongbao/user/getAllTruckTypes";
+    //请求的managers
+    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
     
+    [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSLog(@"获取货车类型连接成功啦 %@",responseObject[@"result"]);
+        NSArray* resultArray = responseObject[@"data"];
+        
+        [[User shareInstance].user.truckList removeAllObjects];
+        
+        
+        
+        //注意，数据类型有问题
+        
+        
+        for (NSDictionary *dic in resultArray) {
+            NSLog(@"货车如下 %@",dic);
+            Truck* truckItem = [[Truck alloc] init];
+            
+            truckItem.type = [dic objectForKey:@"type"];
+            truckItem.name = [dic objectForKey:@"name"];
+            truckItem.basePrice =[dic objectForKey:@"basePrice"];
+            
+            truckItem.capacity = [dic objectForKey:@"capacity"];
+            truckItem.length = [dic objectForKey:@"length"];
+            
+            truckItem.width = [dic objectForKey:@"width"];
+            truckItem.height = [dic objectForKey:@"height"];
+            truckItem.overPrice = [dic objectForKey:@"overPrice"];
+            truckItem.baseDistance = [dic objectForKey:@"baseDistance"];
+            
+            
+            [[User shareInstance].user.truckList addObject:truckItem];
+        }
+        
+        
+        //            NSLog(@"error message %@",responseObject[@"errorMsg"]);
+        
+        NSString * result = responseObject[@"result"];
+        if ([result intValue] == 1){
+            NSLog(@"查看成功啦 %@",responseObject[@"result"]);
+            if (completedBlock) {
+                completedBlock(nil, [User shareInstance].user);
+            }
+            
+        }else{
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }
+        
+    }failure:^(NSURLSessionDataTask *task, NSError * error) {
+        NSLog(@"请求失败,服务器返回的错误信息%@",error);
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+        }
+    }];
     
 }
 
