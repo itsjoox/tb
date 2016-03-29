@@ -133,7 +133,7 @@
 		FB0E22931CA9581E0091B30C /* Driver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Driver.m; sourceTree = "<group>"; };
 		FB0E22951CA95A210091B30C /* SubAddFreqDriverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubAddFreqDriverViewController.h; sourceTree = "<group>"; };
 		FB0E22961CA95A400091B30C /* SubAddFreqDriverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubAddFreqDriverViewController.m; sourceTree = "<group>"; };
-		FB0E229B1CA979860091B30C /* SubAddDriverDtlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SubAddDriverDtlViewController.h; path = ../SubAddDriverDtlViewController.h; sourceTree = "<group>"; };
+		FB0E229B1CA979860091B30C /* SubAddDriverDtlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubAddDriverDtlViewController.h; sourceTree = "<group>"; };
 		FB0E229E1CA97A3A0091B30C /* SubAddDriverDtlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubAddDriverDtlViewController.m; sourceTree = "<group>"; };
 		FB0E22A01CA98DF10091B30C /* Truck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Truck.h; sourceTree = "<group>"; };
 		FB0E22A11CA98DFC0091B30C /* Truck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Truck.m; sourceTree = "<group>"; };
