@@ -196,67 +196,56 @@
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
             
+//            Order* order = [[Order alloc]init];
+//            order.addressFrom = self.srcAddrTxtFld.text;
+//            order.addressFromLat = @"0";
+//            order.addressFromLng= @"0";
+//            order.addressTo = self.destAddrTxtFld.text;
+//            order.addressToLat = @"0";
+//            order.addressToLng=@"0";
+//            order.fromContactName = self.senderNameTxtFld.text;
+//            order.fromContactPhone = self.senderTelTxtFld.text;
+//            order.toContactName = self.receiverNameTxtFld.text;
+//            order.toContactPhone = self.recevierTelTxtFld.text;
+//            order.loadTime = self.useTimeTxtFld.text;
+//            order.goodsType = self.cargoTypeTxtFld.text;
+//            order.goodsWeight = self.cargoWeightTxtFld.text;
+//            order.goodsSize = self.cargoVolumeTxtFld.text;
+//            order.truckTypes = self.selectedTruckList;
+//            order.remark = self.psTxtView.text;
+//            order.payType = 0;
+//            order.price = 0;
+//            order.distance = self.distLbl.text;
+            
+            NSMutableArray *trklist = [[NSMutableArray alloc]init];
+//            for (int i=0; i<self.selectedTruckList.count; i++) {
+//                Truck* tk = [self.selectedTruckList objectAtIndex:i];
+//                
+//                [trklist addObject:tk.type];
+//            }
+//            NSLog(trklist);
+            
+            //test
             Order* order = [[Order alloc]init];
-            order.addressFrom = self.srcAddrTxtFld.text;
+            order.addressFrom = @"0";
             order.addressFromLat = @"0";
             order.addressFromLng= @"0";
-            order.addressTo = self.destAddrTxtFld.text;
+            order.addressTo = @"0";
             order.addressToLat = @"0";
             order.addressToLng=@"0";
-            order.fromContactName = self.senderNameTxtFld.text;
-            order.fromContactPhone = self.senderTelTxtFld.text;
-            order.toContactName = self.receiverNameTxtFld.text;
-            order.toContactPhone = self.recevierTelTxtFld.text;
-            order.loadTime = self.useTimeTxtFld.text;
-            order.goodsType = self.cargoTypeTxtFld.text;
-            order.goodsWeight = self.cargoWeightTxtFld.text;
-            order.goodsSize = self.cargoVolumeTxtFld.text;
-            order.truckTypes = self.carTypeTxtFld.text;
-            order.remark = self.psTxtView.text;
+            order.fromContactName = @"0";
+            order.fromContactPhone = @"0";
+            order.toContactName = @"0";
+            order.toContactPhone = @"0";
+            order.loadTime = @"0";
+            order.goodsType = @"0";
+            order.goodsWeight = @"0";
+            order.goodsSize = @"0";
+            order.truckTypes = self.selectedTruckList;
+            order.remark = @"0";
             order.payType = @"0";
-            order.price = self.moneyLbl.text;
-            
-//            UITextField *new = alert.textFields.firstObject;
-//            NSLog(@"修改后的昵称！！%@",new.text);
-//            NSDictionary* orderDetail = @{@"addressFrom":self.srcAddrTxtFld.text,
-//                                          @"addressFromLat":@"",
-//                                          @"addressFromLng":@"",
-//                                          @"addressTo":self.destAddrTxtFld.text,
-//                                          @"addressToLat":@"",
-//                                          @"addressToLng":@"",
-//                                          @"fromContactName":self.senderNameTxtFld.text,
-//                                          @"fromContactPhone":self.senderTelTxtFld.text,
-//                                          @"toContactName":self.receiverNameTxtFld.text,
-//                                          @"toContactPhone":self.recevierTelTxtFld.text,
-//                                          @"loadTime":self.useTimeTxtFld.text,
-//                                          @"goodsType":self.cargoTypeTxtFld.text,
-//                                          @"goodsWeight":self.cargoWeightTxtFld.text,
-//                                          @"goodsSize":self.cargoVolumeTxtFld.text,
-//                                          @"truckTypes":self.carTypeTxtFld.text,
-//                                          @"remark":self.psTxtView.text,
-//                                          @"payType":@"",
-//                                          @"price":self.moneyLbl.text
-//                                          };
-//            
-            
-//            NSDictionary *orderDetail = @{@"addressFrom":@"1",
-//                                          @"addressFromLat":@"1",
-//                                          @"addressFromLng":@"1",
-//                                          @"addressTo":@"1",
-//                                          @"addressToLat":@"1",
-//                                          @"addressToLng":@"1",
-//                                          @"fromContactName":@"1",
-//                                          @"fromContactPhone":@"1",
-//                                          @"toContactName":@"1",
-//                                          @"toContactPhone":@"1",
-//                                          @"loadTime":@"1",
-//                                          @"goodsType":@"1",
-//                                          @"goodsWeight":@"1",
-//                                          @"goodsSize":@"1",
-//                                          @"truckTypes":@"1",
-//                                          @"remark":@"1",
-//                                          @"payType":@"1",
-//                                          @"price":@"1"};
+            order.price = @"0";
+            order.distance = @"0";
             
             
             [User placeOrder:(Order *) order withBlock:^(NSError *error, User *user){
@@ -267,6 +256,7 @@
                      [alertController addAction:okAction];
                      [self presentViewController:alertController animated:YES completion:nil];
                  }else{
+                     
                      NSLog(@"下单成功");
                  }
             }];

@@ -671,30 +671,26 @@
             completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
         }
     }else{
-        //部分改为int
-        //        NSString* addressFrom = [orderDetail objectForKey:@"addressFrom"];
-        //        NSString* addressFromLat = [orderDetail objectForKey:@"addressFromLat"];
-        //        NSString* addressFromLng = [orderDetail objectForKey:@"addressFromLng"];
-        //        NSString* addressTo = [orderDetail objectForKey:@"addressTo"];
-        //        NSString* addressToLat = [orderDetail objectForKey:@"addressToLat"];
-        //        NSString* addressToLng = [orderDetail objectForKey:@"addressToLng"];
-        //        NSString* fromContactName = [orderDetail objectForKey:@"fromContactName"];
-        //        NSString* fromContactPhone = [orderDetail objectForKey:@"fromContactPhone"];
-        //        NSString* toContactName = [orderDetail objectForKey:@"toContactName"];
-        //        NSString* toContactPhone = [orderDetail objectForKey:@"toContactPhone"];
-        //        NSString* loadTime = [orderDetail objectForKey:@"loadTime"];
-        //        NSString* goodsType = [orderDetail objectForKey:@"goodsType"];
-        //        NSString* goodsWeight = [orderDetail objectForKey:@"goodsWeight"];
-        //        NSString* goodsSize = [orderDetail objectForKey:@"goodsSize"];
-        //        NSString* truckTypes = [orderDetail objectForKey:@"truckTypes"];
-        //        NSString* remark = [orderDetail objectForKey:@"remark"];
-        //        NSString* payType = [orderDetail objectForKey:@"payType"];
-        //        NSString* price = [orderDetail objectForKey:@"price"];
+   
+        NSMutableString *str = [[NSMutableString alloc]init];
+        [str appendString:@"["];
+        for (int i=0; i<order.truckTypes.count-1; i++) {
+            Truck* truckItem = [order.truckTypes objectAtIndex:i];
+            //NSLog(@"%lu", (unsigned long)truckItem.type);
+            //NSString* s = [];
+            [str appendString:[truckItem.type stringValue]];
+            [str appendString:@","];
+        }
         
+        Truck* truckItem = [order.truckTypes objectAtIndex:order.truckTypes.count-1];
+        [str appendString:[truckItem.type stringValue]];
+        [str appendString:@"]"];
+        //str = [NSMutableString stringWithString:@"[1,2]"];
+        NSLog(str);
         
+        //NSMutableString *str = [NSMutableString stringWithString:@"[1,2]"];
         
         //NSDictionary这种初始化方式不能有nil
-        //第一个没登陆为空。。会出错
         NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
                                      @"addressFrom":order.addressFrom,
                                      @"addressFromLat":order.addressFromLat,
@@ -710,18 +706,26 @@
                                      @"goodsType":order.goodsType,
                                      @"goodsWeight":order.goodsWeight,
                                      @"goodsSize":order.goodsSize,
-                                     @"truckTypes":order.truckTypes,
+                                     @"truckTypes":str,
                                      @"remark":order.remark,
-                                     @"payType":order.payType,
-                                     @"price":order.price
+                                     @"payType":order.remark,
+                                     @"price":order.price,
                                      };
-        
+
         //请求的url
         NSString *urlString = @"http://120.27.112.9:8080/tongbao/shipper/auth/placeOrder";
         //请求的managers
         AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+//        managers.requestSerializer =[AFJSONRequestSerializer serializer];
+//        managers.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
         
-        [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSString *post = [NSString stringWithFormat:@"http://120.27.112.9:8080/tongbao/shipper/auth/placeOrder?token=%@&addressFrom=%@&addressFromLat=%@&addressFromLng=%@&addressTo=%@&addressToLat=%@&addressToLng=%@&fromContactName=%@&fromContactPhone=%@&toContactName=%@&toContactPhone=%@&loadTime=%@&goodsType=%@&goodsWeight=%d&goodsSize=%d&truckTypes=%@&remark=%@&payType=%d&price=%d", [[NSUserDefaults standardUserDefaults] objectForKey:@"token"],@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"2016-11-09 00:00:00",@"0",1,1,@"[1]",@"0",1,8];
+        
+//        
+//        NSString *utf = [post stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        
+         [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
             NSLog(@"连接成功啦 %@",responseObject[@"result"]);
             NSString * result = responseObject[@"result"];
             if ([result intValue] == 1){
@@ -746,8 +750,12 @@
                 completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
             }
         }];
+         
+
+        
         
     }
+         
     
 }
 
@@ -885,14 +893,10 @@
             //            NSLog(@"value: %@", [dic objectForKey:@"type"]);
             NSLog(@"司机如下 %@",dic);
             Driver* driverItem = [[Driver alloc] init];
-            
-            //
-            
+
             driverItem.id = [dic objectForKey:@"id"];
-            
-            
-            driverItem.nickName = [dic objectForKey:@"nickName"];
-            
+          
+            driverItem.nickName = [dic objectForKey:@"nickName"]; 
             driverItem.phoneNum =[dic objectForKey:@"phoneNum"];
             
             [[User shareInstance].user.freqDriverList addObject:driverItem];
@@ -940,7 +944,6 @@
         [[User shareInstance].user.truckList removeAllObjects];
         
         
-        
         //注意，数据类型有问题
         
         
@@ -948,17 +951,15 @@
             NSLog(@"货车如下 %@",dic);
             Truck* truckItem = [[Truck alloc] init];
             
-            truckItem.type = [dic objectForKey:@"type"];
-            truckItem.name = [dic objectForKey:@"name"];
-            truckItem.basePrice =[dic objectForKey:@"basePrice"];
-            
-            truckItem.capacity = [dic objectForKey:@"capacity"];
-            truckItem.length = [dic objectForKey:@"length"];
-            
-            truckItem.width = [dic objectForKey:@"width"];
-            truckItem.height = [dic objectForKey:@"height"];
-            truckItem.overPrice = [dic objectForKey:@"overPrice"];
-            truckItem.baseDistance = [dic objectForKey:@"baseDistance"];
+            truckItem.type = [dic valueForKey:@"type"];
+            truckItem.name = [dic valueForKey:@"name"];
+            truckItem.basePrice =[dic valueForKey:@"basePrice"];
+            truckItem.capacity = [dic valueForKey:@"capacity"];
+            truckItem.length = [dic valueForKey:@"length"];
+            truckItem.width = [dic valueForKey:@"width"];
+            truckItem.height = [dic valueForKey:@"height"];
+            truckItem.overPrice = [dic valueForKey:@"overPrice"];
+            truckItem.baseDistance = [dic valueForKey:@"baseDistance"];
             
             
             [[User shareInstance].user.truckList addObject:truckItem];

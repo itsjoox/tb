@@ -12,14 +12,14 @@
 
 @interface Truck : NSObject
 
-@property (copy, nonatomic) NSString* type;
+@property (copy, nonatomic) NSNumber* type;
 @property (copy, nonatomic) NSString* name;
-@property (copy, nonatomic) NSString* basePrice;
-@property (copy, nonatomic) NSString* capacity;
-@property (copy, nonatomic) NSString* length;
-@property (copy, nonatomic) NSString* width;
-@property (copy, nonatomic) NSString* height;
-@property (copy, nonatomic) NSString* overPrice;
-@property (copy, nonatomic) NSString* baseDistance;
+@property (copy, nonatomic) NSNumber* basePrice;
+@property (copy, nonatomic) NSNumber* capacity;
+@property (copy, nonatomic) NSNumber* length;
+@property (copy, nonatomic) NSNumber* width;
+@property (copy, nonatomic) NSNumber* height;
+@property (copy, nonatomic) NSNumber* overPrice;
+@property (copy, nonatomic) NSNumber* baseDistance;
 
 @end
