@@ -13,6 +13,8 @@
 @interface RequestViewController ()
 
 
+- (IBAction)payTypeSwitch:(id)sender;
+
 @property (strong, nonatomic) IBOutlet UITextField *useTimeTxtFld;
 
 - (IBAction)useTime:(id)sender;
@@ -30,9 +32,10 @@
 @property (strong, nonatomic) IBOutlet UITextField *cargoVolumeTxtFld;
 @property (strong, nonatomic) IBOutlet UILabel *moneyLbl;
 
-@property (strong, nonatomic) IBOutlet UISwitch *payOnlineSwitch;
+
 @property (strong, nonatomic) IBOutlet UITextView *psTxtView;
 @property (strong, nonatomic) IBOutlet UITableView *table;
+@property (strong , nonatomic) NSString* payType;
 
 @end
 
@@ -184,92 +187,169 @@
             [self.navigationController pushViewController:nearbyVC animated:YES];
         }
     }else if (section==6) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认下单" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-//        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField){
-//            textField.placeholder = @"请输入新的昵称";
-//        }];
-        //        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        //            textField.placeholder = @"密码";
-        //            textField.secureTextEntry = YES;
-        //        }];
         
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        NSString* srcAddr = self.srcAddrTxtFld.text;
+        
+        NSNumber *srcAddrLatinDouble = [NSNumber numberWithDouble:self.srcAddrPlsmk.location.coordinate.latitude];
+        NSString* srcAddrLat = [srcAddrLatinDouble stringValue];
+        NSNumber *srcAddrLnginDouble = [NSNumber numberWithDouble:self.srcAddrPlsmk.location.coordinate.longitude];
+        NSString* srcAddrLng = [srcAddrLnginDouble stringValue];
+        
+        NSString* destAddr = self.destAddrTxtFld.text;
+        NSNumber *destAddrLatinDouble = [NSNumber numberWithDouble:self.destAddrPlsmk.location.coordinate.latitude];
+        NSString* destAddrLat = [destAddrLatinDouble stringValue];
+        NSNumber *destAddrLnginDouble = [NSNumber numberWithDouble:self.destAddrPlsmk.location.coordinate.longitude];
+        NSString* destAddrLng = [destAddrLnginDouble stringValue];
+        
+        NSString* fromContactName = self.senderNameTxtFld.text;
+        NSString* fromContactPhone = self.senderTelTxtFld.text;
+        
+        NSString* toContactName = self.receiverNameTxtFld.text;
+        NSString* toContactPhone = self.recevierTelTxtFld.text;
+       
+        NSString* loadTime = self.useTimeTxtFld.text;
+        NSString* goodsType = self.cargoTypeTxtFld.text;
+        NSString* goodsWeight = self.cargoWeightTxtFld.text;
+        NSString* goodsSize = self.cargoVolumeTxtFld.text;
+        NSArray* truckTypes = self.selectedTruckList;
+        NSString* remark = self.psTxtView.text;
+        NSString *payType = self.payType;
+        NSString *price = @"100";
+        NSString *distance = self.distLbl.text;
+        //NSLog(self.payTypeSwitch.enabled);
+        
+        if (![srcAddr isEqual:@""]
+            &&![srcAddrLat isEqual:@""]
+            &&![srcAddrLng isEqual:@""]
+            &&![destAddr isEqual:@""]
+            &&![destAddrLat isEqual:@""]
+            &&![destAddrLng isEqual:@""]
+            &&![loadTime isEqual:@""]
+            &&!(truckTypes.count==0)
+            &&![payType isEqual:@""]
+            &&![price isEqual:@""]
+            ) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认下单" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            //        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField){
+            //            textField.placeholder = @"请输入新的昵称";
+            //        }];
+            //        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            //            textField.placeholder = @"密码";
+            //            textField.secureTextEntry = YES;
+            //        }];
             
-//            Order* order = [[Order alloc]init];
-//            order.addressFrom = self.srcAddrTxtFld.text;
-//            order.addressFromLat = @"0";
-//            order.addressFromLng= @"0";
-//            order.addressTo = self.destAddrTxtFld.text;
-//            order.addressToLat = @"0";
-//            order.addressToLng=@"0";
-//            order.fromContactName = self.senderNameTxtFld.text;
-//            order.fromContactPhone = self.senderTelTxtFld.text;
-//            order.toContactName = self.receiverNameTxtFld.text;
-//            order.toContactPhone = self.recevierTelTxtFld.text;
-//            order.loadTime = self.useTimeTxtFld.text;
-//            order.goodsType = self.cargoTypeTxtFld.text;
-//            order.goodsWeight = self.cargoWeightTxtFld.text;
-//            order.goodsSize = self.cargoVolumeTxtFld.text;
-//            order.truckTypes = self.selectedTruckList;
-//            order.remark = self.psTxtView.text;
-//            order.payType = 0;
-//            order.price = 0;
-//            order.distance = self.distLbl.text;
-            
-            NSMutableArray *trklist = [[NSMutableArray alloc]init];
-//            for (int i=0; i<self.selectedTruckList.count; i++) {
-//                Truck* tk = [self.selectedTruckList objectAtIndex:i];
-//                
-//                [trklist addObject:tk.type];
-//            }
-//            NSLog(trklist);
-            
-            //test
-            Order* order = [[Order alloc]init];
-            order.addressFrom = @"0";
-            order.addressFromLat = @"0";
-            order.addressFromLng= @"0";
-            order.addressTo = @"0";
-            order.addressToLat = @"0";
-            order.addressToLng=@"0";
-            order.fromContactName = @"0";
-            order.fromContactPhone = @"0";
-            order.toContactName = @"0";
-            order.toContactPhone = @"0";
-            order.loadTime = @"0";
-            order.goodsType = @"0";
-            order.goodsWeight = @"0";
-            order.goodsSize = @"0";
-            order.truckTypes = self.selectedTruckList;
-            order.remark = @"0";
-            order.payType = @"0";
-            order.price = @"0";
-            order.distance = @"0";
-            
-            
-            [User placeOrder:(Order *) order withBlock:^(NSError *error, User *user){
-                if (error) {
-                     NSLog(@"PLACE ORDER FAILED!!!!");
-                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"下单失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
-                     [alertController addAction:okAction];
-                     [self presentViewController:alertController animated:YES completion:nil];
-                 }else{
-                     
-                     NSLog(@"下单成功");
-                 }
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                
+                //            Order* order = [[Order alloc]init];
+                //            order.addressFrom = self.srcAddrTxtFld.text;
+                //            order.addressFromLat = @"0";
+                //            order.addressFromLng= @"0";
+                //            order.addressTo = self.destAddrTxtFld.text;
+                //            order.addressToLat = @"0";
+                //            order.addressToLng=@"0";
+                //            order.fromContactName = self.senderNameTxtFld.text;
+                //            order.fromContactPhone = self.senderTelTxtFld.text;
+                //            order.toContactName = self.receiverNameTxtFld.text;
+                //            order.toContactPhone = self.recevierTelTxtFld.text;
+                //            order.loadTime = self.useTimeTxtFld.text;
+                //            order.goodsType = self.cargoTypeTxtFld.text;
+                //            order.goodsWeight = self.cargoWeightTxtFld.text;
+                //            order.goodsSize = self.cargoVolumeTxtFld.text;
+                //            order.truckTypes = self.selectedTruckList;
+                //            order.remark = self.psTxtView.text;
+                //            order.payType = 0;
+                //            order.price = 0;
+                //            order.distance = self.distLbl.text;
+                
+                NSMutableArray *trklist = [[NSMutableArray alloc]init];
+                //            for (int i=0; i<self.selectedTruckList.count; i++) {
+                //                Truck* tk = [self.selectedTruckList objectAtIndex:i];
+                //
+                //                [trklist addObject:tk.type];
+                //            }
+                //            NSLog(trklist);
+                
+                //test
+                Order* order = [[Order alloc]init];
+                
+                order.addressFrom = srcAddr;
+                order.addressFromLat = srcAddrLat;
+                order.addressFromLng= srcAddrLng;
+                order.addressTo = destAddr;
+                order.addressToLat = destAddrLat;
+                order.addressToLng=destAddrLng;
+                order.fromContactName = fromContactName;
+                order.fromContactPhone = fromContactPhone;
+                order.toContactName = toContactName;
+                order.toContactPhone = toContactPhone;
+                order.loadTime = loadTime;
+                order.goodsType = goodsType;
+                order.goodsWeight = goodsWeight;
+                order.goodsSize = goodsSize;
+                order.truckTypes = self.selectedTruckList;
+                order.remark = remark;
+                order.payType = payType;
+                order.price = price;
+                order.distance = distance;
+//                order.addressFrom = @"0";
+//                order.addressFromLat = @"0";
+//                order.addressFromLng= @"0";
+//                order.addressTo = @"0";
+//                order.addressToLat = @"0";
+//                order.addressToLng=@"0";
+//                order.fromContactName = @"0";
+//                order.fromContactPhone = @"0";
+//                order.toContactName = @"0";
+//                order.toContactPhone = @"0";
+//                order.loadTime = @"0";
+//                order.goodsType = @"0";
+//                order.goodsWeight = @"0";
+//                order.goodsSize = @"0";
+//                order.truckTypes = self.selectedTruckList;
+//                order.remark = @"0";
+//                order.payType = @"0";
+//                order.price = @"0";
+//                order.distance = @"0";
+                
+                
+                [User placeOrder:(Order *) order withBlock:^(NSError *error, User *user){
+                    if (error) {
+                        NSLog(@"PLACE ORDER FAILED!!!!");
+                       // NSLog(order);
+                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"下单失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
+                        [alertController addAction:okAction];
+                        [self presentViewController:alertController animated:YES completion:nil];
+                    }else{
+                        
+                        NSLog(@"下单成功");
+                    }
+                }];
             }];
-        }];
-    
-    
-        [alert addAction:cancelAction];
-        [alert addAction:okAction];
-        [self presentViewController:alert animated:YES completion:nil];
-        
-    
+            
+            
+            [alert addAction:cancelAction];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }else{
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请填写完整信息" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
 
     }
 }
 
+- (IBAction)payTypeSwitch:(id)sender {
+    UISwitch *switchButton = (UISwitch*)sender;
+    BOOL isButtonOn = [switchButton isOn];
+    if (isButtonOn) {
+        self.payType = @"0";
+    }else {
+        self.payType = @"1";
+
+    }
+}
 @end

@@ -93,7 +93,7 @@
     
     UILabel* overPriceLbl = (UILabel*)[cell viewWithTag:6];
     NSMutableString *overPriceStr = [[NSMutableString alloc] init];
-    [overPriceStr appendString:[truckItem.basePrice stringValue]];
+    [overPriceStr appendString:[truckItem.overPrice stringValue]];
     [overPriceStr appendString:@"元/km"];
     overPriceLbl.text = overPriceStr;
     

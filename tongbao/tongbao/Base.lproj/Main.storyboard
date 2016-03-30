@@ -3876,6 +3876,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cAd-dG-Imb">
                                                     <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="payTypeSwitch:" destination="g0M-gV-xbB" eventType="valueChanged" id="BkO-MU-RpE"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -4035,7 +4038,6 @@
                         <outlet property="destAddrTxtFld" destination="oas-Xa-dXi" id="XMl-pq-9Jk"/>
                         <outlet property="distLbl" destination="fbr-0c-XOz" id="ufS-qt-RW8"/>
                         <outlet property="moneyLbl" destination="MQf-xB-CSD" id="27K-qv-PlZ"/>
-                        <outlet property="payOnlineSwitch" destination="cAd-dG-Imb" id="nQV-96-WDL"/>
                         <outlet property="psTxtView" destination="FNS-aD-HlD" id="31h-Hk-4tS"/>
                         <outlet property="receiverNameTxtFld" destination="maG-IH-LoA" id="Fkg-KV-O09"/>
                         <outlet property="recevierTelTxtFld" destination="BHY-RH-JKc" id="0vp-cP-eIz"/>
