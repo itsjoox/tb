@@ -26,9 +26,10 @@
 @property (copy, nonatomic) NSString* goodsType ;
 @property (copy, nonatomic) NSString* goodsWeight ;
 @property (copy, nonatomic) NSString* goodsSize ;
-@property (copy, nonatomic) NSString* truckTypes;
+@property (copy, nonatomic) NSArray* truckTypes;
 @property (copy, nonatomic) NSString* remark;
 @property (copy, nonatomic) NSString* payType;
 @property (copy, nonatomic) NSString* price;
+@property (copy, nonatomic) NSString* distance;
 
 @end

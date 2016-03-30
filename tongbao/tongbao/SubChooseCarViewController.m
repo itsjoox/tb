@@ -65,16 +65,37 @@
     // 获取cell内包含的Tag为2的UILabel
     UILabel* nameLbl = (UILabel*)[cell viewWithTag:2];
     nameLbl.text = truckItem.name;
-//    NSLog(truckItem.basePrice);
-//    UILabel* basePriceLbl = (UILabel*)[cell viewWithTag:3];
-//    basePriceLbl.text = truckItem.name;
-//    NSLog(truckItem.basePrice);
-//    UILabel* capacityLbl = (UILabel*)[cell viewWithTag:4];
-//    capacityLbl.text = truckItem.capacity;
-//    UILabel* lwhLbl = (UILabel*)[cell viewWithTag:5];
-//    lwhLbl.text = truckItem.name;
-//    UILabel* overPriceLbl = (UILabel*)[cell viewWithTag:6];
-//    overPriceLbl.text = truckItem.overPrice;
+
+    UILabel* basePriceLbl = (UILabel*)[cell viewWithTag:3];
+    NSMutableString *basePriceStr = [[NSMutableString alloc] init];
+    [basePriceStr appendString:[truckItem.basePrice stringValue]];
+    [basePriceStr appendString:@"元/"];
+    [basePriceStr appendString:[truckItem.baseDistance stringValue]];
+    [basePriceStr appendString:@"km"];
+    basePriceLbl.text = basePriceStr ;
+    
+    UILabel* capacityLbl = (UILabel*)[cell viewWithTag:4];
+    NSMutableString *capacityStr = [[NSMutableString alloc] init];
+    [capacityStr appendString:[truckItem.capacity stringValue]];
+    [capacityStr appendString:@"t"];
+    capacityLbl.text = capacityStr;
+    
+    
+    UILabel* lwhLbl = (UILabel*)[cell viewWithTag:5];
+    NSMutableString *lwhStr = [[NSMutableString alloc] init];
+    [lwhStr appendString:[truckItem.length stringValue]];
+    [lwhStr appendString:@"m*"];
+    [lwhStr appendString:[truckItem.width stringValue]];
+    [lwhStr appendString:@"m*"];
+    [lwhStr appendString:[truckItem.height stringValue]];
+    [lwhStr appendString:@"m"];
+    lwhLbl.text = lwhStr;
+    
+    UILabel* overPriceLbl = (UILabel*)[cell viewWithTag:6];
+    NSMutableString *overPriceStr = [[NSMutableString alloc] init];
+    [overPriceStr appendString:[truckItem.basePrice stringValue]];
+    [overPriceStr appendString:@"元/km"];
+    overPriceLbl.text = overPriceStr;
     
     
     return cell;
