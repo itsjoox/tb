@@ -38,10 +38,10 @@
     
     [JPUSHService setupWithOption:launchOptions appKey:appKey
                           channel:channel apsForProduction:isProduction];
-    
-    [[NSBundle mainBundle] loadNibNamed:@"JpushTabBarViewController"
-                                  owner:self
-                                options:nil];
+//    
+//    [[NSBundle mainBundle] loadNibNamed:@"JpushTabBarViewController"
+//                                  owner:self
+//                                options:nil];
     
     // Override point for customization after application launch.
     
