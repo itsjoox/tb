@@ -14,6 +14,12 @@
 		83865F471C967DE7001115B3 /* MeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83865F461C967DE7001115B3 /* MeInfoViewController.m */; };
 		83865F4B1C968ACC001115B3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 83865F4A1C968ACC001115B3 /* User.m */; };
 		83865F511C9A7614001115B3 /* NSError+custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 83865F501C9A7614001115B3 /* NSError+custom.m */; };
+		8390CFE41CAC1A4F009C1BED /* jpush-ios-2.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8390CFE21CAC1A4F009C1BED /* jpush-ios-2.1.0.a */; };
+		8390CFE81CAC1B1A009C1BED /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8390CFE71CAC1B1A009C1BED /* PushConfig.plist */; };
+		8390CFEB1CAC1E08009C1BED /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8390CFEA1CAC1E08009C1BED /* CoreTelephony.framework */; };
+		8390CFED1CAC1E0F009C1BED /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8390CFEC1CAC1E0F009C1BED /* Security.framework */; };
+		8390CFEF1CAC1E36009C1BED /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8390CFEE1CAC1E36009C1BED /* CFNetwork.framework */; };
+		8390CFF11CAC1E43009C1BED /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8390CFF01CAC1E43009C1BED /* CoreFoundation.framework */; };
 		FB0E228E1CA451970091B30C /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E228D1CA451970091B30C /* Address.m */; };
 		FB0E22911CA453390091B30C /* Shipper.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E22901CA453390091B30C /* Shipper.m */; };
 		FB0E22941CA9581E0091B30C /* Driver.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E22931CA9581E0091B30C /* Driver.m */; };
@@ -125,6 +131,13 @@
 		83865F4A1C968ACC001115B3 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		83865F4F1C9A75F9001115B3 /* NSError+custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+custom.h"; sourceTree = "<group>"; };
 		83865F501C9A7614001115B3 /* NSError+custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+custom.m"; sourceTree = "<group>"; };
+		8390CFE21CAC1A4F009C1BED /* jpush-ios-2.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.0.a"; sourceTree = "<group>"; };
+		8390CFE31CAC1A4F009C1BED /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		8390CFE71CAC1B1A009C1BED /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
+		8390CFEA1CAC1E08009C1BED /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		8390CFEC1CAC1E0F009C1BED /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		8390CFEE1CAC1E36009C1BED /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		8390CFF01CAC1E43009C1BED /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		FB0E228C1CA451830091B30C /* Address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
 		FB0E228D1CA451970091B30C /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
 		FB0E228F1CA4527D0091B30C /* Shipper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shipper.h; sourceTree = "<group>"; };
@@ -248,13 +261,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBEAF7801C7E0FE90063A913 /* CoreLocation.framework in Frameworks */,
+				FB54BF9B1C79889F003F1826 /* Foundation.framework in Frameworks */,
 				FB54BFA11C7988BD003F1826 /* CoreGraphics.framework in Frameworks */,
+				FB5106821C78C709006991FD /* SystemConfiguration.framework in Frameworks */,
+				8390CFF11CAC1E43009C1BED /* CoreFoundation.framework in Frameworks */,
+				8390CFEF1CAC1E36009C1BED /* CFNetwork.framework in Frameworks */,
+				8390CFED1CAC1E0F009C1BED /* Security.framework in Frameworks */,
+				8390CFEB1CAC1E08009C1BED /* CoreTelephony.framework in Frameworks */,
+				FBEAF7801C7E0FE90063A913 /* CoreLocation.framework in Frameworks */,
 				FB54BF9F1C7988AF003F1826 /* UIKit.framework in Frameworks */,
 				FB54BF9D1C7988A7003F1826 /* QuartzCore.framework in Frameworks */,
-				FB54BF9B1C79889F003F1826 /* Foundation.framework in Frameworks */,
 				FB5106891C78F113006991FD /* MapKit.framework in Frameworks */,
-				FB5106821C78C709006991FD /* SystemConfiguration.framework in Frameworks */,
+				8390CFE41CAC1A4F009C1BED /* jpush-ios-2.1.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,9 +336,23 @@
 			name = Catogory;
 			sourceTree = "<group>";
 		};
+		8390CFE91CAC1C27009C1BED /* pushlib */ = {
+			isa = PBXGroup;
+			children = (
+				8390CFE21CAC1A4F009C1BED /* jpush-ios-2.1.0.a */,
+				8390CFE31CAC1A4F009C1BED /* JPUSHService.h */,
+			);
+			name = pushlib;
+			sourceTree = "<group>";
+		};
 		FB2921331C72FA0B0082B0B4 = {
 			isa = PBXGroup;
 			children = (
+				8390CFF01CAC1E43009C1BED /* CoreFoundation.framework */,
+				8390CFEE1CAC1E36009C1BED /* CFNetwork.framework */,
+				8390CFEC1CAC1E0F009C1BED /* Security.framework */,
+				8390CFEA1CAC1E08009C1BED /* CoreTelephony.framework */,
+				8390CFE91CAC1C27009C1BED /* pushlib */,
 				FBEAF77F1C7E0FE90063A913 /* CoreLocation.framework */,
 				FB54BFA01C7988BD003F1826 /* CoreGraphics.framework */,
 				FB54BF9E1C7988AF003F1826 /* UIKit.framework */,
@@ -374,6 +406,7 @@
 				FB29214E1C72FA0B0082B0B4 /* Assets.xcassets */,
 				FB6CA1AF1C8D78BC009AE70F /* Icon */,
 				FB29213F1C72FA0B0082B0B4 /* Supporting Files */,
+				8390CFE71CAC1B1A009C1BED /* PushConfig.plist */,
 			);
 			path = tongbao;
 			sourceTree = "<group>";
@@ -654,6 +687,7 @@
 				FB29214D1C72FA0B0082B0B4 /* Main.storyboard in Resources */,
 				FB6CA1D81C8D78BC009AE70F /* Icon-180.png in Resources */,
 				FB6CA1ED1C8D78BC009AE70F /* start.png in Resources */,
+				8390CFE81CAC1B1A009C1BED /* PushConfig.plist in Resources */,
 				FB6CA1EA1C8D78BC009AE70F /* people.png in Resources */,
 				FB6CA1DC1C8D78BC009AE70F /* invite.png in Resources */,
 				FB6CA1D91C8D78BC009AE70F /* Icon-58.png in Resources */,
@@ -863,11 +897,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = tongbao/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nju.tongbao;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nju.tongbao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -876,11 +917,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = tongbao/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nju.tongbao;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nju.tongbao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

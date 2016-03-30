@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "User.h"
 #import "AFNetworking.h"
+#import "JPUSHService.h"
 
 @interface LoginViewController()
 
@@ -18,6 +19,17 @@
 @end
 
 @implementation LoginViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [JPUSHService startLogPageView:@"PageOne"];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [JPUSHService stopLogPageView:@"PageOne"];
+}
 
 
 - (void)viewDidLoad {
