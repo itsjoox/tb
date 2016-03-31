@@ -14,6 +14,7 @@
 #import "Address.h"
 #import "Driver.h"
 #import "Truck.h"
+#import "confirmedOrder.h"
 
 @interface User ()
 
@@ -77,6 +78,30 @@
 {
     if (!_truckList) _truckList = [[NSMutableArray alloc] init];
     return _truckList;
+}
+
+- (NSMutableArray *)waitingOrderList
+{
+    if (!_waitingOrderList) _waitingOrderList = [[NSMutableArray alloc] init];
+    return _waitingOrderList;
+}
+
+- (NSMutableArray *)deliveringOrderList
+{
+    if (!_deliveringOrderList) _deliveringOrderList = [[NSMutableArray alloc] init];
+    return _deliveringOrderList;
+}
+
+- (NSMutableArray *)finishedOrderList
+{
+    if (!_finishedOrderList) _finishedOrderList = [[NSMutableArray alloc] init];
+    return _finishedOrderList;
+}
+
+- (NSMutableArray *)canceledOrderList
+{
+    if (!_canceledOrderList) _canceledOrderList = [[NSMutableArray alloc] init];
+    return _canceledOrderList;
 }
 
 
@@ -947,9 +972,6 @@
         [[User shareInstance].user.truckList removeAllObjects];
         
         
-        //注意，数据类型有问题
-        
-        
         for (NSDictionary *dic in resultArray) {
             NSLog(@"货车如下 %@",dic);
             Truck* truckItem = [[Truck alloc] init];
@@ -993,5 +1015,92 @@
     
 }
 
+
++(void) showMyOrderList:(NSString *)type withBlock:(void (^)(NSError *, User *))completedBlock{
+    if (type == nil) {
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
+        }
+    }else{
+        NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
+                                     @"type":type
+                                     };
+        
+        //请求的url
+        NSString *urlString = @"http://120.27.112.9:8080/tongbao/shipper/auth/showMyOrderList";
+        //请求的managers
+        AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+        
+        [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+            NSLog(@"连接成功啦 %@",responseObject[@"result"]);
+           
+            
+            NSArray* resultArray = responseObject[@"data"];
+            
+            if ([type isEqualToString:@"0"]) {
+                [[User shareInstance].user.waitingOrderList removeAllObjects];
+            }else if ([type isEqualToString:@"1"]) {
+                [[User shareInstance].user.deliveringOrderList removeAllObjects];
+            }else if ([type isEqualToString:@"2"]) {
+                [[User shareInstance].user.finishedOrderList removeAllObjects];
+            }else if ([type isEqualToString:@"3"]) {
+                [[User shareInstance].user.canceledOrderList removeAllObjects];
+            }
+            
+            //[[User shareInstance].user.truckList removeAllObjects];
+            
+            
+            for (NSDictionary *dic in resultArray) {
+                NSLog(@"订单如下 %@",dic);
+                confirmedOrder* cfOrderItem = [[confirmedOrder alloc] init];
+                
+                cfOrderItem.id = [dic valueForKey:@"id"];
+                cfOrderItem.time = [dic valueForKey:@"time"];
+                cfOrderItem.addressFrom =[dic valueForKey:@"addressFrom"];
+                cfOrderItem.addressTo =[dic valueForKey:@"addressTo"];
+                cfOrderItem.money =[dic valueForKey:@"money"];
+                cfOrderItem.truckTypes =[dic valueForKey:@"truckTypes"];
+                cfOrderItem.fromContactName =[dic valueForKey:@"fromContactName"];
+                cfOrderItem.fromContactPhone =[dic valueForKey:@"fromContactPhone"];
+                cfOrderItem.toContactName =[dic valueForKey:@"toContactName"];
+                cfOrderItem.toContactPhone =[dic valueForKey:@"toContactPhone"];
+                cfOrderItem.loadTime =[dic valueForKey:@"loadTime"];
+                
+                if ([type isEqualToString:@"0"]) {
+                    [[User shareInstance].user.waitingOrderList addObject:cfOrderItem];
+                }else if ([type isEqualToString:@"1"]) {
+                    [[User shareInstance].user.deliveringOrderList addObject:cfOrderItem];
+                }else if ([type isEqualToString:@"2"]) {
+                    [[User shareInstance].user.finishedOrderList addObject:cfOrderItem];
+                }else if ([type isEqualToString:@"3"]) {
+                    [[User shareInstance].user.canceledOrderList addObject:cfOrderItem];
+                }
+                
+            }
+            
+             NSString * result = responseObject[@"result"];
+            if ([result intValue] == 1){
+                
+                NSLog(@"查看订单成功");
+                if (completedBlock) {
+                    completedBlock(nil, [User shareInstance].user);
+                }
+            }else{
+                if (completedBlock) {
+                    NSLog(@"查看订单失败");
+                    completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+                }
+            }
+            
+        }failure:^(NSURLSessionDataTask *task, NSError * error) {
+            NSLog(@"请求失败,服务器返回的错误信息%@",error);
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }];
+        
+    }
+}
 
 @end
