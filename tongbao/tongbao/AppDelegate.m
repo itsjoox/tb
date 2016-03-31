@@ -20,7 +20,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    [JPUSHService setupWithOption:launchOptions appKey:appKey
+                          channel:channel apsForProduction:isProduction];
+
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
         //可以添加自定义categories
@@ -36,9 +38,11 @@
                                               categories:nil];
     }
     
-    [JPUSHService setupWithOption:launchOptions appKey:appKey
-                          channel:channel apsForProduction:isProduction];
-//    
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
+    
+    
+   //
 //    [[NSBundle mainBundle] loadNibNamed:@"JpushTabBarViewController"
 //                                  owner:self
 //                                options:nil];
@@ -118,6 +122,32 @@
     NSString *customizeField1 = [extras valueForKey:@"customizeField1"]; //自定义参数，key是自己定义的
     
 }
+
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+    NSLog(@"My token is: %@", deviceToken);
+    [JPUSHService registerDeviceToken:deviceToken];
+    NSLog(@"My id is: %@", [JPUSHService registrationID]);
+
+    
+}
+
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    // IOS 7 Support Required
+    [JPUSHService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    
+    //Optional
+    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
+}
+
+
+
 
 
 @end
