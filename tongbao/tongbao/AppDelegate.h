@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class OrderViewController;
-static NSString *appKey = @"AppKey copied from JPush Portal application";
+static NSString *appKey = @"0bfdf19308d2b4265b5d467d";
 static NSString *channel = @"Publish channel";
 static BOOL isProduction = FALSE;
 
