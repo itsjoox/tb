@@ -696,8 +696,8 @@
                                      @"addressFromLat":order.addressFromLat,
                                      @"addressFromLng":order.addressFromLng,
                                      @"addressTo":order.addressTo,
-                                     @"adressToLat":order.addressToLat,
-                                     @"adressToLng":order.addressToLng,
+                                     @"addressToLat":order.addressToLat,
+                                     @"addressToLng":order.addressToLng,
                                      @"fromContactName":order.fromContactName,
                                      @"fromContactPhone":order.fromContactPhone,
                                      @"toContactName":order.toContactName,
@@ -708,8 +708,9 @@
                                      @"goodsSize":order.goodsSize,
                                      @"truckTypes":str,
                                      @"remark":order.remark,
-                                     @"payType":order.remark,
+                                     @"payType":@"1",
                                      @"price":order.price,
+                                     @"distance":order.distance,
                                      };
 
         //请求的url
@@ -728,6 +729,7 @@
          [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
             NSLog(@"连接成功啦 %@",responseObject[@"result"]);
             NSString * result = responseObject[@"result"];
+            //NSLog(@"下单失败 %@",responseObject[@"errorMsg"]);
             if ([result intValue] == 1){
                 
                 NSLog(@"下单成功");
@@ -739,7 +741,8 @@
                 
             }else{
                 if (completedBlock) {
-                    NSLog(@"下单失败");
+                   
+                   
                     completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
                 }
             }

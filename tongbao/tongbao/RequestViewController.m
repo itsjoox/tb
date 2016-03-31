@@ -164,7 +164,7 @@
 - (void)chooseDate:(UIDatePicker *)sender {
     NSDate *selectedDate = sender.date;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSString *dateString = [formatter stringFromDate:selectedDate];
     self.useTimeTxtFld.text = dateString;
 }
