@@ -317,6 +317,7 @@
                     if (error) {
                         NSLog(@"PLACE ORDER FAILED!!!!");
                        // NSLog(order);
+                        
                         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"下单失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
                         [alertController addAction:okAction];
