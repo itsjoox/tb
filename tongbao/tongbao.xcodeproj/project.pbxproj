@@ -27,6 +27,7 @@
 		FB0E22971CA95A400091B30C /* SubAddFreqDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E22961CA95A400091B30C /* SubAddFreqDriverViewController.m */; };
 		FB0E229F1CA97A3A0091B30C /* SubAddDriverDtlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E229E1CA97A3A0091B30C /* SubAddDriverDtlViewController.m */; };
 		FB0E22A21CA98DFC0091B30C /* Truck.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E22A11CA98DFC0091B30C /* Truck.m */; };
+		FB0E22A51CAD92740091B30C /* confirmedOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E22A41CAD92740091B30C /* confirmedOrder.m */; };
 		FB2921411C72FA0B0082B0B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921401C72FA0B0082B0B4 /* main.m */; };
 		FB2921441C72FA0B0082B0B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921431C72FA0B0082B0B4 /* AppDelegate.m */; };
 		FB2921471C72FA0B0082B0B4 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921461C72FA0B0082B0B4 /* HomeViewController.m */; };
@@ -120,6 +121,8 @@
 		FB0E229E1CA97A3A0091B30C /* SubAddDriverDtlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubAddDriverDtlViewController.m; sourceTree = "<group>"; };
 		FB0E22A01CA98DF10091B30C /* Truck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Truck.h; sourceTree = "<group>"; };
 		FB0E22A11CA98DFC0091B30C /* Truck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Truck.m; sourceTree = "<group>"; };
+		FB0E22A31CAD92640091B30C /* confirmedOrder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = confirmedOrder.h; sourceTree = "<group>"; };
+		FB0E22A41CAD92740091B30C /* confirmedOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = confirmedOrder.m; sourceTree = "<group>"; };
 		FB29213C1C72FA0B0082B0B4 /* tongbao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tongbao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB2921401C72FA0B0082B0B4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FB2921421C72FA0B0082B0B4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -237,6 +240,8 @@
 			children = (
 				83865F491C96892F001115B3 /* User.h */,
 				83865F4A1C968ACC001115B3 /* User.m */,
+				FB0E22A31CAD92640091B30C /* confirmedOrder.h */,
+				FB0E22A41CAD92740091B30C /* confirmedOrder.m */,
 				FB0E228F1CA4527D0091B30C /* Shipper.h */,
 				FB0E22901CA453390091B30C /* Shipper.m */,
 				FB0E228C1CA451830091B30C /* Address.h */,
@@ -608,6 +613,7 @@
 				83236D221CA3B8A400C83F65 /* WalletViewController.m in Sources */,
 				83865F471C967DE7001115B3 /* MeInfoViewController.m in Sources */,
 				FB0E22941CA9581E0091B30C /* Driver.m in Sources */,
+				FB0E22A51CAD92740091B30C /* confirmedOrder.m in Sources */,
 				FB29214A1C72FA0B0082B0B4 /* NearbyViewController.m in Sources */,
 				FB54BFAA1C7ABE21003F1826 /* SubDriverViewController.m in Sources */,
 				FB5106841C78C9BC006991FD /* OrderViewController.m in Sources */,

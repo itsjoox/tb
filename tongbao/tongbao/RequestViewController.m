@@ -164,7 +164,7 @@
 - (void)chooseDate:(UIDatePicker *)sender {
     NSDate *selectedDate = sender.date;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSString *dateString = [formatter stringFromDate:selectedDate];
     self.useTimeTxtFld.text = dateString;
 }
@@ -317,6 +317,7 @@
                     if (error) {
                         NSLog(@"PLACE ORDER FAILED!!!!");
                        // NSLog(order);
+                        
                         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"下单失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
                         [alertController addAction:okAction];

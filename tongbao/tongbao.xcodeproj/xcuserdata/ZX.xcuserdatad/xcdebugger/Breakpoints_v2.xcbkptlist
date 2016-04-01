@@ -70,22 +70,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "tongbao/User.m"
-            timestampString = "481040404.741171"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "971"
-            endingLineNumber = "971"
-            landmarkName = "+getAllTruckTypes:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -122,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tongbao/User.m"
-            timestampString = "481047837.577653"
+            timestampString = "481106503.031583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "716"
-            endingLineNumber = "716"
+            startingLineNumber = "717"
+            endingLineNumber = "717"
             landmarkName = "+placeOrder:withBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tongbao/User.m"
-            timestampString = "481047902.946478"
+            timestampString = "481106503.031583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "718"
-            endingLineNumber = "718"
+            startingLineNumber = "719"
+            endingLineNumber = "719"
             landmarkName = "+placeOrder:withBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tongbao/User.m"
-            timestampString = "481047956.204403"
+            timestampString = "481106503.031583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "728"
-            endingLineNumber = "728"
+            startingLineNumber = "729"
+            endingLineNumber = "729"
             landmarkName = "+placeOrder:withBlock:"
             landmarkType = "5">
             <Locations>
@@ -170,12 +154,12 @@
                   moduleName = "tongbao"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ZX/Documents/tb/tongbao/tongbao/User.m"
-                  timestampString = "481049290.69164"
+                  timestampString = "481109000.217392"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "728"
-                  endingLineNumber = "728"
-                  offsetFromSymbolStart = "2746">
+                  startingLineNumber = "729"
+                  endingLineNumber = "729"
+                  offsetFromSymbolStart = "2755">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -185,11 +169,11 @@
                   moduleName = "tongbao"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ZX/Documents/tb/tongbao/tongbao/User.m"
-                  timestampString = "481049290.691857"
+                  timestampString = "481109000.218975"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "728"
-                  endingLineNumber = "728"
+                  startingLineNumber = "729"
+                  endingLineNumber = "729"
                   offsetFromSymbolStart = "71">
                </Location>
             </Locations>
@@ -202,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tongbao/User.m"
-            timestampString = "481048000.63728"
+            timestampString = "481106503.031583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "730"
-            endingLineNumber = "730"
+            startingLineNumber = "731"
+            endingLineNumber = "731"
             landmarkName = "+placeOrder:withBlock:"
             landmarkType = "5">
          </BreakpointContent>

@@ -40,8 +40,10 @@
 @property (strong, nonatomic) NSMutableArray *freqDriverList;
 @property (strong, nonatomic) NSMutableArray *driverList;
 @property (strong, nonatomic) NSMutableArray *truckList;
-
-
+@property (strong, nonatomic) NSMutableArray *waitingOrderList;
+@property (strong, nonatomic) NSMutableArray *deliveringOrderList;
+@property (strong, nonatomic) NSMutableArray *finishedOrderList;
+@property (strong, nonatomic) NSMutableArray *canceledOrderList;
 /**
  *  Judge whether user has login
  *
@@ -94,5 +96,6 @@
 +(void) addFrequentDriver: (Driver*) driver withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) getFrequentDrivers:(void (^)(NSError *error, User *user))completedBlock;
 +(void) getAllTruckTypes:(void (^)(NSError *error, User *user))completedBlock;
++(void) showMyOrderList: (NSString*) type withBlock:(void (^)(NSError *error, User *user))completedBlock;
 
 @end
