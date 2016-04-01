@@ -40,6 +40,7 @@
 @property (strong, nonatomic) NSMutableArray *freqDriverList;
 @property (strong, nonatomic) NSMutableArray *driverList;
 @property (strong, nonatomic) NSMutableArray *truckList;
+@property (strong, nonatomic) NSMutableArray *orderList;
 @property (strong, nonatomic) NSMutableArray *waitingOrderList;
 @property (strong, nonatomic) NSMutableArray *deliveringOrderList;
 @property (strong, nonatomic) NSMutableArray *finishedOrderList;

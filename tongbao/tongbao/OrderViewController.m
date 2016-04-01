@@ -8,7 +8,8 @@
 
 #import "OrderViewController.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "User.h"
+#import "confirmedOrder.h"
 
 @interface OrderViewController ()
 
@@ -21,31 +22,90 @@
 
 @implementation OrderViewController
 
-@synthesize orders;
-@synthesize details;
+@synthesize waitingOrderList;
+@synthesize deliveringOrderList;
+@synthesize finishedOrderList;
+@synthesize canceledOrderList;
+
 @synthesize tbl;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
     self.view.backgroundColor = UIColor.whiteColor;
     self.navigationController.view.backgroundColor = UIColor.whiteColor;
-    
-    orders = [NSArray arrayWithObjects:@"160612334", @"134522332", nil];
-    details = [NSArray arrayWithObjects:@"1321434", @"214324", nil];
+
     
     self.table.dataSource = self;
     self.table.delegate = self;
-    self.tbl = orders;
+
+    
+    [User showMyOrderList:@"0" withBlock:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"Get Messages FAILED!!!!");
+        }else{
+            NSLog(@"Now getting waitingOrderList");
+            
+            self.waitingOrderList = user.waitingOrderList;
+            self.tbl = self.waitingOrderList;
+            
+            [self.table reloadData];
+            
+        }
+    }];
+    
+    
     self.cellIdentifier = @"cell1";
     
-     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"订单列表" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"订单列表" style:UIBarButtonItemStylePlain target:nil action:nil];
     
 }
 
+-(void) viewWillAppear:(BOOL)animated{
+    [User showMyOrderList:@"0" withBlock:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"Get Messages FAILED!!!!");
+        }else{
+            NSLog(@"Now getting waitingOrderList");
+            
+            self.waitingOrderList = user.waitingOrderList;
+            //self.tbl = self.waitingOrderList;
 
+            //[self.table reloadData];
+            
+        }
+    }];
+    
+    [User showMyOrderList:@"1" withBlock:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"Get Messages FAILED!!!!");
+        }else{
+            NSLog(@"Now getting waitingOrderList");
+            
+            self.deliveringOrderList = user.deliveringOrderList;
+            //self.tbl = self.waitingOrderList;
+            
+           // [self.table reloadData];
+            
+        }
+    }];
+    
+    [User showMyOrderList:@"2" withBlock:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"Get Messages FAILED!!!!");
+        }else{
+            NSLog(@"Now getting waitingOrderList");
+            
+            self.finishedOrderList = user.finishedOrderList;
+            //self.tbl = self.waitingOrderList;
+            
+            // [self.table reloadData];
+            
+        }
+    }];
+   
+}
 
 - (UITableViewCell *)tableView: (UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
@@ -54,9 +114,14 @@
     // 根据identifier获取表格行（self.identifier要么是cell1，要么是cell2）
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:
                              self.cellIdentifier forIndexPath:indexPath];
+   
+    confirmedOrder *cfOrderItem = [[confirmedOrder alloc]init];
+    cfOrderItem= [self.waitingOrderList objectAtIndex:rowNo];
     // 获取cell内包含的Tag为1的UILabel
-    UILabel* label = (UILabel*)[cell viewWithTag:1];
-    label.text = [self.tbl objectAtIndex:rowNo];
+    UILabel* idLbl = (UILabel*)[cell viewWithTag:1];
+    
+    //idLbl.text = [self.tbl objectAtIndex:rowNo];
+    idLbl.text = [cfOrderItem.id stringValue];
     return cell;
     
 }
@@ -73,25 +138,42 @@
     switch ([sender selectedSegmentIndex]) {
         case 0:
             
-            self.tbl = orders;
+            
+            NSLog(@"0");
+            self.tbl = self.waitingOrderList;
+            NSLog(@"%@",self.waitingOrderList);
+            
             self.orderState = @"waiting";
             self.cellIdentifier = @"cell1";
             [self.table reloadData];
             break;
+            
         case 1:
             
-            self.tbl = self.details;
+              NSLog(@"1");
+            
+            
+            self.tbl = self.deliveringOrderList;
             self.orderState = @"now";
              self.cellIdentifier = @"cell2";
+            
+            NSLog(@"%@",self.deliveringOrderList);
+            
             [self.table reloadData];
             break;
        
             
-        default:
+        case 2:
+              NSLog(@"2");
+           
+            self.tbl = self.finishedOrderList;
+             NSLog(@"%@",self.finishedOrderList);
+            
             self.orderState = @"finished";
              self.cellIdentifier = @"cell3";
             [self.table reloadData];
-            break;
+            
+             break;
     }
 }
 
@@ -103,8 +185,10 @@
     NSInteger rowNo = indexPath.row;
     
     SubOrderDtlViewController* subOrderDtl = [self.storyboard instantiateViewControllerWithIdentifier: @"SubOrderDtl"];
+    confirmedOrder *cfOrderItem = [[confirmedOrder alloc]init];
+    cfOrderItem= [self.tbl objectAtIndex:rowNo];
     
-    subOrderDtl.myOrderNo = [self.tbl objectAtIndex:rowNo];
+    subOrderDtl.myOrderNo = [cfOrderItem.id stringValue];
     subOrderDtl.myOrderState = self.orderState;
     
     [self.navigationController pushViewController:subOrderDtl animated:YES];

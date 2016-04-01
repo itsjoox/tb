@@ -14,8 +14,11 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *table;
 
-@property (strong, nonatomic) NSArray* orders;
-@property (strong, nonatomic) NSArray* details;
+@property (strong, nonatomic) NSArray* waitingOrderList;
+@property (strong, nonatomic) NSArray* deliveringOrderList;
+@property (strong, nonatomic) NSArray* finishedOrderList;
+@property (strong, nonatomic) NSArray* canceledOrderList;
+
 
 - (IBAction)orderState:(id)sender;
 

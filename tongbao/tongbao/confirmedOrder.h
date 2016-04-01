@@ -13,18 +13,18 @@
 
 @interface confirmedOrder : NSObject
 
-@property (copy, nonatomic) NSString* id ;
+@property (copy, nonatomic) NSNumber* id ;
 @property (copy, nonatomic) NSString* time;
 @property (copy, nonatomic) NSString* addressFrom ;
 @property (copy, nonatomic) NSString* addressTo ;
-@property (copy, nonatomic) NSString* money ;
+@property (copy, nonatomic) NSNumber* money ;
 @property (copy, nonatomic) NSString* fromContactName ;
 @property (copy, nonatomic) NSString* fromContactPhone ;
 @property (copy, nonatomic) NSString* toContactName ;
 @property (copy, nonatomic) NSString* toContactPhone ;
 @property (copy, nonatomic) NSString* loadTime ;
 
-@property (copy, nonatomic) NSArray* truckTypes;
+@property (copy, nonatomic) NSString* truckTypes;
 
 
 @end

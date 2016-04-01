@@ -80,6 +80,12 @@
     return _truckList;
 }
 
+- (NSMutableArray *)orderList
+{
+    if (!_orderList) _orderList = [[NSMutableArray alloc] init];
+    return _orderList;
+}
+
 - (NSMutableArray *)waitingOrderList
 {
     if (!_waitingOrderList) _waitingOrderList = [[NSMutableArray alloc] init];
@@ -1047,9 +1053,8 @@
             }else if ([type isEqualToString:@"3"]) {
                 [[User shareInstance].user.canceledOrderList removeAllObjects];
             }
-            
-            //[[User shareInstance].user.truckList removeAllObjects];
-            
+      
+            //[[User shareInstance].user.orderList removeAllObjects];
             
             for (NSDictionary *dic in resultArray) {
                 NSLog(@"订单如下 %@",dic);
@@ -1066,6 +1071,8 @@
                 cfOrderItem.toContactName =[dic valueForKey:@"toContactName"];
                 cfOrderItem.toContactPhone =[dic valueForKey:@"toContactPhone"];
                 cfOrderItem.loadTime =[dic valueForKey:@"loadTime"];
+                
+                //[[User shareInstance].user.orderList addObject:cfOrderItem];
                 
                 if ([type isEqualToString:@"0"]) {
                     [[User shareInstance].user.waitingOrderList addObject:cfOrderItem];
