@@ -43,7 +43,7 @@
     
     [User showMyOrderList:@"0" withBlock:^(NSError *error, User *user) {
         if(error){
-            NSLog(@"Get Messages FAILED!!!!");
+            NSLog(@"Get waitingOrderList FAILED!!!!");
         }else{
             NSLog(@"Now getting waitingOrderList");
             
@@ -65,7 +65,7 @@
 -(void) viewWillAppear:(BOOL)animated{
     [User showMyOrderList:@"0" withBlock:^(NSError *error, User *user) {
         if(error){
-            NSLog(@"Get Messages FAILED!!!!");
+            NSLog(@"Get waitingOrderList FAILED!!!!");
         }else{
             NSLog(@"Now getting waitingOrderList");
             
@@ -79,9 +79,9 @@
     
     [User showMyOrderList:@"1" withBlock:^(NSError *error, User *user) {
         if(error){
-            NSLog(@"Get Messages FAILED!!!!");
+            NSLog(@"Get deliveringOrderList FAILED!!!!");
         }else{
-            NSLog(@"Now getting waitingOrderList");
+            NSLog(@"Now getting deliveringOrderList");
             
             self.deliveringOrderList = user.deliveringOrderList;
             //self.tbl = self.waitingOrderList;
@@ -93,9 +93,9 @@
     
     [User showMyOrderList:@"2" withBlock:^(NSError *error, User *user) {
         if(error){
-            NSLog(@"Get Messages FAILED!!!!");
+            NSLog(@"Get waitingOrderList FAILED!!!!");
         }else{
-            NSLog(@"Now getting waitingOrderList");
+            NSLog(@"Now getting finishedOrderList");
             
             self.finishedOrderList = user.finishedOrderList;
             //self.tbl = self.waitingOrderList;
@@ -122,6 +122,29 @@
     
     //idLbl.text = [self.tbl objectAtIndex:rowNo];
     idLbl.text = [cfOrderItem.id stringValue];
+    
+    UILabel* fromAddrLbl = (UILabel*)[cell viewWithTag:2];
+    
+    //idLbl.text = [self.tbl objectAtIndex:rowNo];
+    fromAddrLbl.text = cfOrderItem.addressFrom;
+    
+    UILabel* toAddrLbl = (UILabel*)[cell viewWithTag:3];
+    
+    //idLbl.text = [self.tbl objectAtIndex:rowNo];
+    toAddrLbl.text = cfOrderItem.addressTo;
+    
+    
+    UILabel* priceLbl = (UILabel*)[cell viewWithTag:4];
+    
+    //idLbl.text = [self.tbl objectAtIndex:rowNo];
+    priceLbl.text = [cfOrderItem.money stringValue];
+    
+    UILabel* timeLbl = (UILabel*)[cell viewWithTag:5];
+    
+    //idLbl.text = [self.tbl objectAtIndex:rowNo];
+    timeLbl.text = cfOrderItem.time;
+    
+    
     return cell;
     
 }
