@@ -528,7 +528,6 @@
 				TargetAttributes = {
 					FB29213B1C72FA0B0082B0B4 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = SHNVA4S4C2;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -780,7 +779,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Xinbao Dong (94FM5FP9DY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Xinbao Dong (94FM5FP9DY)";
 				INFOPLIST_FILE = tongbao/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
@@ -791,7 +790,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nju.tongbao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9ac6a3c8-b780-435d-ac31-10c4fc3ded0f";
+				PROVISIONING_PROFILE = "715d1c63-7617-49d2-82de-51b43981655f";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -800,7 +799,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Xinbao Dong (94FM5FP9DY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Xinbao Dong (94FM5FP9DY)";
 				INFOPLIST_FILE = tongbao/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
@@ -811,7 +810,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nju.tongbao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9ac6a3c8-b780-435d-ac31-10c4fc3ded0f";
+				PROVISIONING_PROFILE = "715d1c63-7617-49d2-82de-51b43981655f";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
