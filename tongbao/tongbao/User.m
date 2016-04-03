@@ -15,6 +15,7 @@
 #import "Driver.h"
 #import "Truck.h"
 #import "confirmedOrder.h"
+#import "JPUSHService.h"
 
 @interface User ()
 
@@ -191,6 +192,10 @@
         //请求的方式：POST
         [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
             NSLog(@"登录成功啦 %@",responseObject[@"result"]);
+//            注册JPUSH tag and alias
+            NSSet *set = [NSSet setWithObjects:@"shipper",nil];
+            [JPUSHService setTags:set alias:@"jbj" callbackSelector:nil object:self];
+
             
             NSDictionary *responseDic = (NSDictionary *)responseObject[@"data"];
             NSString * result = responseObject[@"result"];
