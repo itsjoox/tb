@@ -57,7 +57,7 @@
     if ([self.myOrderState  isEqual: @"waiting"]) {
         self.left.title = @"取消订单";
         self.right.title = @"再来一单";
-    }else if ([self.myOrderState  isEqual: @"now"]){
+    }else if ([self.myOrderState  isEqual: @"delivering"]){
         self.left.title = @"我要投诉";
         self.right.title = @"确认收货";
     }else if ([self.myOrderState  isEqual: @"finished"]){
@@ -114,26 +114,18 @@
                         [self.navigationController popToViewController:setOrderVC animated:true];
                         
                         
-                    }
-                        ];
+                    }];
                     [alertController addAction:okAction];
                     [self presentViewController:alertController animated:YES completion:nil];
-                    
-                  
+            
                 }
             }];
             
         }];
         
-        
         [alert addAction:cancelAction];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
-        
-        
-        
-        
-
     }
 }
 

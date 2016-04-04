@@ -106,4 +106,11 @@
 
 +(void) cancelOrder: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
 
+
+
++(void) finishOrder: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
+
+
++(void) deleteOrder: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
+
 @end

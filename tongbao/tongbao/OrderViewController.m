@@ -204,7 +204,7 @@
             
             
             self.tbl = self.deliveringOrderList;
-            self.orderState = @"now";
+            self.orderState = @"delivering";
              self.cellIdentifier = @"cell2";
             
             NSLog(@"%@",self.deliveringOrderList);
