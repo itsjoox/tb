@@ -15,10 +15,13 @@
 - (IBAction)recharge:(UIButton *)sender;
 
 - (IBAction)withdraw:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UILabel *currentMoney;
+
 
 
 @property (weak, nonatomic) IBOutlet UITableView *billTable;
 
 @property (strong, nonatomic) NSArray *billList;
+@property  double money;
 
 @end
