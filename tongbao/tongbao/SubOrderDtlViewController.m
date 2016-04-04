@@ -22,7 +22,7 @@
     
     self.orderNoLbl.text = self.myOrderID;
     self.navigationController.toolbarHidden = NO;
-    
+//    
 //    [User getOrderDetail:self.myOrderID withBlock:^(NSError *error, User *user) {
 //        if(error){
 //            NSLog(@"Get OrderList FAILED!!!!");
@@ -75,4 +75,22 @@
     
 }
 
+- (IBAction)leftBtn:(id)sender {
+    if ([self.left.title isEqualToString:@"取消订单"]) {
+        
+        [User cancelOrder:self.myOrderID withBlock:^(NSError *error, User *user) {
+            if(error){
+                NSLog(@"Cancel Order FAILED!!!!");
+            }else{
+                NSLog(@"Cancel Order succeed");
+                                
+                
+            }
+        }];
+
+    }
+}
+
+- (IBAction)rightBtn:(id)sender {
+}
 @end

@@ -95,7 +95,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "721"
             endingLineNumber = "721"
-            landmarkName = "+placeOrder:withBlock:"
+            landmarkName = "+addFrequentAddress:withBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -111,7 +111,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "748"
             endingLineNumber = "748"
-            landmarkName = "+placeOrder:withBlock:"
+            landmarkName = "+addFrequentAddress:withBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -127,7 +127,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "750"
             endingLineNumber = "750"
-            landmarkName = "+placeOrder:withBlock:"
+            landmarkName = "+addFrequentAddress:withBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -207,7 +207,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1037"
             endingLineNumber = "1037"
-            landmarkName = "+showMyOrderList:withBlock:"
+            landmarkName = "+getAllTruckTypes:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -223,7 +223,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1040"
             endingLineNumber = "1040"
-            landmarkName = "+showMyOrderList:withBlock:"
+            landmarkName = "+getAllTruckTypes:"
             landmarkType = "5">
             <Locations>
                <Location
@@ -271,7 +271,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1042"
             endingLineNumber = "1042"
-            landmarkName = "+showMyOrderList:withBlock:"
+            landmarkName = "+getAllTruckTypes:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -287,7 +287,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1061"
             endingLineNumber = "1061"
-            landmarkName = "+showMyOrderList:withBlock:"
+            landmarkName = "+getAllTruckTypes:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -303,7 +303,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1063"
             endingLineNumber = "1063"
-            landmarkName = "+showMyOrderList:withBlock:"
+            landmarkName = "+getAllTruckTypes:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -367,7 +367,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1045"
             endingLineNumber = "1045"
-            landmarkName = "+showMyOrderList:withBlock:"
+            landmarkName = "+getAllTruckTypes:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -383,7 +383,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "995"
             endingLineNumber = "995"
-            landmarkName = "+getAllTruckTypes:"
+            landmarkName = "+getFrequentDrivers:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -447,7 +447,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1057"
             endingLineNumber = "1057"
-            landmarkName = "+showMyOrderList:withBlock:"
+            landmarkName = "+getAllTruckTypes:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -463,7 +463,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1059"
             endingLineNumber = "1059"
-            landmarkName = "+showMyOrderList:withBlock:"
+            landmarkName = "+getAllTruckTypes:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -479,7 +479,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1128"
             endingLineNumber = "1128"
-            landmarkName = "+getOrderDetail:withBlock:"
+            landmarkName = "+showMyOrderList:withBlock:"
             landmarkType = "5">
             <Locations>
                <Location

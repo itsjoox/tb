@@ -28,6 +28,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *loadTimeTxtFld;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *left;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *right;
+- (IBAction)leftBtn:(id)sender;
+- (IBAction)rightBtn:(id)sender;
 
 @end
 

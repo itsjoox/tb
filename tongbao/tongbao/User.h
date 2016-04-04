@@ -102,4 +102,8 @@
 
 +(void) getOrderDetail: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
 
+
+
++(void) cancelOrder: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
+
 @end
