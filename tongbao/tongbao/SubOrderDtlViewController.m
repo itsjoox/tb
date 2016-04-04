@@ -7,7 +7,7 @@
 //
 
 #import "SubOrderDtlViewController.h"
-
+#import "User.h"
 @interface SubOrderDtlViewController ()
 
 
@@ -20,8 +20,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.orderNo.text = self.myOrderNo;
+    self.orderNoLbl.text = self.myOrderID;
     self.navigationController.toolbarHidden = NO;
+    
+//    [User getOrderDetail:self.myOrderID withBlock:^(NSError *error, User *user) {
+//        if(error){
+//            NSLog(@"Get OrderList FAILED!!!!");
+//        }else{
+//            NSLog(@"Now getting OrderList");
+//            confirmedOrder* cfOrderItem = [user.orderList objectAtIndex:0];
+//            self.cfOrderItem = cfOrderItem;
+//            
+//            
+//        }
+//    }];
+
+    self.orderState.text = self.cfOrderItem.state;
+    self.orderTimeLbl.text = self.cfOrderItem.time;
+    self.orderPriceLbl.text = [self.cfOrderItem.money stringValue];
+    self.srcAddrTxtView.text = self.cfOrderItem.addressFrom;
+    self.senderNameTxtFld.text = self.cfOrderItem.fromContactName;
+    self.senderTelTxtFld.text = self.cfOrderItem.fromContactPhone;
+    
+    self.destAddrTxtView.text = self.cfOrderItem.addressTo;
+    self.receiverNameTxtFld.text = self.cfOrderItem.toContactName;
+    self.receiverTelTxtFld.text = self.cfOrderItem.toContactPhone;
+    
+    //self.truckTypesTxtFld.text = self.cfOrderItem.truckTypes;
+    
+    self.loadTimeTxtFld.text = self.cfOrderItem.loadTime;
+    
+    
+    
     if ([self.myOrderState  isEqual: @"waiting"]) {
         self.left.title = @"取消订单";
         self.right.title = @"再来一单";

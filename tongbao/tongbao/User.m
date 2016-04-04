@@ -1114,7 +1114,7 @@
                 cfOrderItem.toContactName =[dic valueForKey:@"toContactName"];
                 cfOrderItem.toContactPhone =[dic valueForKey:@"toContactPhone"];
                 cfOrderItem.loadTime =[dic valueForKey:@"loadTime"];
-                
+                cfOrderItem.state =[confirmedOrder getState:[dic objectForKey:@"state"]];
                 //[[User shareInstance].user.orderList addObject:cfOrderItem];
                 
                 if ([type isEqualToString:@"0"]) {
@@ -1152,5 +1152,75 @@
         
     }
 }
+
++(void) getOrderDetail:(NSString *)orderId withBlock:(void (^)(NSError *, User *))completedBlock{
+    if (orderId == nil) {
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
+        }
+    }else{
+        NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
+                                     @"id":@"102"
+                                     };
+        
+        //请求的url
+        NSString *urlString = @"http://120.27.112.9:8080/tongbao/shipper/auth/getOrderDetail";
+        //请求的managers
+        AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+        
+        [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+            NSLog(@"连接成功啦 %@",responseObject[@"result"]);
+            
+            
+            NSArray* resultArray = responseObject[@"data"];
+            [[User shareInstance].user.orderList removeAllObjects];
+            
+            for (NSDictionary *dic in resultArray) {
+                NSLog(@"订单详情如下 %@",dic);
+                confirmedOrder* cfOrderItem = [[confirmedOrder alloc] init];
+                
+                cfOrderItem.id = [dic valueForKey:@"id"];
+                cfOrderItem.time = [dic valueForKey:@"time"];
+                cfOrderItem.addressFrom =[dic valueForKey:@"addressFrom"];
+                cfOrderItem.addressTo =[dic valueForKey:@"addressTo"];
+                cfOrderItem.money =[dic valueForKey:@"money"];
+                cfOrderItem.truckTypes =[dic valueForKey:@"truckTypes"];
+                cfOrderItem.fromContactName =[dic valueForKey:@"fromContactName"];
+                cfOrderItem.fromContactPhone =[dic valueForKey:@"fromContactPhone"];
+                cfOrderItem.toContactName =[dic valueForKey:@"toContactName"];
+                cfOrderItem.toContactPhone =[dic valueForKey:@"toContactPhone"];
+                cfOrderItem.loadTime =[dic valueForKey:@"loadTime"];
+                cfOrderItem.state =[confirmedOrder getState:[dic objectForKey:@"state"]];
+                
+                [[User shareInstance].user.orderList addObject:cfOrderItem];
+                
+                
+            }
+            
+            NSString * result = responseObject[@"result"];
+            if ([result intValue] == 1){
+                
+                NSLog(@"查看订单详情成功");
+                if (completedBlock) {
+                    completedBlock(nil, [User shareInstance].user);
+                }
+            }else{
+                if (completedBlock) {
+                    NSLog(@"查看订单详情失败");
+                    completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+                }
+            }
+            
+        }failure:^(NSURLSessionDataTask *task, NSError * error) {
+            NSLog(@"请求失败,服务器返回的错误信息%@",error);
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }];
+        
+    }
+}
+
 
 @end
