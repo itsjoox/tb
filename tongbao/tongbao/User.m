@@ -15,6 +15,7 @@
 #import "Driver.h"
 #import "Truck.h"
 #import "confirmedOrder.h"
+#import "JPUSHService.h"
 
 @interface User ()
 
@@ -191,12 +192,17 @@
         //请求的方式：POST
         [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
             NSLog(@"登录成功啦 %@",responseObject[@"result"]);
+//            注册JPUSH tag and alias
+            NSSet *set = [NSSet setWithObjects:@"shipper",nil];
+            [JPUSHService setTags:set alias:@"jbj" callbackSelector:nil object:self];
+
             
             NSDictionary *responseDic = (NSDictionary *)responseObject[@"data"];
             NSString * result = responseObject[@"result"];
             if ([result intValue] == 1){
                 
                 [User shareInstance].user = [[User alloc] initWithUsername:username andNickname:responseDic[@"nickName"] andHeadPortrait:responseDic[@"iconUrl"] andToken:responseDic[@"token"]];
+                [User shareInstance].user.money = responseDic[@"money"];
                 
                 NSLog(@"user.m 头像地址！！ %@",responseDic[@"iconUrl"]);
                 NSLog(@"user.m nickName！！ %@",responseDic[@"nickName"]);
@@ -488,9 +494,58 @@
             completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
         }
     }];
+}
 
++(void) showCurrent:(void (^)(NSError *error, User *user))completedBlock{
+    NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
+                                 };
+    //请求的url
+    NSString *urlString = @"http://120.27.112.9:8080/tongbao/user/auth/showAccount";
+    //请求的managers
+    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+    
+    [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"查看账单连接成功啦 %@",responseObject[@"result"]);
+        NSArray* resultArray = responseObject[@"data"];
+        [[User shareInstance].user.billList removeAllObjects];
+        //        NSLog(@"账单如下 %@",resultArray);
+        for (NSDictionary *dic in resultArray) {
+            //            NSLog(@"value: %@", [dic objectForKey:@"type"]);
+            NSLog(@"账单如下 %@",dic);
+            Bill* test = [[Bill alloc] init];
+            test.type = [Bill getType:[dic objectForKey:@"type"]];
+            test.time = [dic objectForKey:@"time"];
+            test.money = [[dic objectForKey:@"money"] stringValue];
+            [[User shareInstance].user.billList addObject:test];
+        }
+        
+        
+        //            NSLog(@"error message %@",responseObject[@"errorMsg"]);
+        
+        NSString * result = responseObject[@"result"];
+        if ([result intValue] == 1){
+            NSLog(@"查看成功啦 %@",responseObject[@"result"]);
+            
+            if (completedBlock) {
+                completedBlock(nil, [User shareInstance].user);
+            }
+        }else{
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }
+        
+    }failure:^(NSURLSessionDataTask *task, NSError * error) {
+        NSLog(@"请求失败,服务器返回的错误信息%@",error);
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+        }
+    }];
+    
     
 }
+
+
 + (BOOL)hasLogin
 {
     return [User currentUser] != nil;

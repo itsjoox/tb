@@ -172,7 +172,7 @@
         if(error){
             NSLog(@"show bills FAILED!!!!");
         }else{
-            NSLog(@"Now getting bills");
+//            NSLog(@"Now getting bills");
             //            NSArray *sortedBill = [user.billList sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             //
             //                Bill *b1 = (Bill*)obj1;
@@ -190,10 +190,7 @@
             __weak typeof(self) weakSelf = self;
             weakSelf.billList = [[user.billList reverseObjectEnumerator] allObjects];
             [weakSelf.billTable reloadData];
-            int count=0;
-//            for(Bill* b in weakSelf.billList){
-//                NSLog(@"%d %@",count++,b.contents);
-//            }
+
         }
     }];
 
