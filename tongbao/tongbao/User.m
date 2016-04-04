@@ -472,12 +472,12 @@
             [[User shareInstance].user.billList addObject:test];
         }
        
-
-        //            NSLog(@"error message %@",responseObject[@"errorMsg"]);
         
         NSString * result = responseObject[@"result"];
         if ([result intValue] == 1){
             NSLog(@"查看成功啦 %@",responseObject[@"result"]);
+            
+            
             
             if (completedBlock) {
                 completedBlock(nil, [User shareInstance].user);
@@ -500,32 +500,20 @@
     NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
                                  };
     //请求的url
-    NSString *urlString = @"http://120.27.112.9:8080/tongbao/user/auth/showAccount";
+    NSString *urlString = @"http://120.27.112.9:8080/tongbao/user/auth/getMoney";
     //请求的managers
     AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
     
     [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"查看账单连接成功啦 %@",responseObject[@"result"]);
-        NSArray* resultArray = responseObject[@"data"];
-        [[User shareInstance].user.billList removeAllObjects];
-        //        NSLog(@"账单如下 %@",resultArray);
-        for (NSDictionary *dic in resultArray) {
-            //            NSLog(@"value: %@", [dic objectForKey:@"type"]);
-            NSLog(@"账单如下 %@",dic);
-            Bill* test = [[Bill alloc] init];
-            test.type = [Bill getType:[dic objectForKey:@"type"]];
-            test.time = [dic objectForKey:@"time"];
-            test.money = [[dic objectForKey:@"money"] stringValue];
-            [[User shareInstance].user.billList addObject:test];
-        }
-        
-        
-        //            NSLog(@"error message %@",responseObject[@"errorMsg"]);
+        NSLog(@"查看当前余额连接成功啦 %@",responseObject[@"result"]);
         
         NSString * result = responseObject[@"result"];
         if ([result intValue] == 1){
-            NSLog(@"查看成功啦 %@",responseObject[@"result"]);
+            NSLog(@"查看成功啦 %@",responseObject[@"data"][@"money"]);
             
+            NSDictionary *responseDic = (NSDictionary *)responseObject[@"data"];
+            [User shareInstance].user.money = [NSString stringWithFormat:@"%@",responseDic[@"money"]];
+
             if (completedBlock) {
                 completedBlock(nil, [User shareInstance].user);
             }

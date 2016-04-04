@@ -193,6 +193,16 @@
 
         }
     }];
+    [User showCurrent:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"show current FAILED!!!!");
+        }else{
+            __weak typeof(self) weakSelf = self;
+            weakSelf.currentMoney.text = user.money;
+//            weakSelf.money = user.money;
+            
+        }
+    }];
 
 }
 
