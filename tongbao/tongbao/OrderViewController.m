@@ -211,9 +211,9 @@
     confirmedOrder *cfOrderItem = [[confirmedOrder alloc]init];
     cfOrderItem= [self.tbl objectAtIndex:rowNo];
     
-    subOrderDtl.myOrderNo = [cfOrderItem.id stringValue];
+    subOrderDtl.myOrderID = [cfOrderItem.id stringValue];
     subOrderDtl.myOrderState = self.orderState;
-    
+    subOrderDtl.cfOrderItem = cfOrderItem;
     [self.navigationController pushViewController:subOrderDtl animated:YES];
     //返回时取消选中
     [tableView deselectRowAtIndexPath:indexPath animated:NO];

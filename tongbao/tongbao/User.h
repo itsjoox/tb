@@ -99,4 +99,6 @@
 +(void) getAllTruckTypes:(void (^)(NSError *error, User *user))completedBlock;
 +(void) showMyOrderList: (NSString*) type withBlock:(void (^)(NSError *error, User *user))completedBlock;
 
++(void) getOrderDetail: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
+
 @end

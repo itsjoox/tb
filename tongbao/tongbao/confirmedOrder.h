@@ -26,5 +26,7 @@
 
 @property (copy, nonatomic) NSString* truckTypes;
 
+@property (copy, nonatomic) NSString* state;
 
++(NSString*) getState:(NSString*) state;
 @end
