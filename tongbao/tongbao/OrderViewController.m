@@ -104,7 +104,34 @@
             
         }
     }];
-   
+    
+    
+    
+}
+
+-(void) viewDidAppear:(BOOL)animated{
+    //还需添加自动刷新
+    
+    if ([self.orderState isEqualToString:@"waiting"]) {
+       
+        self.tbl = self.waitingOrderList;
+        
+        [self.table reloadData];
+    }else if ([self.orderState isEqualToString:@"delivering"]) {
+       
+        self.tbl = self.waitingOrderList;
+        
+        [self.table reloadData];
+    }else if ([self.orderState isEqualToString:@"finished"]) {
+        self.tbl = self.waitingOrderList;
+        
+        [self.table reloadData];
+    }else if ([self.orderState isEqualToString:@"canceled"]) {
+        
+        self.tbl = self.waitingOrderList;
+        
+        [self.table reloadData];
+    }
 }
 
 - (UITableViewCell *)tableView: (UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -215,6 +242,7 @@
     subOrderDtl.myOrderState = self.orderState;
     subOrderDtl.cfOrderItem = cfOrderItem;
     [self.navigationController pushViewController:subOrderDtl animated:YES];
+
     //返回时取消选中
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }

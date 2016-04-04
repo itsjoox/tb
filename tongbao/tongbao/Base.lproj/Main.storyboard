@@ -1340,7 +1340,7 @@
                     <navigationItem key="navigationItem" id="EFy-vv-VE5">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="SVa-lB-mOA">
-                            <rect key="frame" x="148" y="7.5" width="304" height="29"/>
+                            <rect key="frame" x="148" y="8" width="304" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="等待中"/>
@@ -1353,6 +1353,7 @@
                         </segmentedControl>
                     </navigationItem>
                     <connections>
+                        <outlet property="orderStateOutlet" destination="SVa-lB-mOA" id="TY9-0s-NB8"/>
                         <outlet property="table" destination="bK1-VU-yg6" id="qlD-CD-X60"/>
                     </connections>
                 </viewController>

@@ -21,5 +21,6 @@
 
 
 - (IBAction)orderState:(id)sender;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *orderStateOutlet;
 
 @end

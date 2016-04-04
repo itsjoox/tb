@@ -8,6 +8,8 @@
 
 #import "SubOrderDtlViewController.h"
 #import "User.h"
+#import "OrderViewController.h"
+
 @interface SubOrderDtlViewController ()
 
 
@@ -78,15 +80,59 @@
 - (IBAction)leftBtn:(id)sender {
     if ([self.left.title isEqualToString:@"取消订单"]) {
         
-        [User cancelOrder:self.myOrderID withBlock:^(NSError *error, User *user) {
-            if(error){
-                NSLog(@"Cancel Order FAILED!!!!");
-            }else{
-                NSLog(@"Cancel Order succeed");
-                                
-                
-            }
+        
+         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"取消订单" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"放弃" style:UIAlertActionStyleCancel handler:nil];
+        
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            
+            [User cancelOrder:self.myOrderID withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Cancel Order FAILED!!!!");
+                    
+                    
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"取消订单失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
+                    [alertController addAction:okAction];
+                    [self presentViewController:alertController animated:YES completion:nil];
+                    
+                }else{
+                    
+                    
+                    
+                    NSLog(@"Cancel Order succeed");
+                    
+                    
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"取消订单成功" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
+                        
+                        OrderViewController *setOrderVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+                        
+                        //使用popToViewController返回并传值到上一页面
+                        [self.navigationController popToViewController:setOrderVC animated:true];
+                        
+                        
+                    }
+                        ];
+                    [alertController addAction:okAction];
+                    [self presentViewController:alertController animated:YES completion:nil];
+                    
+                  
+                }
+            }];
+            
         }];
+        
+        
+        [alert addAction:cancelAction];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        
+        
+        
 
     }
 }
