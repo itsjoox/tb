@@ -1288,7 +1288,7 @@
             
             
             NSString * result = responseObject[@"result"];
-            if ([result intValue] == 1||[result intValue] == 2){
+            if ([result intValue] == 1){
                 
                 NSLog(@"签收订单成功");
                 if (completedBlock) {
@@ -1332,7 +1332,7 @@
             
             
             NSString * result = responseObject[@"result"];
-            if ([result intValue] == 1||[result intValue] == 2){
+            if ([result intValue] == 1){
                 
                 NSLog(@"删除订单成功");
                 if (completedBlock) {

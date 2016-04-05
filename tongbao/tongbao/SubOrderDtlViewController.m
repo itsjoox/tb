@@ -61,7 +61,7 @@
         self.left.title = @"我要投诉";
         self.right.title = @"确认收货";
     }else if ([self.myOrderState  isEqual: @"finished"]){
-        self.left.title = @"查看评价";
+        self.left.title = @"删除订单";
         self.right.title = @"再来一单";
     }
     
@@ -126,9 +126,106 @@
         [alert addAction:cancelAction];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
+    }else if ([self.left.title isEqualToString:@"删除订单"]) {
+        
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"删除订单" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"放弃" style:UIAlertActionStyleCancel handler:nil];
+        
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            
+            [User deleteOrder:self.myOrderID withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Delete Order FAILED!!!!");
+                    
+                    
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"删除订单失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
+                    [alertController addAction:okAction];
+                    [self presentViewController:alertController animated:YES completion:nil];
+                    
+                }else{
+                    
+                    
+                    
+                    NSLog(@"Delete Order succeed");
+                    
+                    
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"删除订单成功" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
+                        
+                        OrderViewController *setOrderVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+                        
+                        //使用popToViewController返回并传值到上一页面
+                        [self.navigationController popToViewController:setOrderVC animated:true];
+                        
+                        
+                    }];
+                    [alertController addAction:okAction];
+                    [self presentViewController:alertController animated:YES completion:nil];
+                    
+                }
+            }];
+            
+        }];
+        
+        [alert addAction:cancelAction];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
 - (IBAction)rightBtn:(id)sender {
+    if ([self.left.title isEqualToString:@"确认收货"]) {
+        
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认收货" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"放弃" style:UIAlertActionStyleCancel handler:nil];
+        
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            
+            [User cancelOrder:self.myOrderID withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Finish Order FAILED!!!!");
+                    
+                    
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确认收货失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
+                    [alertController addAction:okAction];
+                    [self presentViewController:alertController animated:YES completion:nil];
+                    
+                }else{
+                    
+                    
+                    
+                    NSLog(@"Finish Order succeed");
+                    
+                    
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确认收货成功" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
+                        
+                        OrderViewController *setOrderVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+                        
+                        //使用popToViewController返回并传值到上一页面
+                        [self.navigationController popToViewController:setOrderVC animated:true];
+                        
+                        
+                    }];
+                    [alertController addAction:okAction];
+                    [self presentViewController:alertController animated:YES completion:nil];
+                    
+                }
+            }];
+            
+        }];
+        
+        [alert addAction:cancelAction];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 @end
