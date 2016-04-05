@@ -82,6 +82,20 @@
     
     
 }
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    
+    return YES;
+    
+}
+
+//点击屏幕空白处去掉键盘
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.usernameTextfield resignFirstResponder];
+    [self.userpwdTextfield resignFirstResponder];
+}
 
 
 
