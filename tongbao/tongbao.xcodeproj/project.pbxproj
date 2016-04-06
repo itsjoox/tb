@@ -37,6 +37,10 @@
 		FB2921521C72FA0B0082B0B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB2921501C72FA0B0082B0B4 /* LaunchScreen.storyboard */; };
 		FB29215D1C72FA0C0082B0B4 /* tongbaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FB29215C1C72FA0C0082B0B4 /* tongbaoTests.m */; };
 		FB2921681C72FA0C0082B0B4 /* tongbaoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2921671C72FA0C0082B0B4 /* tongbaoUITests.m */; };
+		FB403AC61CB4CEA500F0520F /* CWStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB403AC51CB4CEA500F0520F /* CWStarRateView.m */; };
+		FB403AC91CB4CEBF00F0520F /* b27_icon_star_yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB403AC81CB4CEBF00F0520F /* b27_icon_star_yellow@2x.png */; };
+		FB403ACB1CB4CEC600F0520F /* b27_icon_star_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB403ACA1CB4CEC600F0520F /* b27_icon_star_gray@2x.png */; };
+		FB403ACE1CB4D22300F0520F /* SubEvaluateOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB403ACD1CB4D22300F0520F /* SubEvaluateOrderViewController.m */; };
 		FB4205121CA3E63000478BBC /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4205111CA3E63000478BBC /* Message.m */; };
 		FB4205151CA3EA8100478BBC /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4205141CA3EA8100478BBC /* Order.m */; };
 		FB4205181CA446C800478BBC /* SubAddFreqAddrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4205171CA446C800478BBC /* SubAddFreqAddrViewController.m */; };
@@ -141,6 +145,12 @@
 		FB2921631C72FA0C0082B0B4 /* tongbaoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tongbaoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB2921671C72FA0C0082B0B4 /* tongbaoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tongbaoUITests.m; sourceTree = "<group>"; };
 		FB2921691C72FA0C0082B0B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FB403AC51CB4CEA500F0520F /* CWStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWStarRateView.m; sourceTree = "<group>"; };
+		FB403AC71CB4CEB400F0520F /* CWStarRateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CWStarRateView.h; sourceTree = "<group>"; };
+		FB403AC81CB4CEBF00F0520F /* b27_icon_star_yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b27_icon_star_yellow@2x.png"; sourceTree = "<group>"; };
+		FB403ACA1CB4CEC600F0520F /* b27_icon_star_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b27_icon_star_gray@2x.png"; sourceTree = "<group>"; };
+		FB403ACC1CB4D20D00F0520F /* SubEvaluateOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubEvaluateOrderViewController.h; sourceTree = "<group>"; };
+		FB403ACD1CB4D22300F0520F /* SubEvaluateOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubEvaluateOrderViewController.m; sourceTree = "<group>"; };
 		FB4205101CA3E62300478BBC /* Message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		FB4205111CA3E63000478BBC /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		FB4205131CA3EA7300478BBC /* Order.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
@@ -325,6 +335,7 @@
 		FB29213E1C72FA0B0082B0B4 /* tongbao */ = {
 			isa = PBXGroup;
 			children = (
+				FB403AC41CB4CE6300F0520F /* CWStarRateView */,
 				83865F4D1C9A75D3001115B3 /* Catogory */,
 				83865F481C968917001115B3 /* Model */,
 				83865F4C1C968CA6001115B3 /* LoginRegisterView */,
@@ -381,6 +392,17 @@
 			path = tongbaoUITests;
 			sourceTree = "<group>";
 		};
+		FB403AC41CB4CE6300F0520F /* CWStarRateView */ = {
+			isa = PBXGroup;
+			children = (
+				FB403ACA1CB4CEC600F0520F /* b27_icon_star_gray@2x.png */,
+				FB403AC81CB4CEBF00F0520F /* b27_icon_star_yellow@2x.png */,
+				FB403AC51CB4CEA500F0520F /* CWStarRateView.m */,
+				FB403AC71CB4CEB400F0520F /* CWStarRateView.h */,
+			);
+			name = CWStarRateView;
+			sourceTree = "<group>";
+		};
 		FB6CA19B1C8D786A009AE70F /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,6 +457,8 @@
 			children = (
 				FB85046B1C84654D008E25E1 /* SubOrderDtlViewController.h */,
 				FB85046C1C846563008E25E1 /* SubOrderDtlViewController.m */,
+				FB403ACC1CB4D20D00F0520F /* SubEvaluateOrderViewController.h */,
+				FB403ACD1CB4D22300F0520F /* SubEvaluateOrderViewController.m */,
 			);
 			name = OrderViewSub;
 			sourceTree = "<group>";
@@ -572,7 +596,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB403ACB1CB4CEC600F0520F /* b27_icon_star_gray@2x.png in Resources */,
 				FB2921521C72FA0B0082B0B4 /* LaunchScreen.storyboard in Resources */,
+				FB403AC91CB4CEBF00F0520F /* b27_icon_star_yellow@2x.png in Resources */,
 				FB29214F1C72FA0B0082B0B4 /* Assets.xcassets in Resources */,
 				FB29214D1C72FA0B0082B0B4 /* Main.storyboard in Resources */,
 				8390CFE81CAC1B1A009C1BED /* PushConfig.plist in Resources */,
@@ -632,6 +658,7 @@
 				8306A5C11CA3C2EB008ADD3B /* Bil.m in Sources */,
 				FB85046D1C846563008E25E1 /* SubOrderDtlViewController.m in Sources */,
 				FB2921471C72FA0B0082B0B4 /* HomeViewController.m in Sources */,
+				FB403ACE1CB4D22300F0520F /* SubEvaluateOrderViewController.m in Sources */,
 				FB6CA1F21C931ED3009AE70F /* TabBarViewController.m in Sources */,
 				FB4205181CA446C800478BBC /* SubAddFreqAddrViewController.m in Sources */,
 				FB0E22971CA95A400091B30C /* SubAddFreqDriverViewController.m in Sources */,
@@ -640,6 +667,7 @@
 				FB2921411C72FA0B0082B0B4 /* main.m in Sources */,
 				FB4205121CA3E63000478BBC /* Message.m in Sources */,
 				FB6CA1AD1C8D786A009AE70F /* AFURLResponseSerialization.m in Sources */,
+				FB403AC61CB4CEA500F0520F /* CWStarRateView.m in Sources */,
 				FB0E22911CA453390091B30C /* Shipper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

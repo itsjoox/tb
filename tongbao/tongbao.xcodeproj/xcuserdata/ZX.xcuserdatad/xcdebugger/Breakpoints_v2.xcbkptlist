@@ -145,38 +145,6 @@
             endingLineNumber = "760"
             landmarkName = "+placeOrder:withBlock:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "+[User placeOrder:withBlock:]"
-                  moduleName = "tongbao"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ZX/Documents/tb/tongbao/tongbao/User.m"
-                  timestampString = "481471500.688863"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "760"
-                  endingLineNumber = "760"
-                  offsetFromSymbolStart = "2755">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__29+[User placeOrder:withBlock:]_block_invoke"
-                  moduleName = "tongbao"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ZX/Documents/tb/tongbao/tongbao/User.m"
-                  timestampString = "481471500.689202"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "760"
-                  endingLineNumber = "760"
-                  offsetFromSymbolStart = "71">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -470,7 +438,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tongbao/User.m"
@@ -483,34 +451,34 @@
             landmarkType = "5">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "+[User getOrderDetail:withBlock:]"
+                  symbolName = "__34+[User showMyOrderList:withBlock:]_block_invoke"
                   moduleName = "tongbao"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ZX/Documents/tb/tongbao/tongbao/User.m"
-                  timestampString = "481471500.710301"
+                  timestampString = "481615058.35478"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1128"
-                  endingLineNumber = "1128"
-                  offsetFromSymbolStart = "561">
+                  startingLineNumber = "1130"
+                  endingLineNumber = "1130"
+                  offsetFromSymbolStart = "3748">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__33+[User getOrderDetail:withBlock:]_block_invoke"
+                  symbolName = "__34+[User showMyOrderList:withBlock:]_block_invoke"
                   moduleName = "tongbao"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ZX/Documents/tb/tongbao/tongbao/User.m"
-                  timestampString = "481471500.710713"
+                  timestampString = "481615058.355012"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1128"
-                  endingLineNumber = "1128"
-                  offsetFromSymbolStart = "109">
+                  startingLineNumber = "1130"
+                  endingLineNumber = "1130"
+                  offsetFromSymbolStart = "3756">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -518,7 +486,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tongbao/OrderViewController.m"

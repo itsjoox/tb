@@ -9,7 +9,7 @@
 #import "SubOrderDtlViewController.h"
 #import "User.h"
 #import "OrderViewController.h"
-
+#import "SubEvaluateOrderViewController.h"
 @interface SubOrderDtlViewController ()
 
 
@@ -178,7 +178,7 @@
 }
 
 - (IBAction)rightBtn:(id)sender {
-    if ([self.left.title isEqualToString:@"确认收货"]) {
+    if ([self.right.title isEqualToString:@"确认收货"]) {
         
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认收货" message:@"" preferredStyle:UIAlertControllerStyleAlert];
@@ -200,9 +200,15 @@
                     
                 }else{
                     
-                    
-                    
                     NSLog(@"Finish Order succeed");
+                    
+//跳转至评价订单页面
+//                    SubEvaluateOrderViewController* subEvaluateOrder = [self.storyboard instantiateViewControllerWithIdentifier: @"SubEvaluateOrder"];
+//                    
+//                    [self.navigationController pushViewController:subEvaluateOrder animated:YES];
+//                    
+                    
+                    
                     
                     
                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确认收货成功" message:@"" preferredStyle:UIAlertControllerStyleAlert];
@@ -226,6 +232,12 @@
         [alert addAction:cancelAction];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
+    }else if ([self.right.title isEqualToString:@"再来一单"]) {
+        //仅供测试
+        SubEvaluateOrderViewController* subEvaluateOrder = [self.storyboard instantiateViewControllerWithIdentifier: @"SubEvaluateOrder"];
+        
+        [self.navigationController pushViewController:subEvaluateOrder animated:YES];
     }
+    
 }
 @end
