@@ -40,7 +40,6 @@
     
     NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
     [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
-    // [JPUSHService setAlias:@"123" callbackSelector:nil object:nil];//对某一个特地用户手机推送的时候会用到。
     
    //
 //    [[NSBundle mainBundle] loadNibNamed:@"JpushTabBarViewController"
@@ -128,7 +127,7 @@
 {
     NSLog(@"My token is: %@", deviceToken);
     [JPUSHService registerDeviceToken:deviceToken];
-    NSLog(@"My id is: %@", [JPUSHService registrationID]);
+//    NSLog(@"My id is: %@", [JPUSHService registrationID]);
 
     
 }
