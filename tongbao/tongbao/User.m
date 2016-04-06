@@ -887,7 +887,7 @@
                                      @"goodsSize":order.goodsSize,
                                      @"truckTypes":str,
                                      @"remark":order.remark,
-                                     @"payType":@"1",
+                                     @"payType":order.payType,
                                      @"price":order.price,
                                      @"distance":order.distance,
                                      };
