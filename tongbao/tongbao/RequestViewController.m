@@ -309,8 +309,8 @@
             [alert addAction:okAction];
             [self presentViewController:alert animated:YES completion:nil];
         }else{
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请填写完整信息" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请填写带有*的信息" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
             [alertController addAction:okAction];
             [self presentViewController:alertController animated:YES completion:nil];
         }

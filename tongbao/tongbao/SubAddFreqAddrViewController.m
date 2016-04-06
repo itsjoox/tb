@@ -72,29 +72,41 @@
             [self.navigationController pushViewController:nearbyVC animated:YES];
         }
     }else if (section == 1){
-        [User addFrequentAddress: self.addrItem withBlock:^(NSError *error, User *user)
-         {
-             
-             if (error) {
-                 NSLog(@"ADD FREQADDR FAILED!!!!");
-                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"添加失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
-                 [alertController addAction:okAction];
-                 [self presentViewController:alertController animated:YES completion:nil];
-             }else{
-                 //self.myNickname.text = new.text;
-                 NSLog(@"ADD FREQADDR SUCCESSFULLY!");
-                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"添加成功" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                     SubAddrViewController *setsubAddrVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
-                     
-                     //使用popToViewController返回并传值到上一页面
-                     [self.navigationController popToViewController:setsubAddrVC animated:true];
-                 }];
-                 [alertController addAction:okAction];
-                 [self presentViewController:alertController animated:YES completion:nil];
-             }
-         }];
+        if ([self.addrItem.name isEqual:@""]) {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择常用地址" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+            [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        }else{
+            [User addFrequentAddress: self.addrItem withBlock:^(NSError *error, User *user)
+             {
+                 
+                 if (error) {
+                     NSLog(@"ADD FREQADDR FAILED!!!!");
+                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"添加失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
+                     [alertController addAction:okAction];
+                     [self presentViewController:alertController animated:YES completion:nil];
+                 }else{
+                     //self.myNickname.text = new.text;
+                     NSLog(@"ADD FREQADDR SUCCESSFULLY!");
+                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"添加成功" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                         SubAddrViewController *setsubAddrVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+                         
+                         //使用popToViewController返回并传值到上一页面
+                         [self.navigationController popToViewController:setsubAddrVC animated:true];
+                     }];
+                     [alertController addAction:okAction];
+                     [self presentViewController:alertController animated:YES completion:nil];
+                }
+             }];
+
+        }
+        
+        
+        
     }
     
     
