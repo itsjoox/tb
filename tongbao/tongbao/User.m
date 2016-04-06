@@ -194,7 +194,8 @@
             NSLog(@"登录成功啦 %@",responseObject[@"result"]);
 //            注册JPUSH tag and alias
             NSSet *set = [NSSet setWithObjects:@"shipper",nil];
-            [JPUSHService setTags:set alias:@"jbj" callbackSelector:nil object:self];
+            NSString *myAlias = username;
+            [JPUSHService setTags:set alias:username callbackSelector:nil object:self];
 
             
             NSDictionary *responseDic = (NSDictionary *)responseObject[@"data"];
