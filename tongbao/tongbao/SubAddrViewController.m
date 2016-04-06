@@ -36,7 +36,7 @@
     
     [User getFrequentAddresses:^(NSError *error, User *user) {
         if(error){
-            NSLog(@"Get Messages FAILED!!!!");
+            NSLog(@"Get frequent addresses FAILED!!!!");
         }else{
             NSLog(@"Now getting frequent addresses");
            
@@ -44,12 +44,6 @@
             //weakSelf.billList = user.billList;
             //[weakSelf.billTable reloadData];
             [self.table reloadData];
-            //int count=0;
-            //            for(Bill* b in weakSelf.billList){
-            //                NSLog(@"%d %@",count++,b.contents);
-            //            }
-            
-            
         }
     }];
     
@@ -60,7 +54,7 @@
 {
     [User getFrequentAddresses:^(NSError *error, User *user) {
         if(error){
-            NSLog(@"Get Messages FAILED!!!!");
+            NSLog(@"Get frequent addresses FAILED!!!!");
         }else{
             NSLog(@"Now getting frequent addresses");
             
@@ -68,10 +62,6 @@
             //weakSelf.billList = user.billList;
             //[weakSelf.billTable reloadData];
             [self.table reloadData];
-            //int count=0;
-            //            for(Bill* b in weakSelf.billList){
-            //                NSLog(@"%d %@",count++,b.contents);
-            //            }
             
             
         }

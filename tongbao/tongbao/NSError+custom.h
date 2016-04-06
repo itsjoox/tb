@@ -14,7 +14,8 @@ typedef NS_ENUM(NSInteger, ErrorCode) {
     ErrorCodeAuthenticateError = 1003,
     ErrorCodeIncomplete = 1004,
     ErrorCodePushClosed = 1005,
-    ErrorCodeUnknown = 1099
+    ErrorCodeUnknown = 1099,
+    ErrorCodeSplitOrder = 1006
 };
 
 @interface NSError (Custom)

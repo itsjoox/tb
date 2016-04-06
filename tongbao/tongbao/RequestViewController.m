@@ -230,45 +230,12 @@
             &&![price isEqual:@""]
             ) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认下单" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-            //        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField){
-            //            textField.placeholder = @"请输入新的昵称";
-            //        }];
-            //        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            //            textField.placeholder = @"密码";
-            //            textField.secureTextEntry = YES;
-            //        }];
             
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                 
-                //            Order* order = [[Order alloc]init];
-                //            order.addressFrom = self.srcAddrTxtFld.text;
-                //            order.addressFromLat = @"0";
-                //            order.addressFromLng= @"0";
-                //            order.addressTo = self.destAddrTxtFld.text;
-                //            order.addressToLat = @"0";
-                //            order.addressToLng=@"0";
-                //            order.fromContactName = self.senderNameTxtFld.text;
-                //            order.fromContactPhone = self.senderTelTxtFld.text;
-                //            order.toContactName = self.receiverNameTxtFld.text;
-                //            order.toContactPhone = self.recevierTelTxtFld.text;
-                //            order.loadTime = self.useTimeTxtFld.text;
-                //            order.goodsType = self.cargoTypeTxtFld.text;
-                //            order.goodsWeight = self.cargoWeightTxtFld.text;
-                //            order.goodsSize = self.cargoVolumeTxtFld.text;
-                //            order.truckTypes = self.selectedTruckList;
-                //            order.remark = self.psTxtView.text;
-                //            order.payType = 0;
-                //            order.price = 0;
-                //            order.distance = self.distLbl.text;
-                
                 NSMutableArray *trklist = [[NSMutableArray alloc]init];
-                //            for (int i=0; i<self.selectedTruckList.count; i++) {
-                //                Truck* tk = [self.selectedTruckList objectAtIndex:i];
-                //
-                //                [trklist addObject:tk.type];
-                //            }
-                //            NSLog(trklist);
+
                 
                 //test
                 Order* order = [[Order alloc]init];
@@ -292,36 +259,44 @@
                 order.payType = payType;
                 order.price = price;
                 order.distance = distance;
-//                order.addressFrom = @"0";
-//                order.addressFromLat = @"0";
-//                order.addressFromLng= @"0";
-//                order.addressTo = @"0";
-//                order.addressToLat = @"0";
-//                order.addressToLng=@"0";
-//                order.fromContactName = @"0";
-//                order.fromContactPhone = @"0";
-//                order.toContactName = @"0";
-//                order.toContactPhone = @"0";
-//                order.loadTime = @"0";
-//                order.goodsType = @"0";
-//                order.goodsWeight = @"0";
-//                order.goodsSize = @"0";
-//                order.truckTypes = self.selectedTruckList;
-//                order.remark = @"0";
-//                order.payType = @"0";
-//                order.price = @"0";
-//                order.distance = @"0";
-                
                 
                 [User placeOrder:(Order *) order withBlock:^(NSError *error, User *user){
                     if (error) {
                         NSLog(@"PLACE ORDER FAILED!!!!");
                        // NSLog(order);
+                        if ((long)error.code==1006) {
+                            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"需要拆单" message:@"没有合适的司机，需要拆单吗？" preferredStyle:UIAlertControllerStyleAlert];
+                            
+                            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+                            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                                [User splitOrder:(Order *) order withBlock:^(NSError *error, User *user){
+                                    if (error) {
+                                        NSLog(@"split ORDER FAILED!!!!");
+                                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"拆单失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                                        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
+                                        [alertController addAction:okAction];
+                                        [self presentViewController:alertController animated:YES completion:nil];
+                                        
+                                    }else{
+                                        
+                                        NSLog(@"下单成功");
+                                    }
+                                }];
+                                
+                                
+                            }];
                         
+                            
+                            [alert addAction:cancelAction];
+                            [alert addAction:okAction];
+                            [self presentViewController:alert animated:YES completion:nil];
+                        }else{
+                        //NSLog(@"%ld",(long)error.code);
                         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"下单失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
                         [alertController addAction:okAction];
                         [self presentViewController:alertController animated:YES completion:nil];
+                        }
                     }else{
                         
                         NSLog(@"下单成功");

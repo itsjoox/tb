@@ -94,6 +94,9 @@
 +(void) getFrequentAddresses:(void (^)(NSError *error, User *user))completedBlock;
 +(void) addFrequentAddress: (Address*) address withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) placeOrder: (Order*) order withBlock:(void (^)(NSError *error, User *user))completedBlock;
++(void) splitOrder: (Order*) order withBlock:(void (^)(NSError *error, User *user))completedBlock;
+
+
 +(void) searchDriver: (NSString *) phoneNum withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) addFrequentDriver: (Driver*) driver withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) getFrequentDrivers:(void (^)(NSError *error, User *user))completedBlock;

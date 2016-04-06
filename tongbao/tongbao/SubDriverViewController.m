@@ -29,9 +29,9 @@
 
     [User getFrequentDrivers:^(NSError *error, User *user) {
         if(error){
-            NSLog(@"Get Messages FAILED!!!!");
+            NSLog(@"Get frequent drivers FAILED!!!!");
         }else{
-            NSLog(@"Now getting frequent addresses");
+            NSLog(@"Now getting frequent drivers");
             
             self.freqDriverList = user.freqDriverList;
             //weakSelf.billList = user.billList;
@@ -52,9 +52,9 @@
 {
     [User getFrequentDrivers:^(NSError *error, User *user) {
         if(error){
-            NSLog(@"Get Messages FAILED!!!!");
+            NSLog(@"Get frequent drivers FAILED!!!!");
         }else{
-            NSLog(@"Now getting frequent addresses");
+            NSLog(@"Now getting frequent drivers");
             
             self.freqDriverList = user.freqDriverList;
             //weakSelf.billList = user.billList;

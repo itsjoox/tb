@@ -50,10 +50,6 @@
             //weakSelf.billList = user.billList;
             //[weakSelf.billTable reloadData];
             [self.table reloadData];
-            //int count=0;
-//            for(Bill* b in weakSelf.billList){
-//                NSLog(@"%d %@",count++,b.contents);
-//            }
             
             
         }

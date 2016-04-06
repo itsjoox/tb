@@ -45,6 +45,9 @@
         case ErrorCodePushClosed:
             return chinese ? @"推送未开启，请在设置中开启推送后再试。" : @"Push notification is disabled. Please enable it and try again.";
             break;
+        case ErrorCodeSplitOrder:
+            return chinese ? @"拆单" : @"split order";
+            break;
         default:
             return nil;
             break;

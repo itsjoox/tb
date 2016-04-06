@@ -45,14 +45,14 @@
          {
              
              if (error) {
-                 NSLog(@"ADD FREQADDR FAILED!!!!");
+                 NSLog(@"ADD FREQDriver FAILED!!!!");
                  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"添加失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                  UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
                  [alertController addAction:okAction];
                  [self presentViewController:alertController animated:YES completion:nil];
              }else{
                  //self.myNickname.text = new.text;
-                 NSLog(@"ADD FREQADDR SUCCESSFULLY!");
+                 NSLog(@"ADD FREQDriver SUCCESSFULLY!");
                  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"添加成功" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                  UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
                      SubAddFreqDriverViewController *setsubAddFreqDriverVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
