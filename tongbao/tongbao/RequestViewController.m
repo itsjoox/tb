@@ -313,6 +313,7 @@
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
             [alertController addAction:okAction];
             [self presentViewController:alertController animated:YES completion:nil];
+            [tableView deselectRowAtIndexPath:indexPath animated:NO];
         }
 
     }
