@@ -93,11 +93,25 @@
     
     [User showMyOrderList:@"2" withBlock:^(NSError *error, User *user) {
         if(error){
-            NSLog(@"Get waitingOrderList FAILED!!!!");
+            NSLog(@"Get finishedOrderList FAILED!!!!");
         }else{
             NSLog(@"Now getting finishedOrderList");
             
             self.finishedOrderList = user.finishedOrderList;
+            //self.tbl = self.waitingOrderList;
+            
+            // [self.table reloadData];
+            
+        }
+    }];
+    
+    [User showMyOrderList:@"3" withBlock:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"Get canceledOrderList FAILED!!!!");
+        }else{
+            NSLog(@"Now getting canceledOrderList");
+            
+            self.canceledOrderList = user.canceledOrderList;
             //self.tbl = self.waitingOrderList;
             
             // [self.table reloadData];
@@ -119,16 +133,16 @@
         [self.table reloadData];
     }else if ([self.orderState isEqualToString:@"delivering"]) {
        
-        self.tbl = self.waitingOrderList;
+        self.tbl = self.deliveringOrderList;
         
         [self.table reloadData];
     }else if ([self.orderState isEqualToString:@"finished"]) {
-        self.tbl = self.waitingOrderList;
+        self.tbl = self.finishedOrderList;
         
         [self.table reloadData];
     }else if ([self.orderState isEqualToString:@"canceled"]) {
         
-        self.tbl = self.waitingOrderList;
+        self.tbl = self.canceledOrderList;
         
         [self.table reloadData];
     }
@@ -143,7 +157,7 @@
                              self.cellIdentifier forIndexPath:indexPath];
    
     confirmedOrder *cfOrderItem = [[confirmedOrder alloc]init];
-    cfOrderItem= [self.waitingOrderList objectAtIndex:rowNo];
+    cfOrderItem= [self.tbl objectAtIndex:rowNo];
     // 获取cell内包含的Tag为1的UILabel
     UILabel* idLbl = (UILabel*)[cell viewWithTag:1];
     
@@ -224,6 +238,18 @@
             [self.table reloadData];
             
              break;
+            
+        case 3:
+            NSLog(@"3");
+            
+            self.tbl = self.canceledOrderList;
+            NSLog(@"%@",self.canceledOrderList);
+            
+            self.orderState = @"canceled";
+            self.cellIdentifier = @"cell3";
+            [self.table reloadData];
+            
+            break;
     }
 }
 

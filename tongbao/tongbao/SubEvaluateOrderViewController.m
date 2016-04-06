@@ -26,7 +26,7 @@
     [super viewDidLoad];
     //self.table.delegate = self;
     self.starRateView = [[CWStarRateView alloc] initWithFrame:CGRectMake(125, 10, 150, 20) numberOfStars:5];
-    self.starRateView.scorePercent = 0;
+    self.starRateView.scorePercent = 1;
     self.starRateView.allowIncompleteStar = NO;
     self.starRateView.hasAnimation = YES;
     [self.pointCell addSubview:self.starRateView];

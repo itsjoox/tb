@@ -58,9 +58,12 @@
         self.left.title = @"取消订单";
         self.right.title = @"再来一单";
     }else if ([self.myOrderState  isEqual: @"delivering"]){
-        self.left.title = @"我要投诉";
+        self.left.title = @"取消订单";
         self.right.title = @"确认收货";
     }else if ([self.myOrderState  isEqual: @"finished"]){
+        self.left.title = @"删除订单";
+        self.right.title = @"再来一单";
+    }else if ([self.myOrderState  isEqual: @"canceled"]){
         self.left.title = @"删除订单";
         self.right.title = @"再来一单";
     }

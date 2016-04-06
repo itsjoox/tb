@@ -1116,7 +1116,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="64" id="Uao-2N-mPW"/>
                                                     </constraints>
-                                                    <state key="normal" title="我要投诉">
+                                                    <state key="normal" title="取消订单">
                                                         <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <variation key="default">
@@ -1189,8 +1189,8 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="64" id="oQb-HY-J2l"/>
                                                     </constraints>
-                                                    <state key="normal" title="查看评价">
-                                                        <color key="titleColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="删除订单">
+                                                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -1346,6 +1346,7 @@
                                 <segment title="等待中"/>
                                 <segment title="进行中"/>
                                 <segment title="订单历史"/>
+                                <segment title="已取消"/>
                             </segments>
                             <connections>
                                 <action selector="orderState:" destination="a3d-Jv-gaT" eventType="valueChanged" id="0Q1-9T-3LB"/>
