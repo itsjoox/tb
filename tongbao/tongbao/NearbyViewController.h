@@ -15,10 +15,6 @@
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 
-- (IBAction)bn:(id)sender;
-
-- (IBAction)currLoc:(id)sender;
-
 - (IBAction)showList:(id)sender;
 - (IBAction)locate:(id)sender;
 - (IBAction)useCurrLoc:(id)sender;

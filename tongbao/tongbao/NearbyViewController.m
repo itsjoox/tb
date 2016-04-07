@@ -49,6 +49,20 @@
     self.mapView.showsUserLocation = YES;
     // 为MKMapView设置delegate
     self.mapView.delegate = self;
+    
+    
+    MKCoordinateSpan span;
+    MKCoordinateRegion region;
+    span.latitudeDelta=0.1;
+    span.longitudeDelta=0.1;
+    region.span=span;
+    CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(32.05000,118.78333);
+    region.center=coords;
+    
+    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
+
+    
+    
     // 为SearchBar设置delegate
     self.searchBar.delegate = self;
     
