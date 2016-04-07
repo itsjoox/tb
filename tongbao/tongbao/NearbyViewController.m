@@ -65,7 +65,7 @@
   
     [self.resultTableView setHidden:YES];
     
-    UIToolbar *tBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0.0,0.0,400.0,200.0)];
+    UIToolbar *tBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0.0,0.0,400.0,300.0)];
     [self.resultTableView addSubview:tBar];
     
     UIToolbar *sBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0.0,0.0,400.0,44.0)];
