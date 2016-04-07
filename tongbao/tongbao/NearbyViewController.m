@@ -19,6 +19,9 @@
 @property (strong, nonatomic) MKPointAnnotation *point;
 @property (strong, nonatomic) CLPlacemark *placemark;
 
+@property (strong, nonatomic) IBOutlet UIView *searchBarView;
+@property (strong, nonatomic) IBOutlet UIView *resultTableView;
+
 @end
 
 
@@ -60,7 +63,14 @@
     // 为该控件添加手势处理器
     [self.view addGestureRecognizer:gesture];
   
-    [self.resultTable setHidden:YES];
+    [self.resultTableView setHidden:YES];
+    
+    UIToolbar *tBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0.0,0.0,400.0,200.0)];
+    [self.resultTableView addSubview:tBar];
+    
+    UIToolbar *sBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0.0,0.0,400.0,44.0)];
+    [self.searchBarView addSubview:sBar];
+    
 }
 
 
@@ -89,7 +99,7 @@
             [self.resultTable reloadData];
             
             self.toolBarCenter.title = @"";
-            [self.resultTable setHidden:YES];
+            [self.resultTableView setHidden:YES];
         }
     
 }
@@ -106,7 +116,7 @@
     // 调用searchBar方法进行搜索
     [self doSearch:searchBar];
     self.toolBarCenter.title = @"隐藏列表";
-    [self.resultTable setHidden:NO];
+    [self.resultTableView setHidden:NO];
 }
 
 // 当用户单击“取消”按钮时激发该方法
@@ -386,12 +396,12 @@
 
 - (IBAction)showList:(id)sender {
     if ([self.toolBarCenter.title isEqualToString:@"显示列表"]) {
-        [self.resultTable setHidden:NO];
+        [self.resultTableView setHidden:NO];
         
         self.toolBarCenter.title = @"隐藏列表";
         
-    }else{
-        [self.resultTable setHidden:YES];
+    }else if([self.toolBarCenter.title isEqualToString:@"隐藏列表"]){
+        [self.resultTableView setHidden:YES];
         
         self.toolBarCenter.title = @"显示列表";
         //[self.mapView convertPoint
