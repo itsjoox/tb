@@ -725,12 +725,12 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="biL-88-hdl">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
-                                    <barButtonItem title="定位" id="93h-ML-xTk">
+                                    <barButtonItem image="loc" id="93h-ML-xTk">
                                         <connections>
                                             <action selector="locate:" destination="8rJ-Kc-sve" id="VaE-EX-wpe"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="300" style="plain" id="fZK-03-8wu">
+                                    <barButtonItem width="302" style="plain" id="fZK-03-8wu">
                                         <connections>
                                             <action selector="showList:" destination="8rJ-Kc-sve" id="xpF-0Z-SSc"/>
                                         </connections>
@@ -6580,6 +6580,7 @@
         <image name="help.png" width="35" height="21"/>
         <image name="home.png" width="35" height="31"/>
         <image name="invite.png" width="50" height="50"/>
+        <image name="loc" width="23" height="35"/>
         <image name="loc.png" width="23" height="35"/>
         <image name="me.png" width="25" height="35"/>
         <image name="message.png" width="35" height="34"/>
