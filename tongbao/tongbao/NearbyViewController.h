@@ -19,7 +19,13 @@
 
 - (IBAction)currLoc:(id)sender;
 
+- (IBAction)showList:(id)sender;
+- (IBAction)locate:(id)sender;
+- (IBAction)useCurrLoc:(id)sender;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *toolBarCenter;
+
 @property (strong, nonatomic) IBOutlet UITableView *resultTable;
+
 
 @end
 

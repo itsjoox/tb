@@ -31,7 +31,7 @@
     
     self.view.backgroundColor = UIColor.whiteColor;
     self.navigationController.view.backgroundColor = UIColor.whiteColor;
-    
+
     self.geocoder = [[CLGeocoder alloc]init];
     // 设置地图的显示风格，此处设置使用标准地图
     self.mapView.mapType = MKMapTypeStandard;
@@ -60,7 +60,7 @@
     // 为该控件添加手势处理器
     [self.view addGestureRecognizer:gesture];
   
-    
+    [self.resultTable setHidden:YES];
 }
 
 
@@ -87,8 +87,11 @@
             self.mpItms = nil;
             [self.mapView removeAnnotation:self.point];
             [self.resultTable reloadData];
+            
+            self.toolBarCenter.title = @"";
+            [self.resultTable setHidden:YES];
         }
-
+    
 }
 
 //手指点击屏幕关闭键盘
@@ -102,6 +105,8 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     // 调用searchBar方法进行搜索
     [self doSearch:searchBar];
+    self.toolBarCenter.title = @"隐藏列表";
+    [self.resultTable setHidden:NO];
 }
 
 // 当用户单击“取消”按钮时激发该方法
@@ -115,6 +120,7 @@
     searchBar.showsCancelButton = NO;
     [self.searchBar resignFirstResponder];
     
+   
 }
 
 
@@ -377,8 +383,22 @@
     
 }
 
-//点击定位按钮
-- (IBAction)bn:(id)sender {
+
+- (IBAction)showList:(id)sender {
+    if ([self.toolBarCenter.title isEqualToString:@"显示列表"]) {
+        [self.resultTable setHidden:NO];
+        
+        self.toolBarCenter.title = @"隐藏列表";
+        
+    }else{
+        [self.resultTable setHidden:YES];
+        
+        self.toolBarCenter.title = @"显示列表";
+        //[self.mapView convertPoint
+    }
+}
+
+- (IBAction)locate:(id)sender {
     
     MKCoordinateSpan span;
     MKCoordinateRegion region;
@@ -390,12 +410,9 @@
     
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
     
-    
 }
 
-//点击使用当前位置按钮
-- (IBAction)currLoc:(id)sender {
-    
+- (IBAction)useCurrLoc:(id)sender {
     
     [self.geocoder reverseGeocodeLocation:self.mapView.userLocation.location completionHandler:
      ^(NSArray *placemarks, NSError *error)
@@ -415,7 +432,6 @@
              
          }
      }];
-    
 }
 
 
