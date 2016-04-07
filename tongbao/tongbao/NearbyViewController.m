@@ -97,12 +97,13 @@
                     CLLocationCoordinate2D coords = CLLocationCoordinate2DMake([DPostItem.lat doubleValue],[DPostItem.lng doubleValue]);
                     
                     MKPointAnnotation* point = [[MKPointAnnotation alloc]init];
-                    
                     point.coordinate = coords;
-                    point.title = [DPostItem.id stringValue];
-                    point.subtitle = DPostItem.collectTime;
-                    NSLog(@"poinpini");
+                    point.title = @"司机";
+                    point.subtitle = [DPostItem.id stringValue];
+                    NSLog(@"放置司机");
                     [self.mapView addAnnotation:point];
+                    
+                    
                 }
                 
                 
@@ -386,6 +387,40 @@
 - (MKAnnotationView *) mapView:(MKMapView *)mapView
              viewForAnnotation:(id <MKAnnotation>) annotation{
     
+    
+    if ([[annotation title] isEqualToString:@"司机"]) {
+        static NSString* annoId = @"Anno";
+        // 获取可重用的锚点控件
+        MKAnnotationView* annoView = (MKAnnotationView *)[mapView
+                                                          dequeueReusableAnnotationViewWithIdentifier:annoId];
+        // 如果可重用的锚点控件不存在，创建新的可重用锚点控件
+        if (!annoView){
+            annoView= [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annoId];
+        }
+        
+        //当前位置显示为蓝圆点
+        if ([[annotation title] isEqualToString:@"Current Location"]) {
+            return nil;
+        }
+        
+        // 为锚点控件设置图片
+        annoView.image = [UIImage imageNamed:@"pos.gif"];
+        
+        // 设置该锚点控件是否可显示气泡信息
+        annoView.canShowCallout = YES;
+        //annoView.animatesDrop = YES ;
+        //    // 定义一个按钮，用于为锚点控件设置附加控件
+        //    UIButton *dtl = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        //    // 为按钮绑定事件处理方法
+        //    [dtl addTarget:self action:@selector(dtlBtnTapped:)
+        //  forControlEvents:UIControlEventTouchUpInside];
+        //    // 通过锚点控件的rightCalloutAccessoryView设置附加控件
+        //    annoView.rightCalloutAccessoryView = dtl;
+        
+        return annoView;
+    }else{
+    
+    
     static NSString* annoId = @"fkAnno";
     // 获取可重用的锚点控件
     MKPinAnnotationView* annoView = (MKPinAnnotationView *)[mapView
@@ -415,7 +450,7 @@
     annoView.rightCalloutAccessoryView = dtl;
     
     return annoView;
-    
+    }
 }
 
 //点击大头针详细信息按钮
