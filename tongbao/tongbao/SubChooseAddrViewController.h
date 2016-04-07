@@ -13,6 +13,7 @@
 @interface SubChooseAddrViewController : UITableViewController<UITableViewDelegate>
 @property (nonatomic, copy) NSString* caller;
 @property (nonatomic, copy) CLPlacemark* placemark;
+@property (strong, nonatomic) IBOutlet UITableViewCell *useAddrCell;
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UITextView *addr;
 @property (strong, nonatomic) IBOutlet UITableView *table;

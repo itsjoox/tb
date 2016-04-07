@@ -45,6 +45,8 @@
 @property (strong, nonatomic) NSMutableArray *deliveringOrderList;
 @property (strong, nonatomic) NSMutableArray *finishedOrderList;
 @property (strong, nonatomic) NSMutableArray *canceledOrderList;
+@property (strong, nonatomic) NSMutableArray *driversPositionList;
+
 /**
  *  Judge whether user has login
  *
@@ -90,30 +92,26 @@
  * functions add by ZX
  *
  */
+
+
+
 +(void) getMyMessages:(void (^)(NSError *error, User *user))completedBlock;
 +(void) getFrequentAddresses:(void (^)(NSError *error, User *user))completedBlock;
 +(void) addFrequentAddress: (Address*) address withBlock:(void (^)(NSError *error, User *user))completedBlock;
+
 +(void) placeOrder: (Order*) order withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) splitOrder: (Order*) order withBlock:(void (^)(NSError *error, User *user))completedBlock;
-
 
 +(void) searchDriver: (NSString *) phoneNum withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) addFrequentDriver: (Driver*) driver withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) getFrequentDrivers:(void (^)(NSError *error, User *user))completedBlock;
 +(void) getAllTruckTypes:(void (^)(NSError *error, User *user))completedBlock;
++(void) getDriversPosition:(void (^)(NSError *error, User *user))completedBlock;
+
 +(void) showMyOrderList: (NSString*) type withBlock:(void (^)(NSError *error, User *user))completedBlock;
-
 +(void) getOrderDetail: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
-
-
-
 +(void) cancelOrder: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
-
-
-
 +(void) finishOrder: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
-
-
 +(void) deleteOrder: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
 
 @end

@@ -16,6 +16,7 @@
 #import "Truck.h"
 #import "confirmedOrder.h"
 #import "JPUSHService.h"
+#import "DriversPosition.h"
 
 @interface User ()
 
@@ -109,6 +110,12 @@
 {
     if (!_canceledOrderList) _canceledOrderList = [[NSMutableArray alloc] init];
     return _canceledOrderList;
+}
+
+- (NSMutableArray *)driversPositionList
+{
+    if (!_driversPositionList) _driversPositionList = [[NSMutableArray alloc] init];
+    return _driversPositionList;
 }
 
 
@@ -1124,6 +1131,62 @@
             
             
             [[User shareInstance].user.truckList addObject:truckItem];
+        }
+        
+        
+        //            NSLog(@"error message %@",responseObject[@"errorMsg"]);
+        
+        NSString * result = responseObject[@"result"];
+        if ([result intValue] == 1){
+            NSLog(@"查看成功啦 %@",responseObject[@"result"]);
+            if (completedBlock) {
+                completedBlock(nil, [User shareInstance].user);
+            }
+            
+        }else{
+            if (completedBlock) {
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+            }
+        }
+        
+    }failure:^(NSURLSessionDataTask *task, NSError * error) {
+        NSLog(@"请求失败,服务器返回的错误信息%@",error);
+        if (completedBlock) {
+            completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+        }
+    }];
+    
+}
+
+
++(void) getDriversPosition:(void (^)(NSError *error, User *user))completedBlock{
+    
+    NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
+                                 };
+    //请求的url
+    NSString *urlString = @"http://120.27.112.9:8080/tongbao/shipper/auth/getDriversPosition";
+    //请求的managers
+    AFHTTPSessionManager *managers = [AFHTTPSessionManager manager];
+    
+    [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSLog(@"获取司机地址连接成功啦 %@",responseObject[@"result"]);
+        NSArray* resultArray = responseObject[@"data"];
+        
+        [[User shareInstance].user.truckList removeAllObjects];
+        
+        
+        for (NSDictionary *dic in resultArray) {
+            NSLog(@"司机地址如下 %@",dic);
+            DriversPosition* DPosItem = [[DriversPosition alloc] init];
+            
+            DPosItem.id = [dic valueForKey:@"id"];
+            DPosItem.collectTime =[dic valueForKey:@"collectTime"];
+            DPosItem.receiveTime =[dic valueForKey:@"receiveTime"];
+            DPosItem.lat =[dic valueForKey:@"lat"];
+            DPosItem.lng =[dic valueForKey:@"lng"];
+            
+            [[User shareInstance].user.driversPositionList addObject:DPosItem];
         }
         
         

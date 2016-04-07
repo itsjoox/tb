@@ -36,8 +36,13 @@
     }
     
     self.addr.text = address;
-   
     
+    //隐藏使用地址tablecell
+    if (self.caller == nil) {
+        [self.useAddrCell setHidden:YES];
+    }else{
+        [self.useAddrCell setHidden:NO];
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

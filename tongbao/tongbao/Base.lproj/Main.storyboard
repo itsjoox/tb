@@ -5173,6 +5173,7 @@
                         <outlet property="addr" destination="0r3-JE-vDP" id="bnH-Wb-zDl"/>
                         <outlet property="name" destination="rPv-75-VqG" id="hll-cp-kQJ"/>
                         <outlet property="table" destination="ncj-sb-qNM" id="Avv-Qf-ymW"/>
+                        <outlet property="useAddrCell" destination="agK-py-jHT" id="Z3O-gw-AQk"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V9L-1S-cMW" userLabel="First Responder" sceneMemberID="firstResponder"/>

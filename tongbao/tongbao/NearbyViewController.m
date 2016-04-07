@@ -8,7 +8,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import "NearbyViewController.h"
 #import "SubChooseAddrViewController.h"
-
+#import "User.h"
+#import "DriversPosition.h"
 
 @interface NearbyViewController () <CLLocationManagerDelegate,MKMapViewDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -70,6 +71,31 @@
     
     UIToolbar *sBar=[[UIToolbar alloc] initWithFrame:CGRectMake(0.0,0.0,400.0,44.0)];
     [self.searchBarView addSubview:sBar];
+ 
+    if(self.caller==nil){
+        [User getDriversPosition:^(NSError *error, User *user) {
+            if(error){
+                NSLog(@"Get DriversPosition FAILED!!!!");
+            }else{
+                NSLog(@"Now getting DriversPosition");
+                for (int i=0; i<user.driversPositionList.count; i++) {
+                    DriversPosition* DPostItem = [user.driversPositionList objectAtIndex:i];
+                    CLLocationCoordinate2D coords = CLLocationCoordinate2DMake([DPostItem.lat doubleValue],[DPostItem.lng doubleValue]);
+                    
+                    MKPointAnnotation* point = [[MKPointAnnotation alloc]init];
+                    
+                    point.coordinate = coords;
+                    point.title = [DPostItem.id stringValue];
+                    point.subtitle = DPostItem.collectTime;
+                    NSLog(@"poinpini");
+                    [self.mapView addAnnotation:point];
+                }
+                
+                
+            }
+        }];
+    }
+   
     
 }
 
