@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "confirmedOrder.h"
 @interface SubEvaluateOrderViewController : UITableViewController<UITableViewDelegate>
 
-
-
+@property (nonatomic,copy) NSString* orderId;
+@property (nonatomic,copy) confirmedOrder* cfOrderItem;
 @end

@@ -11,7 +11,7 @@
 #import "Order.h"
 #import "Address.h"
 #import "Driver.h"
-
+#import "Comment.h"
 @interface User : NSObject
 
 /**
@@ -113,5 +113,5 @@
 +(void) cancelOrder: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) finishOrder: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) deleteOrder: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
-
++(void) evaluateOrder: (Comment*) comment withBlock:(void (^)(NSError *error, User *user))completedBlock;
 @end

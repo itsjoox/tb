@@ -62,7 +62,7 @@
         self.right.title = @"确认收货";
     }else if ([self.myOrderState  isEqual: @"finished"]){
         self.left.title = @"删除订单";
-        self.right.title = @"再来一单";
+        self.right.title = @"评价订单";
     }else if ([self.myOrderState  isEqual: @"canceled"]){
         self.left.title = @"删除订单";
         self.right.title = @"再来一单";
@@ -235,10 +235,10 @@
         [alert addAction:cancelAction];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
-    }else if ([self.right.title isEqualToString:@"再来一单"]) {
+    }else if ([self.right.title isEqualToString:@"评价订单"]) {
         //仅供测试
         SubEvaluateOrderViewController* subEvaluateOrder = [self.storyboard instantiateViewControllerWithIdentifier: @"SubEvaluateOrder"];
-        
+        subEvaluateOrder.orderId = self.myOrderID;
         [self.navigationController pushViewController:subEvaluateOrder animated:YES];
     }
     

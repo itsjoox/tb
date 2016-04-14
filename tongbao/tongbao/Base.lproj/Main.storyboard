@@ -1597,7 +1597,7 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRx-41-v7Y">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                                    <state key="normal" title="再来一单"/>
+                                                    <state key="normal" title="评价订单"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="历史订单" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2BH-DU-ZVe">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -6788,7 +6788,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="评价订单" id="qfM-ss-mb1"/>
                     <connections>
+                        <outlet property="commentTxtView" destination="Hn6-Tn-qaH" id="tLS-bo-PL8"/>
                         <outlet property="pointCell" destination="kVK-AV-gGR" id="Rhn-ql-8gQ"/>
+                        <outlet property="table" destination="1Iz-bF-0YS" id="39U-VQ-7ig"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uoz-Ve-dYX" userLabel="First Responder" sceneMemberID="firstResponder"/>

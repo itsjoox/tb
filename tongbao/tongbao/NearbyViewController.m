@@ -99,7 +99,8 @@
                     MKPointAnnotation* point = [[MKPointAnnotation alloc]init];
                     point.coordinate = coords;
                     point.title = @"司机";
-                    point.subtitle = [DPostItem.id stringValue];
+                    point.subtitle = DPostItem.collectTime;
+                    NSLog(DPostItem.collectTime);
                     NSLog(@"放置司机");
                     [self.mapView addAnnotation:point];
                     
