@@ -48,7 +48,7 @@
     self.receiverNameTxtFld.text = self.cfOrderItem.toContactName;
     self.receiverTelTxtFld.text = self.cfOrderItem.toContactPhone;
     
-    //self.truckTypesTxtFld.text = self.cfOrderItem.truckTypes;
+    self.truckTypesTxtFld.text = [confirmedOrder getTruckTypes:self.cfOrderItem.truckTypes];
     
     self.loadTimeTxtFld.text = self.cfOrderItem.loadTime;
     

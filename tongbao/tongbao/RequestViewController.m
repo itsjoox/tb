@@ -10,6 +10,7 @@
 #import "Order.h"
 #import "NearbyViewController.h"
 #import "Truck.h"
+#import "HomeViewController.h"
 @interface RequestViewController ()
 
 
@@ -300,6 +301,21 @@
                     }else{
                         
                         NSLog(@"下单成功");
+                        
+                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"下单成功" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                            
+                            HomeViewController *setHomeVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+                            
+                            //使用popToViewController返回并传值到上一页面
+                            [self.navigationController popToViewController:setHomeVC animated:true];
+                            
+                            
+                        }];
+                        [alertController addAction:okAction];
+                        [self presentViewController:alertController animated:YES completion:nil];
+                        
+                        
                     }
                 }];
             }];

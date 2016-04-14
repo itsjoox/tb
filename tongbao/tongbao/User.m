@@ -1258,7 +1258,9 @@
                 cfOrderItem.addressFrom =[dic valueForKey:@"addressFrom"];
                 cfOrderItem.addressTo =[dic valueForKey:@"addressTo"];
                 cfOrderItem.money =[dic valueForKey:@"money"];
-                cfOrderItem.truckTypes =[dic valueForKey:@"truckTypes"];
+                cfOrderItem.truckTypes =[dic objectForKey:@"truckTypes"];
+                //NSArray* myarr  =[dic objectForKey:@"truckTypes"];
+                
                 cfOrderItem.fromContactName =[dic valueForKey:@"fromContactName"];
                 cfOrderItem.fromContactPhone =[dic valueForKey:@"fromContactPhone"];
                 cfOrderItem.toContactName =[dic valueForKey:@"toContactName"];
@@ -1266,6 +1268,8 @@
                 cfOrderItem.loadTime =[dic valueForKey:@"loadTime"];
                 cfOrderItem.state =[confirmedOrder getState:[dic objectForKey:@"state"]];
                 //[[User shareInstance].user.orderList addObject:cfOrderItem];
+                NSLog(@"%@",cfOrderItem.truckTypes);
+                //NSLog(@"%@",myarr);
                 
                 if ([type isEqualToString:@"0"]) {
                     [[User shareInstance].user.waitingOrderList addObject:cfOrderItem];

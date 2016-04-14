@@ -24,9 +24,11 @@
 @property (copy, nonatomic) NSString* toContactPhone ;
 @property (copy, nonatomic) NSString* loadTime ;
 
-@property (copy, nonatomic) NSString* truckTypes;
+@property (copy, nonatomic) NSArray* truckTypes;
 
 @property (copy, nonatomic) NSString* state;
 
 +(NSString*) getState:(NSString*) state;
+
++(NSString*) getTruckTypes:(NSArray*) truckList;
 @end
