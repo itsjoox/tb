@@ -24,6 +24,8 @@
 
     
     self.addr.text = self.address;
+    //self.contactName.text = self.myAddr.contactName;
+    //self.contactPhone.text = self.myAddr.contactPhone;
     self.table.delegate = self;
     self.callerName = @"SubEditFreqAddrViewController";
 }

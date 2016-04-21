@@ -72,8 +72,25 @@
             [self.navigationController pushViewController:nearbyVC animated:YES];
         }
     }else if (section == 1){
+        
+        self.addrItem.contactName = self.contact.text;
+        self.addrItem.contactPhone = self.tel.text;
+        
         if ([self.addrItem.name isEqual:@""]) {
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择常用地址" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+            [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        }
+        else if ([self.addrItem.contactName isEqual:@""]) {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请添加收货人姓名" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+            [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        }else if ([self.addrItem.contactPhone isEqual:@""]) {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请添加收货人电话" message:@"" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
             [alertController addAction:okAction];
             [self presentViewController:alertController animated:YES completion:nil];

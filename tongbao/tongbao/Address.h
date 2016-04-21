@@ -15,5 +15,8 @@
 @property (copy, nonatomic) NSString *lat;
 
 @property (copy, nonatomic) NSString *lng;
+@property (copy, nonatomic) NSString *contactName;
+@property (copy, nonatomic) NSString *contactPhone;
+
 
 @end

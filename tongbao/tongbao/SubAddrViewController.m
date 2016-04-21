@@ -129,6 +129,7 @@
 
     SubEditFreqAddrViewController* subEditFreqAddr = [self.storyboard instantiateViewControllerWithIdentifier: @"SubEditFreqAddr"];
     Address* addr = [self.freqAddrList objectAtIndex:rowNo];
+    subEditFreqAddr.myAddr = addr;
     subEditFreqAddr.address = addr.name;
     //NSLog(@"%@", subEditFreqAddr.address);
     [self.navigationController pushViewController:subEditFreqAddr animated:YES];

@@ -669,7 +669,8 @@
             addr.lat = [dic objectForKey:@"lat"];
             
             addr.lng =[dic objectForKey:@"lng"];
-            
+            addr.contactName = [dic objectForKey:@"contactName"];
+            addr.contactPhone = [dic objectForKey:@"contactPhone"];
             [[User shareInstance].user.freqAddrList addObject:addr];
         }
         
@@ -711,6 +712,9 @@
                                      @"lat":address.lat,
                                      @"address":address.name,
                                      @"lng":address.lng,
+                                     @"contactName":address.contactName,
+                                     @"contactPhone":address.contactPhone,
+
                                     
                                      };
         
