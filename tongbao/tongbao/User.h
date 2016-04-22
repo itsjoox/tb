@@ -114,4 +114,5 @@
 +(void) finishOrder: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) deleteOrder: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) evaluateOrder: (Comment*) comment withBlock:(void (^)(NSError *error, User *user))completedBlock;
++(void) deleteFrequentAddress: (NSString*) freqAddrId withBlock:(void (^)(NSError *error, User *user))completedBlock;
 @end
