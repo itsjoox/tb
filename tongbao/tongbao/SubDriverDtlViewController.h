@@ -10,11 +10,12 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface SubDriverDtlViewController : UITableViewController
-
+@interface SubDriverDtlViewController : UITableViewController<UITableViewDelegate>
+@property (strong, nonatomic) NSString* id;
 @property (strong, nonatomic) NSString* name;
 @property (strong, nonatomic) NSString* tel;
 
+@property (strong, nonatomic) IBOutlet UITableView *table;
 @property (strong, nonatomic) IBOutlet UITextField *driverTel;
 @property (strong, nonatomic) IBOutlet UITextField *driverName;
 

@@ -115,7 +115,7 @@
     Driver *driverItem = [self.freqDriverList objectAtIndex:rowNo];
     subDriverDtl.name = driverItem.nickName;
     subDriverDtl.tel = driverItem.phoneNum;
-  
+   subDriverDtl.id = driverItem.id;
     [self.navigationController pushViewController:subDriverDtl animated:YES];
     
 }
