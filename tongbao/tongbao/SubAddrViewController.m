@@ -52,21 +52,24 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [User getFrequentAddresses:^(NSError *error, User *user) {
-        if(error){
-            NSLog(@"Get frequent addresses FAILED!!!!");
-        }else{
-            NSLog(@"Now getting frequent addresses");
+    if ([self.refreshStat isEqualToString:@"refresh"]) {
+     
+        [User getFrequentAddresses:^(NSError *error, User *user) {
+            if(error){
+                NSLog(@"Get frequent addresses FAILED!!!!");
+            }else{
+                NSLog(@"Now getting frequent addresses");
             
-            self.freqAddrList = user.freqAddrList;
-            //weakSelf.billList = user.billList;
-            //[weakSelf.billTable reloadData];
-            [self.table reloadData];
+                self.freqAddrList = user.freqAddrList;
+                //weakSelf.billList = user.billList;
+                //[weakSelf.billTable reloadData];
+                [self.table reloadData];
             
-            
-        }
-    }];
-    
+                self.refreshStat = @"notRefresh";
+            }
+        }];
+        
+    }
 
 }
 
@@ -133,7 +136,8 @@
     subEditFreqAddr.address = addr.name;
     //NSLog(@"%@", subEditFreqAddr.address);
     [self.navigationController pushViewController:subEditFreqAddr animated:YES];
-   
+    //返回时取消选中
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 - (void)didReceiveMemoryWarning {

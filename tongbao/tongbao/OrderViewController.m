@@ -55,6 +55,48 @@
         }
     }];
     
+    [User showMyOrderList:@"1" withBlock:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"Get deliveringOrderList FAILED!!!!");
+        }else{
+            NSLog(@"Now getting deliveringOrderList");
+            
+            self.deliveringOrderList = user.deliveringOrderList;
+            //self.tbl = self.waitingOrderList;
+            
+            // [self.table reloadData];
+            
+        }
+    }];
+    
+    [User showMyOrderList:@"2" withBlock:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"Get finishedOrderList FAILED!!!!");
+        }else{
+            NSLog(@"Now getting finishedOrderList");
+            
+            self.finishedOrderList = user.finishedOrderList;
+            //self.tbl = self.waitingOrderList;
+            
+            // [self.table reloadData];
+            
+        }
+    }];
+    
+    [User showMyOrderList:@"3" withBlock:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"Get canceledOrderList FAILED!!!!");
+        }else{
+            NSLog(@"Now getting canceledOrderList");
+            
+            self.canceledOrderList = user.canceledOrderList;
+            //self.tbl = self.waitingOrderList;
+            
+            // [self.table reloadData];
+            
+        }
+    }];
+    
     
     self.cellIdentifier = @"cell1";
     
@@ -63,6 +105,8 @@
 }
 
 -(void) viewWillAppear:(BOOL)animated{
+    if ([self.refreshStat isEqualToString:@"refresh"]) {
+    
     [User showMyOrderList:@"0" withBlock:^(NSError *error, User *user) {
         if(error){
             NSLog(@"Get waitingOrderList FAILED!!!!");
@@ -118,9 +162,9 @@
             
         }
     }];
+    self.refreshStat = @"notRefresh";
     
-    
-    
+    }
 }
 
 -(void) viewDidAppear:(BOOL)animated{

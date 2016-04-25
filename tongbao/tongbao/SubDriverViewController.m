@@ -50,26 +50,27 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [User getFrequentDrivers:^(NSError *error, User *user) {
-        if(error){
-            NSLog(@"Get frequent drivers FAILED!!!!");
-        }else{
-            NSLog(@"Now getting frequent drivers");
+    if ([self.refreshStat isEqualToString:@"refresh"]) {
+        [User getFrequentDrivers:^(NSError *error, User *user) {
+            if(error){
+                NSLog(@"Get frequent drivers FAILED!!!!");
+            }else{
+                NSLog(@"Now getting frequent drivers");
             
-            self.freqDriverList = user.freqDriverList;
-            //weakSelf.billList = user.billList;
-            //[weakSelf.billTable reloadData];
-            [self.table reloadData];
-            //int count=0;
-            //            for(Bill* b in weakSelf.billList){
-            //                NSLog(@"%d %@",count++,b.contents);
-            //            }
+                self.freqDriverList = user.freqDriverList;
+                //weakSelf.billList = user.billList;
+                //[weakSelf.billTable reloadData];
+                [self.table reloadData];
+                //int count=0;
+                //            for(Bill* b in weakSelf.billList){
+                //                NSLog(@"%d %@",count++,b.contents);
+                //            }
+                self.refreshStat = @"notRefresh";
             
-            
-        }
-    }];
+            }
+        }];
     
-    
+    }
 }
 
 - (UITableViewCell *)tableView: (UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -115,9 +116,10 @@
     Driver *driverItem = [self.freqDriverList objectAtIndex:rowNo];
     subDriverDtl.name = driverItem.nickName;
     subDriverDtl.tel = driverItem.phoneNum;
-   subDriverDtl.id = driverItem.id;
+    subDriverDtl.id = driverItem.id;
     [self.navigationController pushViewController:subDriverDtl animated:YES];
-    
+    //返回时取消选中
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 

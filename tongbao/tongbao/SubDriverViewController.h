@@ -13,5 +13,5 @@
 @property (strong, nonatomic) IBOutlet UITableView *table;
 
 @property (strong, nonatomic) NSArray* freqDriverList;
-
+@property (strong, nonatomic) NSString* refreshStat;
 @end
