@@ -1,20 +1,12 @@
 //
-//  JZLocationConverter.m
+//  LocationConverter.m
 //  tongbao
 //
 //  Created by ZX on 16/4/25.
 //  Copyright © 2016年 ZX. All rights reserved.
 //
 
-//
-//  JZLocationConverter.m
-//  JZCLLocationMangerDome
-//
-//  Created by jack zhou on 13-8-22.
-//  Copyright (c) 2013年 JZ. All rights reserved.
-//
-
-#import "JZLocationConverter.h"
+#import "LocationConverter.h"
 #import <CoreLocation/CoreLocation.h>
 #define LAT_OFFSET_0(x,y) -100.0 + 2.0 * x + 3.0 * y + 0.2 * y * y + 0.1 * x * y + 0.2 * sqrt(fabs(x))
 #define LAT_OFFSET_1 (20.0 * sin(6.0 * x * M_PI) + 20.0 * sin(2.0 * x * M_PI)) * 2.0 / 3.0
@@ -38,7 +30,7 @@
 
 
 
-@implementation JZLocationConverter
+@implementation LocationConverter
 
 + (double)transformLat:(double)x bdLon:(double)y
 {

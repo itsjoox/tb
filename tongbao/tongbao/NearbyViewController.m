@@ -10,7 +10,7 @@
 #import "SubChooseAddrViewController.h"
 #import "User.h"
 #import "DriversPosition.h"
-#import "JZLocationConverter.h"
+#import "LocationConverter.h"
 
 @interface NearbyViewController () <CLLocationManagerDelegate,MKMapViewDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -98,7 +98,7 @@
                     CLLocationCoordinate2D coords = CLLocationCoordinate2DMake([DPostItem.lat doubleValue],[DPostItem.lng doubleValue]);
 //                    
 //                    CLLocation* location = [[CLLocation alloc] initWithLatitude:coords.latitude longitude:coords.longitude];
-                    CLLocationCoordinate2D coordTrans = [JZLocationConverter bd09ToGcj02:coords];
+                    CLLocationCoordinate2D coordTrans = [LocationConverter bd09ToGcj02:coords];
 //                    if (![BD09TOGCJ02 isLocationOutOfChina:[location coordinate]]) {
 //                        //转换后的coord
 //                        coordTrans = [BD09TOGCJ02 transformFromBDToGCJ:[location coordinate]];
@@ -344,7 +344,7 @@
     
     
     
-    CLLocationCoordinate2D coordTrans = [JZLocationConverter gcj02ToWgs84:coord];;
+    CLLocationCoordinate2D coordTrans = [LocationConverter gcj02ToWgs84:coord];;
     
     // 将经度、维度值包装为CLLocation对象
     CLLocation* location = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
