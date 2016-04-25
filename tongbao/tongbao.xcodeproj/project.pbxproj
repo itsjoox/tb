@@ -44,6 +44,7 @@
 		FB3CB5D11CCE53D300A20E6D /* GCJ02TOBD09.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3CB5D01CCE53D300A20E6D /* GCJ02TOBD09.m */; };
 		FB3CB5D31CCE5AF200A20E6D /* pos.gif in Resources */ = {isa = PBXBuildFile; fileRef = FB3CB5D21CCE5AF200A20E6D /* pos.gif */; };
 		FB3CB5D61CCE5EC600A20E6D /* GCJ02TOWGS84.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3CB5D51CCE5EC600A20E6D /* GCJ02TOWGS84.m */; };
+		FB3CB5D91CCE6A0C00A20E6D /* JZLocationConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3CB5D81CCE6A0C00A20E6D /* JZLocationConverter.m */; };
 		FB403AC61CB4CEA500F0520F /* CWStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB403AC51CB4CEA500F0520F /* CWStarRateView.m */; };
 		FB403AC91CB4CEBF00F0520F /* b27_icon_star_yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB403AC81CB4CEBF00F0520F /* b27_icon_star_yellow@2x.png */; };
 		FB403ACB1CB4CEC600F0520F /* b27_icon_star_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB403ACA1CB4CEC600F0520F /* b27_icon_star_gray@2x.png */; };
@@ -165,6 +166,8 @@
 		FB3CB5D21CCE5AF200A20E6D /* pos.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = pos.gif; sourceTree = "<group>"; };
 		FB3CB5D41CCE5EB500A20E6D /* GCJ02TOWGS84.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCJ02TOWGS84.h; sourceTree = "<group>"; };
 		FB3CB5D51CCE5EC600A20E6D /* GCJ02TOWGS84.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCJ02TOWGS84.m; sourceTree = "<group>"; };
+		FB3CB5D71CCE69FE00A20E6D /* JZLocationConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JZLocationConverter.h; sourceTree = "<group>"; };
+		FB3CB5D81CCE6A0C00A20E6D /* JZLocationConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZLocationConverter.m; sourceTree = "<group>"; };
 		FB403AC51CB4CEA500F0520F /* CWStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWStarRateView.m; sourceTree = "<group>"; };
 		FB403AC71CB4CEB400F0520F /* CWStarRateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CWStarRateView.h; sourceTree = "<group>"; };
 		FB403AC81CB4CEBF00F0520F /* b27_icon_star_yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b27_icon_star_yellow@2x.png"; sourceTree = "<group>"; };
@@ -429,6 +432,8 @@
 				FB3CB5CD1CCE512900A20E6D /* BD09TOGCJ02.m */,
 				FB3CB5CF1CCE53C500A20E6D /* GCJ02TOBD09.h */,
 				FB3CB5D01CCE53D300A20E6D /* GCJ02TOBD09.m */,
+				FB3CB5D71CCE69FE00A20E6D /* JZLocationConverter.h */,
+				FB3CB5D81CCE6A0C00A20E6D /* JZLocationConverter.m */,
 			);
 			name = LOCTransform;
 			sourceTree = "<group>";
@@ -712,6 +717,7 @@
 				FB0E22971CA95A400091B30C /* SubAddFreqDriverViewController.m in Sources */,
 				83865F4B1C968ACC001115B3 /* User.m in Sources */,
 				FB85046A1C83F422008E25E1 /* SubMsgDtlViewController.m in Sources */,
+				FB3CB5D91CCE6A0C00A20E6D /* JZLocationConverter.m in Sources */,
 				FB2921411C72FA0B0082B0B4 /* main.m in Sources */,
 				FB4205121CA3E63000478BBC /* Message.m in Sources */,
 				FB6CA1AD1C8D786A009AE70F /* AFURLResponseSerialization.m in Sources */,

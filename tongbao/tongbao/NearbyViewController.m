@@ -10,6 +10,7 @@
 #import "SubChooseAddrViewController.h"
 #import "User.h"
 #import "DriversPosition.h"
+#import "JZLocationConverter.h"
 
 @interface NearbyViewController () <CLLocationManagerDelegate,MKMapViewDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -95,13 +96,13 @@
                 for (int i=0; i<user.driversPositionList.count; i++) {
                     DriversPosition* DPostItem = [user.driversPositionList objectAtIndex:i];
                     CLLocationCoordinate2D coords = CLLocationCoordinate2DMake([DPostItem.lat doubleValue],[DPostItem.lng doubleValue]);
-                    
-                    CLLocation* location = [[CLLocation alloc] initWithLatitude:coords.latitude longitude:coords.longitude];
-                    CLLocationCoordinate2D coordTrans;
-                    if (![BD09TOGCJ02 isLocationOutOfChina:[location coordinate]]) {
-                        //转换后的coord
-                        coordTrans = [BD09TOGCJ02 transformFromBDToGCJ:[location coordinate]];
-                    }
+//                    
+//                    CLLocation* location = [[CLLocation alloc] initWithLatitude:coords.latitude longitude:coords.longitude];
+                    CLLocationCoordinate2D coordTrans = [JZLocationConverter bd09ToGcj02:coords];
+//                    if (![BD09TOGCJ02 isLocationOutOfChina:[location coordinate]]) {
+//                        //转换后的coord
+//                        coordTrans = [BD09TOGCJ02 transformFromBDToGCJ:[location coordinate]];
+//                    }
                 
                     
                     
@@ -341,18 +342,21 @@
     // 将长按点的坐标转换为经度、维度值
     CLLocationCoordinate2D coord = [self.mapView convertPoint:pos toCoordinateFromView:self.mapView];
     
+    
+    
+    CLLocationCoordinate2D coordTrans = [JZLocationConverter gcj02ToWgs84:coord];;
+    
     // 将经度、维度值包装为CLLocation对象
     CLLocation* location = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
-    CLLocationCoordinate2D coordTrans;
-    if (![WGS84TOGCJ02 isLocationOutOfChina:[location coordinate]]) {
-        //转换后的coord
-        coordTrans = [WGS84TOGCJ02 transformFromWGSToGCJ:[location coordinate]];
-    }
+    
+   
+    
+    
     
      CLLocation* locationTrans = [[CLLocation alloc] initWithLatitude:coordTrans.latitude longitude:coordTrans.longitude];
     
     // 根据经、纬度反向解析地址
-    [self.geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error)
+    [self.geocoder reverseGeocodeLocation:locationTrans completionHandler:^(NSArray *placemarks, NSError *error)
      {
          if (placemarks.count > 0 && error == nil)
          {
