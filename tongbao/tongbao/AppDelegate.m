@@ -69,6 +69,12 @@
                 NSLog(@"LOGIN FAILED!!!!");
             }else {
                 NSLog(@"LOGIN SUCCESSFULLY!!!!");
+//                if app is opened through notification
+                NSDictionary *remoteNotification = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
+                if(remoteNotification!= nil){
+                    NSLog(@"open through notification");
+                }
+                
 
             }
         }];
@@ -100,7 +106,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)   (UIBackgroundFetchResult))completionHandler {
     // 取得 APNs 标准信息内容
     NSDictionary *aps = [userInfo valueForKey:@"aps"];
     NSString *content = [aps valueForKey:@"alert"]; //推送显示的内容
@@ -108,18 +114,48 @@
     NSString *sound = [aps valueForKey:@"sound"]; //播放的声音
     
     // 取得Extras字段内容
-    NSString *customizeField1 = [userInfo valueForKey:@"customizeExtras"]; //服务端中Extras字段，key是自己定义的
-    NSLog(@"content =[%@], badge=[%d], sound=[%@], customize field  =[%@]",content,badge,sound,customizeField1);
+    NSDictionary *extras = [userInfo valueForKey:@"extras"];
+    NSString *customizeField1 = [extras valueForKey:@"type"]; //自定义参数，key是自己定义的
+    NSString *customizeField2 = [extras valueForKey:@"id"];
+    NSLog(@"content =[%@], badge=[%ld], sound=[%@], type  =[%@] id = [%@]",content,(long)badge,sound,customizeField1,customizeField2);
+    
+    [User getOrderDetail:@"124" withBlock:^(NSError *error, User *user) {
+        if (error) {
+            NSLog(@"get order detail failed");
+        }else {
+            NSLog(@"get order detail successfully");
+            
+        }
+    }];
+    
+
+    //获取storyboard
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    SubOrderDtlViewController* subOrderDtl = [storyboard instantiateViewControllerWithIdentifier: @"SubOrderDtl"];
+    
+
+//    confirmedOrder *cfOrderItem = [[confirmedOrder alloc]init];
+//    cfOrderItem= [self.tbl objectAtIndex:rowNo];
+//    
+//    subOrderDtl.myOrderID = [cfOrderItem.id stringValue];
+//    subOrderDtl.myOrderState = self.orderState;
+//    subOrderDtl.cfOrderItem = cfOrderItem;
+
+    
+
     
     // Required
     [JPUSHService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
 }
 
 - (void)networkDidReceiveMessage:(NSNotification *)notification {
     NSDictionary * userInfo = [notification userInfo];
     NSString *content = [userInfo valueForKey:@"content"];
     NSDictionary *extras = [userInfo valueForKey:@"extras"];
-    NSString *customizeField1 = [extras valueForKey:@"customizeField1"]; //自定义参数，key是自己定义的
+    NSString *customizeField1 = [extras valueForKey:@"type"]; //自定义参数，key是自己定义的
+    NSString *customizeField2 = [extras valueForKey:@"id"];
+    NSLog(@"content =[%@],type  =[%@],id  =[%@]",content,customizeField1,customizeField2);
     
 }
 
@@ -133,12 +169,7 @@
 }
 
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    
-    // IOS 7 Support Required
-    [JPUSHService handleRemoteNotification:userInfo];
-    completionHandler(UIBackgroundFetchResultNewData);
-}
+
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     
