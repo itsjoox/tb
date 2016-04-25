@@ -200,9 +200,8 @@
         [managers POST:urlString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
             NSLog(@"登录成功啦 %@",responseObject[@"result"]);
 //            注册JPUSH tag and alias
-            NSSet *set = [NSSet setWithObjects:@"shipper",nil];
-            NSString *myAlias = username;
-            [JPUSHService setTags:set alias:username callbackSelector:nil object:self];
+            
+            
 
             
             NSDictionary *responseDic = (NSDictionary *)responseObject[@"data"];
@@ -212,6 +211,12 @@
                 [User shareInstance].user = [[User alloc] initWithUsername:username andNickname:responseDic[@"nickName"] andHeadPortrait:responseDic[@"iconUrl"] andToken:responseDic[@"token"]];
                 [User shareInstance].user.money = responseDic[@"money"];
                 
+                NSSet *set = [NSSet setWithObjects:@"shipper",nil];
+               
+                NSString* myAlias= responseDic[@"id"];
+                 NSLog(@"我的id是 %@",myAlias);
+                [JPUSHService setTags:set alias:[NSString stringWithFormat:@"%@",myAlias] callbackSelector:nil object:self];
+
                 NSLog(@"user.m 头像地址！！ %@",responseDic[@"iconUrl"]);
                 NSLog(@"user.m nickName！！ %@",responseDic[@"nickName"]);
                 
