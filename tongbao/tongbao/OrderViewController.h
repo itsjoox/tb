@@ -18,8 +18,9 @@
 @property (strong, nonatomic) NSArray* deliveringOrderList;
 @property (strong, nonatomic) NSArray* finishedOrderList;
 @property (strong, nonatomic) NSArray* canceledOrderList;
+@property (strong, nonatomic) NSString* refreshStat;
 
-
+@property (strong, nonatomic) UIRefreshControl* refreshControl;
 - (IBAction)orderState:(id)sender;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *orderStateOutlet;
 

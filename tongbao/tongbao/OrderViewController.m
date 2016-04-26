@@ -55,14 +55,157 @@
         }
     }];
     
+    [User showMyOrderList:@"1" withBlock:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"Get deliveringOrderList FAILED!!!!");
+        }else{
+            NSLog(@"Now getting deliveringOrderList");
+            
+            self.deliveringOrderList = user.deliveringOrderList;
+            //self.tbl = self.waitingOrderList;
+            
+            // [self.table reloadData];
+            
+        }
+    }];
+    
+    [User showMyOrderList:@"2" withBlock:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"Get finishedOrderList FAILED!!!!");
+        }else{
+            NSLog(@"Now getting finishedOrderList");
+            
+            self.finishedOrderList = user.finishedOrderList;
+            //self.tbl = self.waitingOrderList;
+            
+            // [self.table reloadData];
+            
+        }
+    }];
+    
+    [User showMyOrderList:@"3" withBlock:^(NSError *error, User *user) {
+        if(error){
+            NSLog(@"Get canceledOrderList FAILED!!!!");
+        }else{
+            NSLog(@"Now getting canceledOrderList");
+            
+            self.canceledOrderList = user.canceledOrderList;
+            //self.tbl = self.waitingOrderList;
+            
+            // [self.table reloadData];
+            
+        }
+    }];
+    
     
     self.cellIdentifier = @"cell1";
     
     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"订单列表" style:UIBarButtonItemStylePlain target:nil action:nil];
     
+    // 初始化UIRefreshControl
+    // rc为该控件的一个指针，只能用于表视图界面
+    // 关于布局问题可以不用考虑，关于UITableViewController会将其自动放置于表视图中
+    
+    UIRefreshControl *rc = [[UIRefreshControl alloc] init];
+    rc.attributedTitle = [[NSAttributedString alloc]init];
+    // 一定要注意selector里面的拼写检查
+    [rc addTarget:self action:@selector(refreshTableView) forControlEvents:UIControlEventValueChanged];
+    
+    self.refreshControl = rc;
+    [self.table addSubview:self.refreshControl];
+
+}
+
+- (void) refreshTableView
+{
+    if (self.refreshControl.refreshing) {// 判断是否处于刷新状态
+        self.refreshControl.attributedTitle = [[NSAttributedString alloc] init];
+        
+        [User showMyOrderList:@"0" withBlock:^(NSError *error, User *user) {
+            if(error){
+                NSLog(@"Get waitingOrderList FAILED!!!!");
+            }else{
+                NSLog(@"Now getting waitingOrderList");
+                
+                self.waitingOrderList = user.waitingOrderList;
+//                self.tbl = self.waitingOrderList;
+//                
+//                [self.table reloadData];
+                
+            }
+        }];
+        
+        [User showMyOrderList:@"1" withBlock:^(NSError *error, User *user) {
+            if(error){
+                NSLog(@"Get deliveringOrderList FAILED!!!!");
+            }else{
+                NSLog(@"Now getting deliveringOrderList");
+                
+                self.deliveringOrderList = user.deliveringOrderList;
+                //self.tbl = self.waitingOrderList;
+                
+                // [self.table reloadData];
+                
+            }
+        }];
+        
+        [User showMyOrderList:@"2" withBlock:^(NSError *error, User *user) {
+            if(error){
+                NSLog(@"Get finishedOrderList FAILED!!!!");
+            }else{
+                NSLog(@"Now getting finishedOrderList");
+                
+                self.finishedOrderList = user.finishedOrderList;
+                //self.tbl = self.waitingOrderList;
+                
+                // [self.table reloadData];
+                
+            }
+        }];
+        
+        [User showMyOrderList:@"3" withBlock:^(NSError *error, User *user) {
+            if(error){
+                NSLog(@"Get canceledOrderList FAILED!!!!");
+            }else{
+                NSLog(@"Now getting canceledOrderList");
+                
+                self.canceledOrderList = user.canceledOrderList;
+                //self.tbl = self.waitingOrderList;
+                
+                // [self.table reloadData];
+                
+            }
+        }];
+        if ([self.orderState isEqualToString:@"waiting"]) {
+            NSLog(@"refreshWaiting");
+            self.tbl = self.waitingOrderList;
+            
+            [self.table reloadData];
+        }else if ([self.orderState isEqualToString:@"delivering"]) {
+            NSLog(@"refreshDelivering");
+            self.tbl = self.deliveringOrderList;
+            
+            [self.table reloadData];
+        }else if ([self.orderState isEqualToString:@"finished"]) {
+            NSLog(@"refreshFinished");
+            self.tbl = self.finishedOrderList;
+            
+            [self.table reloadData];
+        }else if ([self.orderState isEqualToString:@"canceled"]) {
+            NSLog(@"refreshCanceled");
+            self.tbl = self.canceledOrderList;
+            
+            [self.table reloadData];
+        }
+        [self.refreshControl endRefreshing];
+        //[self.table reloadData];
+    }
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated{
+    if ([self.refreshStat isEqualToString:@"refresh"]) {
+    
     [User showMyOrderList:@"0" withBlock:^(NSError *error, User *user) {
         if(error){
             NSLog(@"Get waitingOrderList FAILED!!!!");
@@ -118,14 +261,12 @@
             
         }
     }];
+    self.refreshStat = @"notRefresh";
     
-    
-    
+    }
 }
 
 -(void) viewDidAppear:(BOOL)animated{
-    //还需添加自动刷新
-    
     if ([self.orderState isEqualToString:@"waiting"]) {
        
         self.tbl = self.waitingOrderList;
@@ -268,19 +409,19 @@
     subOrderDtl.myOrderState = self.orderState;
     subOrderDtl.cfOrderItem = cfOrderItem;
     
-//    [User getOrderDetail:[cfOrderItem.id stringValue] withBlock:^(NSError *error, User *user) {
-//        if(error){
-//            NSLog(@"Get orderList FAILED!!!!");
-//        }else{
-//            NSLog(@"Now getting orderList");
-//            
-//             confirmedOrder* myCfOrderItem = [user.orderList objectAtIndex:0];
-//            //self.tbl = self.waitingOrderList;
-//            
-//            // [self.table reloadData];
-//            
-//        }
-//    }];
+    [User getOrderDetail:[cfOrderItem.id stringValue] withBlock:^(NSError *error, confirmedOrder *cfOrderItm) {
+        if(error){
+            NSLog(@"Get orderList FAILED!!!!");
+        }else{
+            NSLog(@"Now getting orderList");
+            
+             confirmedOrder* myCfOrderItem = cfOrderItem;
+            //self.tbl = self.waitingOrderList;
+            
+            // [self.table reloadData];
+            
+        }
+    }];
     
     
     [self.navigationController pushViewController:subOrderDtl animated:YES];

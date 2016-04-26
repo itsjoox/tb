@@ -45,31 +45,64 @@
             
         }
     }];
+    // 初始化UIRefreshControl
+    // rc为该控件的一个指针，只能用于表视图界面
+    // 关于布局问题可以不用考虑，关于UITableViewController会将其自动放置于表视图中
+    
+    UIRefreshControl *rc = [[UIRefreshControl alloc] init];
+    rc.attributedTitle = [[NSAttributedString alloc]init];
+    // 一定要注意selector里面的拼写检查
+    [rc addTarget:self action:@selector(refreshTableView) forControlEvents:UIControlEventValueChanged];
+    
+    self.refreshControl = rc;
+    [self.table addSubview:self.refreshControl];
+}
+
+- (void) refreshTableView
+{
+    if (self.refreshControl.refreshing) {// 判断是否处于刷新状态
+        self.refreshControl.attributedTitle = [[NSAttributedString alloc] init];
+        [User getFrequentDrivers:^(NSError *error, User *user) {
+            if(error){
+                NSLog(@"Get frequent drivers FAILED!!!!");
+            }else{
+                NSLog(@"Now getting frequent drivers");
+                
+                self.freqDriverList = user.freqDriverList;
+                [self.table reloadData];    
+            }
+        }];
+        
+        [self.refreshControl endRefreshing];
+
+    }
     
 }
 
+
 -(void)viewDidAppear:(BOOL)animated
 {
-    [User getFrequentDrivers:^(NSError *error, User *user) {
-        if(error){
-            NSLog(@"Get frequent drivers FAILED!!!!");
-        }else{
-            NSLog(@"Now getting frequent drivers");
+    if ([self.refreshStat isEqualToString:@"refresh"]) {
+        [User getFrequentDrivers:^(NSError *error, User *user) {
+            if(error){
+                NSLog(@"Get frequent drivers FAILED!!!!");
+            }else{
+                NSLog(@"Now getting frequent drivers");
             
-            self.freqDriverList = user.freqDriverList;
-            //weakSelf.billList = user.billList;
-            //[weakSelf.billTable reloadData];
-            [self.table reloadData];
-            //int count=0;
-            //            for(Bill* b in weakSelf.billList){
-            //                NSLog(@"%d %@",count++,b.contents);
-            //            }
+                self.freqDriverList = user.freqDriverList;
+                //weakSelf.billList = user.billList;
+                //[weakSelf.billTable reloadData];
+                [self.table reloadData];
+                //int count=0;
+                //            for(Bill* b in weakSelf.billList){
+                //                NSLog(@"%d %@",count++,b.contents);
+                //            }
+                self.refreshStat = @"notRefresh";
             
-            
-        }
-    }];
+            }
+        }];
     
-    
+    }
 }
 
 - (UITableViewCell *)tableView: (UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -115,9 +148,10 @@
     Driver *driverItem = [self.freqDriverList objectAtIndex:rowNo];
     subDriverDtl.name = driverItem.nickName;
     subDriverDtl.tel = driverItem.phoneNum;
-   subDriverDtl.id = driverItem.id;
+    subDriverDtl.id = driverItem.id;
     [self.navigationController pushViewController:subDriverDtl animated:YES];
-    
+    //返回时取消选中
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 

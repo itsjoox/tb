@@ -184,7 +184,8 @@
     subAddDriverDtlVC.driver = driverItem;
     //NSLog(@"%@", subEditFreqAddr.address);
     [self.navigationController pushViewController:subAddDriverDtlVC animated:YES];
-
+    //返回时取消选中
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
 }
 

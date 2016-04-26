@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-
+#import "WGS84TOGCJ02.h"
+#import "BD09TOGCJ02.h"
 @interface NearbyViewController : UIViewController
 
 @property (nonatomic, copy) NSString* caller;

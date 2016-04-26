@@ -10,7 +10,7 @@
 #import "SubAddDriverDtlViewController.h"
 #import "User.h"
 #import "SubAddFreqDriverViewController.h"
-
+#import "SubDriverViewController.h"
 
 @interface SubAddDriverDtlViewController ()
 
@@ -55,17 +55,19 @@
                  NSLog(@"ADD FREQDriver SUCCESSFULLY!");
                  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"添加成功" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                  UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                     SubAddFreqDriverViewController *setsubAddFreqDriverVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+                     SubDriverViewController *setsubDriverVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3];
                      
+                     setsubDriverVC.refreshStat = @"refresh";
                      //使用popToViewController返回并传值到上一页面
-                     [self.navigationController popToViewController:setsubAddFreqDriverVC animated:true];
+                     [self.navigationController popToViewController:setsubDriverVC animated:true];
                  }];
                  [alertController addAction:okAction];
                  [self presentViewController:alertController animated:YES completion:nil];
              }
          }];
     }
-    
+    //返回时取消选中
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
 }
 

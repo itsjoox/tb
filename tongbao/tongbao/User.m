@@ -799,7 +799,7 @@
                                      @"goodsSize":order.goodsSize,
                                      @"truckTypes":str,
                                      @"remark":order.remark,
-                                     @"payType":@"1",
+                                     @"payType":order.payType,
                                      @"price":order.price,
                                      @"distance":order.distance,
                                      };
@@ -1316,10 +1316,11 @@
     }
 }
 
-+(void) getOrderDetail:(NSString *)orderId withBlock:(void (^)(NSError *, User *))completedBlock{
++(void) getOrderDetail:(NSString *)orderId withBlock:(void (^)(NSError *,  confirmedOrder *))completedBlock{
     if (orderId == nil) {
         if (completedBlock) {
             completedBlock([NSError errorWithCode:ErrorCodeIncomplete andDescription:nil], nil);
+            
         }
     }else{
         NSDictionary *parameters = @{@"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"],
@@ -1336,49 +1337,45 @@
             NSLog(@"连接成功啦 %@",responseObject[@"result"]);
             
             
-            NSArray* resultArray = responseObject[@"data"];
-            [[User shareInstance].user.orderList removeAllObjects];
-            
-            for (NSDictionary *dic in resultArray) {
-                NSLog(@"订单详情如下 %@",dic);
+            NSDictionary* dic = responseObject[@"data"];
+            //[[User shareInstance].user.orderList removeAllObjects];
+        
                 confirmedOrder* cfOrderItem = [[confirmedOrder alloc] init];
-                
                 cfOrderItem.id = [dic valueForKey:@"id"];
                 cfOrderItem.time = [dic valueForKey:@"time"];
                 cfOrderItem.addressFrom =[dic valueForKey:@"addressFrom"];
                 cfOrderItem.addressTo =[dic valueForKey:@"addressTo"];
                 cfOrderItem.money =[dic valueForKey:@"money"];
-                cfOrderItem.truckTypes =[dic valueForKey:@"truckTypes"];
+                cfOrderItem.truckTypes =[dic objectForKey:@"truckTypes"];
+                
                 cfOrderItem.fromContactName =[dic valueForKey:@"fromContactName"];
                 cfOrderItem.fromContactPhone =[dic valueForKey:@"fromContactPhone"];
                 cfOrderItem.toContactName =[dic valueForKey:@"toContactName"];
                 cfOrderItem.toContactPhone =[dic valueForKey:@"toContactPhone"];
                 cfOrderItem.loadTime =[dic valueForKey:@"loadTime"];
                 cfOrderItem.state =[confirmedOrder getState:[dic objectForKey:@"state"]];
-                
-                [[User shareInstance].user.orderList addObject:cfOrderItem];
-                
-                
-            }
+            
+                //[[User shareInstance].user.orderList addObject:cfOrderItem];
             
             NSString * result = responseObject[@"result"];
             if ([result intValue] == 1){
                 
                 NSLog(@"查看订单详情成功");
                 if (completedBlock) {
-                    completedBlock(nil, [User shareInstance].user);
+                    completedBlock(nil, cfOrderItem);
                 }
+                
             }else{
                 if (completedBlock) {
                     NSLog(@"查看订单详情失败");
-                    completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+                    completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], nil);
                 }
             }
             
         }failure:^(NSURLSessionDataTask *task, NSError * error) {
             NSLog(@"请求失败,服务器返回的错误信息%@",error);
             if (completedBlock) {
-                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], [User shareInstance].user);
+                completedBlock([NSError errorWithCode:ErrorCodeAuthenticateError andDescription:nil], nil);
             }
         }];
         

@@ -13,6 +13,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *addr;
 @property (strong, nonatomic) IBOutlet UITextField *contactName;
 @property (strong, nonatomic) IBOutlet UITextField *contactPhone;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *editBtn;
+- (IBAction)editBtnTpd:(id)sender;
+@property (strong, nonatomic) IBOutlet UITableViewCell *deleteCell;
 
 @property (strong, nonatomic) NSString *callerName;
 
@@ -30,6 +33,10 @@
     self.contactPhone.text = self.myAddr.contactPhone;
     self.table.delegate = self;
     self.callerName = @"SubEditFreqAddrViewController";
+    self.addr.enabled = FALSE;
+    self.contactName.enabled = FALSE;
+    self.contactPhone.enabled = FALSE;
+    [self.deleteCell setHidden:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -86,8 +93,9 @@
                         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                             
                             SubAddrViewController *setsubAddrVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
-                            
+                            setsubAddrVC.refreshStat = @"refresh";
                             //使用popToViewController返回并传值到上一页面
+                            
                             [self.navigationController popToViewController:setsubAddrVC animated:true];
                             
                             
@@ -106,7 +114,8 @@
         }
 
     }
-    
+    //返回时取消选中
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 
@@ -118,4 +127,20 @@
 
 
 
+- (IBAction)editBtnTpd:(id)sender {
+    if ([self.editBtn.title isEqualToString:@"编辑"]) {
+        self.editBtn.title = @"完成";
+        self.addr.enabled = TRUE;
+        self.contactName.enabled = TRUE;
+        self.contactPhone.enabled = TRUE;
+        [self.deleteCell setHidden:NO];
+    }else if ([self.editBtn.title isEqualToString:@"完成"]){
+        self.editBtn.title = @"编辑";
+        self.addr.enabled = FALSE;
+        self.contactName.enabled = FALSE;
+        self.contactPhone.enabled = FALSE;
+        [self.deleteCell setHidden:YES];
+        
+    }
+}
 @end

@@ -112,7 +112,8 @@
                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                         
                         OrderViewController *setOrderVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
-                        
+                        //设置table刷新
+                        setOrderVC.refreshStat = @"refresh";
                         //使用popToViewController返回并传值到上一页面
                         [self.navigationController popToViewController:setOrderVC animated:true];
                         
@@ -161,6 +162,8 @@
                         
                         OrderViewController *setOrderVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
                         
+                        //设置table刷新
+                        setOrderVC.refreshStat = @"refresh";
                         //使用popToViewController返回并传值到上一页面
                         [self.navigationController popToViewController:setOrderVC animated:true];
                         
@@ -219,6 +222,8 @@
                         
                         OrderViewController *setOrderVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
                         
+                        //设置table刷新
+                        setOrderVC.refreshStat = @"refresh";
                         //使用popToViewController返回并传值到上一页面
                         [self.navigationController popToViewController:setOrderVC animated:true];
                         

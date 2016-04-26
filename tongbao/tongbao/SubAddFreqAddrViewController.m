@@ -50,7 +50,7 @@
     
     self.addrItem.name = freqAddress;
     
-    NSLog(freqAddress);
+    //NSLog(freqAddress);
     
     NSNumber* latNum =  [NSNumber numberWithDouble:self.freqAddrPlsmk.location.coordinate.latitude];
     NSNumber* lngNum =  [NSNumber numberWithDouble:self.freqAddrPlsmk.location.coordinate.longitude];
@@ -111,7 +111,8 @@
                      UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"添加成功" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                      UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                          SubAddrViewController *setsubAddrVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
-                         
+                         //设置table刷新
+                         setsubAddrVC.refreshStat = @"refresh";
                          //使用popToViewController返回并传值到上一页面
                          [self.navigationController popToViewController:setsubAddrVC animated:true];
                      }];
@@ -126,7 +127,8 @@
         
     }
     
-    
+    //返回时取消选中
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 

@@ -10,6 +10,7 @@
 #import "SubChooseAddrViewController.h"
 #import "User.h"
 #import "DriversPosition.h"
+#import "LocationConverter.h"
 
 @interface NearbyViewController () <CLLocationManagerDelegate,MKMapViewDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -95,9 +96,18 @@
                 for (int i=0; i<user.driversPositionList.count; i++) {
                     DriversPosition* DPostItem = [user.driversPositionList objectAtIndex:i];
                     CLLocationCoordinate2D coords = CLLocationCoordinate2DMake([DPostItem.lat doubleValue],[DPostItem.lng doubleValue]);
+//                    
+//                    CLLocation* location = [[CLLocation alloc] initWithLatitude:coords.latitude longitude:coords.longitude];
+                    CLLocationCoordinate2D coordTrans = [LocationConverter bd09ToGcj02:coords];
+//                    if (![BD09TOGCJ02 isLocationOutOfChina:[location coordinate]]) {
+//                        //转换后的coord
+//                        coordTrans = [BD09TOGCJ02 transformFromBDToGCJ:[location coordinate]];
+//                    }
+                
+                    
                     
                     MKPointAnnotation* point = [[MKPointAnnotation alloc]init];
-                    point.coordinate = coords;
+                    point.coordinate = coordTrans;
                     point.title = @"司机";
                     point.subtitle = DPostItem.collectTime;
                     NSLog(DPostItem.collectTime);
@@ -331,10 +341,22 @@
     CGPoint pos = [gesture locationInView:self.mapView];
     // 将长按点的坐标转换为经度、维度值
     CLLocationCoordinate2D coord = [self.mapView convertPoint:pos toCoordinateFromView:self.mapView];
+    
+    
+    
+    CLLocationCoordinate2D coordTrans = [LocationConverter gcj02ToWgs84:coord];;
+    
     // 将经度、维度值包装为CLLocation对象
     CLLocation* location = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+    
+   
+    
+    
+    
+     CLLocation* locationTrans = [[CLLocation alloc] initWithLatitude:coordTrans.latitude longitude:coordTrans.longitude];
+    
     // 根据经、纬度反向解析地址
-    [self.geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error)
+    [self.geocoder reverseGeocodeLocation:locationTrans completionHandler:^(NSArray *placemarks, NSError *error)
      {
          if (placemarks.count > 0 && error == nil)
          {
