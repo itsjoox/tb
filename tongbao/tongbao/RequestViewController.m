@@ -16,13 +16,15 @@
 
 - (IBAction)payTypeSwitch:(id)sender;
 
-@property (strong, nonatomic) IBOutlet UITextField *useTimeTxtFld;
+@property (strong, nonatomic) IBOutlet UILabel *useTimeLbl;
 
-- (IBAction)useTime:(id)sender;
+
+
 @property (strong, nonatomic) IBOutlet UITextField *srcAddrTxtFld;
 
 @property (strong, nonatomic) IBOutlet UITextField *destAddrTxtFld;
-@property (strong, nonatomic) IBOutlet UITextField *carTypeTxtFld;
+@property (strong, nonatomic) IBOutlet UILabel *carTypeLbl;
+
 @property (strong, nonatomic) IBOutlet UILabel *distLbl;
 @property (strong, nonatomic) IBOutlet UITextField *senderNameTxtFld;
 @property (strong, nonatomic) IBOutlet UITextField *senderTelTxtFld;
@@ -90,10 +92,7 @@
     
     self.srcAddrTxtFld.text = srcAddress;
     self.destAddrTxtFld.text = destAddress;
-    self.carTypeTxtFld.text = carType;
-
-    
-    
+    self.carTypeLbl.text = carType;
     
     
     //计算两点导航距离
@@ -126,10 +125,6 @@
          }
      }];
     
-    
-    
-    
-    
 }
 
 
@@ -138,28 +133,6 @@
     
 }
 
-- (IBAction)useTime:(id)sender {
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"\n\n\n\n\n\n\n\n\n\n\n" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIDatePicker *picker = [[UIDatePicker alloc] init];
-    //选中某个时出发chooseDate方法
-    [picker addTarget:self action:@selector(chooseDate:) forControlEvents:UIControlEventValueChanged];
-    //设置datepicker显示日期和时间
-    [picker setDatePickerMode:UIDatePickerModeDateAndTime];
-    [alertController.view addSubview:picker];
-    [alertController addAction:({
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            NSLog(@"OK");
-            
-        }];
-        action;
-    })];
-    UIPopoverPresentationController *popoverController = alertController.popoverPresentationController;
-    popoverController.sourceView = sender;
-    popoverController.sourceRect = [sender bounds];
-    [self presentViewController:alertController  animated:YES completion:nil];
-    
-}
 
 //转换成用户用车时间并显示
 - (void)chooseDate:(UIDatePicker *)sender {
@@ -167,7 +140,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSString *dateString = [formatter stringFromDate:selectedDate];
-    self.useTimeTxtFld.text = dateString;
+    self.useTimeLbl.text = dateString;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -186,6 +159,28 @@
             
             nearbyVC.caller = @"destAddr";
             [self.navigationController pushViewController:nearbyVC animated:YES];
+        }
+    }else if (section==3){
+        
+        if (rowNo==1) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"\n\n\n\n\n\n\n\n\n\n\n" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIDatePicker *picker = [[UIDatePicker alloc] init];
+        //选中某个时出发chooseDate方法
+        [picker addTarget:self action:@selector(chooseDate:) forControlEvents:UIControlEventValueChanged];
+        //设置datepicker显示日期和时间
+        [picker setDatePickerMode:UIDatePickerModeDateAndTime];
+        [alertController.view addSubview:picker];
+        [alertController addAction:({
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                NSLog(@"OK");
+                
+            }];
+            action;
+        })];
+        //UIPopoverPresentationController *popoverController = alertController.popoverPresentationController;
+        //popoverController.sourceView = ;
+        //popoverController.sourceRect = [sender bounds];
+        [self presentViewController:alertController  animated:YES completion:nil];
         }
     }else if (section==6) {
         
@@ -208,7 +203,7 @@
         NSString* toContactName = self.receiverNameTxtFld.text;
         NSString* toContactPhone = self.recevierTelTxtFld.text;
        
-        NSString* loadTime = self.useTimeTxtFld.text;
+        NSString* loadTime = self.useTimeLbl.text;
         NSString* goodsType = self.cargoTypeTxtFld.text;
         NSString* goodsWeight = self.cargoWeightTxtFld.text;
         NSString* goodsSize = self.cargoVolumeTxtFld.text;
