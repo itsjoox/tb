@@ -49,6 +49,7 @@
     [super viewDidLoad];
     self.table.delegate = self;
     self.selectedTruckList = [[NSArray alloc]init];
+    self.payType = @"0";
 }
 
 
