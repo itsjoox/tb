@@ -799,7 +799,7 @@
                                      @"goodsSize":order.goodsSize,
                                      @"truckTypes":str,
                                      @"remark":order.remark,
-                                     @"payType":@"1",
+                                     @"payType":order.payType,
                                      @"price":order.price,
                                      @"distance":order.distance,
                                      };
@@ -1338,7 +1338,7 @@
             
             
             NSDictionary* dic = responseObject[@"data"];
-            [[User shareInstance].user.orderList removeAllObjects];
+            //[[User shareInstance].user.orderList removeAllObjects];
         
                 confirmedOrder* cfOrderItem = [[confirmedOrder alloc] init];
                 cfOrderItem.id = [dic valueForKey:@"id"];
@@ -1354,25 +1354,8 @@
                 cfOrderItem.toContactPhone =[dic valueForKey:@"toContactPhone"];
                 cfOrderItem.loadTime =[dic valueForKey:@"loadTime"];
                 cfOrderItem.state =[confirmedOrder getState:[dic objectForKey:@"state"]];
-                
-                
-                //cfOrderItem.id = [dic valueForKey:@"id"];
-                //cfOrderItem.time = [dic valueForKey:@"time"];
-                //cfOrderItem.addressFrom =[dic valueForKey:@"addressFrom"];
-                //cfOrderItem.addressTo =[dic valueForKey:@"addressTo"];
-                //cfOrderItem.money =[dic valueForKey:@"money"];
-                //cfOrderItem.truckTypes =[dic valueForKey:@"truckTypes"];
-                //cfOrderItem.fromContactName =[dic valueForKey:@"fromContactName"];
-                //cfOrderItem.fromContactPhone =[dic valueForKey:@"fromContactPhone"];
-                //cfOrderItem.toContactName =[dic valueForKey:@"toContactName"];
-                //cfOrderItem.toContactPhone =[dic valueForKey:@"toContactPhone"];
-                //cfOrderItem.loadTime =[dic valueForKey:@"loadTime"];
-                //cfOrderItem.state =[confirmedOrder getState:[dic objectForKey:@"state"]];
-                
-                [[User shareInstance].user.orderList addObject:cfOrderItem];
-                
-                
             
+                //[[User shareInstance].user.orderList addObject:cfOrderItem];
             
             NSString * result = responseObject[@"result"];
             if ([result intValue] == 1){

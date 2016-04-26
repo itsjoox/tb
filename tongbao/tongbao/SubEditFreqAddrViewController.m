@@ -13,6 +13,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *addr;
 @property (strong, nonatomic) IBOutlet UITextField *contactName;
 @property (strong, nonatomic) IBOutlet UITextField *contactPhone;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *editBtn;
+- (IBAction)editBtnTpd:(id)sender;
+@property (strong, nonatomic) IBOutlet UITableViewCell *deleteCell;
 
 @property (strong, nonatomic) NSString *callerName;
 
@@ -30,6 +33,10 @@
     self.contactPhone.text = self.myAddr.contactPhone;
     self.table.delegate = self;
     self.callerName = @"SubEditFreqAddrViewController";
+    self.addr.enabled = FALSE;
+    self.contactName.enabled = FALSE;
+    self.contactPhone.enabled = FALSE;
+    [self.deleteCell setHidden:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -120,4 +127,20 @@
 
 
 
+- (IBAction)editBtnTpd:(id)sender {
+    if ([self.editBtn.title isEqualToString:@"编辑"]) {
+        self.editBtn.title = @"完成";
+        self.addr.enabled = TRUE;
+        self.contactName.enabled = TRUE;
+        self.contactPhone.enabled = TRUE;
+        [self.deleteCell setHidden:NO];
+    }else if ([self.editBtn.title isEqualToString:@"完成"]){
+        self.editBtn.title = @"编辑";
+        self.addr.enabled = FALSE;
+        self.contactName.enabled = FALSE;
+        self.contactPhone.enabled = FALSE;
+        [self.deleteCell setHidden:YES];
+        
+    }
+}
 @end

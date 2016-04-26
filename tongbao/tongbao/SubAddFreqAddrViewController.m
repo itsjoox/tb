@@ -50,7 +50,7 @@
     
     self.addrItem.name = freqAddress;
     
-    NSLog(freqAddress);
+    //NSLog(freqAddress);
     
     NSNumber* latNum =  [NSNumber numberWithDouble:self.freqAddrPlsmk.location.coordinate.latitude];
     NSNumber* lngNum =  [NSNumber numberWithDouble:self.freqAddrPlsmk.location.coordinate.longitude];
@@ -127,7 +127,8 @@
         
     }
     
-    
+    //返回时取消选中
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 

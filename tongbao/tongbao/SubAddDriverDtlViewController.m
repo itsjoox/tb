@@ -66,7 +66,8 @@
              }
          }];
     }
-    
+    //返回时取消选中
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
 }
 
