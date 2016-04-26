@@ -15,6 +15,9 @@
 @property (strong, nonatomic) NSArray* dtls;
 @property (strong, nonatomic) NSMutableArray* freqAddrList;
 @property (strong, nonatomic) NSString* refreshStat;
+
+@property (strong, nonatomic) UIRefreshControl* refreshControl;
+
 - (IBAction)fromHere:(id)sender;
 
 - (IBAction)toHere:(id)sender;

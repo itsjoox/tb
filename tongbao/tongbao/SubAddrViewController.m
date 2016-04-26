@@ -47,8 +47,45 @@
         }
     }];
     
+    // 初始化UIRefreshControl
+    // rc为该控件的一个指针，只能用于表视图界面
+    // 关于布局问题可以不用考虑，关于UITableViewController会将其自动放置于表视图中
+    
+    UIRefreshControl *rc = [[UIRefreshControl alloc] init];
+    rc.attributedTitle = [[NSAttributedString alloc]init];
+    // 一定要注意selector里面的拼写检查
+    [rc addTarget:self action:@selector(refreshTableView) forControlEvents:UIControlEventValueChanged];
+    
+    self.refreshControl = rc;
+    [self.table addSubview:self.refreshControl];
+}
+
+- (void) refreshTableView
+{
+    if (self.refreshControl.refreshing) {// 判断是否处于刷新状态
+        self.refreshControl.attributedTitle = [[NSAttributedString alloc] init];
+        [User getFrequentAddresses:^(NSError *error, User *user) {
+            if(error){
+                NSLog(@"Get frequent addresses FAILED!!!!");
+            }else{
+                NSLog(@"Now getting frequent addresses");
+                
+                self.freqAddrList = user.freqAddrList;
+                //weakSelf.billList = user.billList;
+                //[weakSelf.billTable reloadData];
+                [self.table reloadData];
+            }
+        }];
+
+        [self.refreshControl endRefreshing];
+        //[self.table reloadData];
+    }
     
 }
+
+
+
+
 
 -(void)viewDidAppear:(BOOL)animated
 {
