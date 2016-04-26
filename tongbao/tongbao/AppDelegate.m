@@ -113,12 +113,14 @@
     NSInteger badge = [[aps valueForKey:@"badge"] integerValue]; //badge数量
     NSString *sound = [aps valueForKey:@"sound"]; //播放的声音
     
+    NSLog(@"%@",userInfo);
     // 取得Extras字段内容
     NSDictionary *extras = [userInfo valueForKey:@"extras"];
-    NSString *customizeField1 = [extras valueForKey:@"type"]; //自定义参数，key是自己定义的
-    NSString *customizeField2 = [extras valueForKey:@"id"];
-    NSLog(@"content =[%@], badge=[%ld], sound=[%@], type  =[%@] id = [%@]",content,(long)badge,sound,customizeField1,customizeField2);
     
+    NSString *customizeField1 = [userInfo valueForKey:@"type"]; //自定义参数，key是自己定义的
+    NSString *customizeField2 = [userInfo valueForKey:@"id"];
+    NSLog(@"content =[%@], badge=[%ld], sound=[%@], type  =[%@] id = [%@]",content,(long)badge,sound,customizeField1,customizeField2);
+//    
 //    [User getOrderDetail:@"124" withBlock:^(NSError *error, User *user) {
 //        if (error) {
 //            NSLog(@"get order detail failed");
@@ -131,8 +133,10 @@
 
     //获取storyboard
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    SubOrderDtlViewController* subOrderDtl = [storyboard instantiateViewControllerWithIdentifier: @"SubOrderDtl"];
     
+    SubOrderDtlViewController* subOrderDtl = [storyboard instantiateViewControllerWithIdentifier: @"SubOrderDtl"];
+//    id view = [storyboard instantiateViewControllerWithIdentifier:@"OrderView"];
+//    self.window.rootViewController = view;
 
 //    confirmedOrder *cfOrderItem = [[confirmedOrder alloc]init];
 //    cfOrderItem= [self.tbl objectAtIndex:rowNo];
@@ -155,7 +159,9 @@
     NSDictionary *extras = [userInfo valueForKey:@"extras"];
     NSString *customizeField1 = [extras valueForKey:@"type"]; //自定义参数，key是自己定义的
     NSString *customizeField2 = [extras valueForKey:@"id"];
-    NSLog(@"content =[%@],type  =[%@],id  =[%@]",content,customizeField1,customizeField2);
+    
+    
+    NSLog(@"自定义消息 content =[%@],type  =[%@],id  =[%@]",content,customizeField1,customizeField2);
     
 }
 
