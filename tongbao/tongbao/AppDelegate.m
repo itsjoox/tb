@@ -119,14 +119,14 @@
     NSString *customizeField2 = [extras valueForKey:@"id"];
     NSLog(@"content =[%@], badge=[%ld], sound=[%@], type  =[%@] id = [%@]",content,(long)badge,sound,customizeField1,customizeField2);
     
-    [User getOrderDetail:@"124" withBlock:^(NSError *error, User *user) {
-        if (error) {
-            NSLog(@"get order detail failed");
-        }else {
-            NSLog(@"get order detail successfully");
-            
-        }
-    }];
+//    [User getOrderDetail:@"124" withBlock:^(NSError *error, User *user) {
+//        if (error) {
+//            NSLog(@"get order detail failed");
+//        }else {
+//            NSLog(@"get order detail successfully");
+//            
+//        }
+//    }];
     
 
     //获取storyboard

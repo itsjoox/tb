@@ -12,6 +12,7 @@
 #import "Address.h"
 #import "Driver.h"
 #import "Comment.h"
+#import "confirmedOrder.h"
 @interface User : NSObject
 
 /**
@@ -109,7 +110,7 @@
 +(void) getDriversPosition:(void (^)(NSError *error, User *user))completedBlock;
 
 +(void) showMyOrderList: (NSString*) type withBlock:(void (^)(NSError *error, User *user))completedBlock;
-+(void) getOrderDetail: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
++(void) getOrderDetail: (NSString*) orderId withBlock:(void (^)(NSError *error, confirmedOrder *cfOrderItm))completedBlock;
 +(void) cancelOrder: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) finishOrder: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) deleteOrder: (NSString*) orderId withBlock:(void (^)(NSError *error, User *user))completedBlock;

@@ -312,19 +312,19 @@
     subOrderDtl.myOrderState = self.orderState;
     subOrderDtl.cfOrderItem = cfOrderItem;
     
-//    [User getOrderDetail:[cfOrderItem.id stringValue] withBlock:^(NSError *error, User *user) {
-//        if(error){
-//            NSLog(@"Get orderList FAILED!!!!");
-//        }else{
-//            NSLog(@"Now getting orderList");
-//            
-//             confirmedOrder* myCfOrderItem = [user.orderList objectAtIndex:0];
-//            //self.tbl = self.waitingOrderList;
-//            
-//            // [self.table reloadData];
-//            
-//        }
-//    }];
+    [User getOrderDetail:[cfOrderItem.id stringValue] withBlock:^(NSError *error, confirmedOrder *cfOrderItm) {
+        if(error){
+            NSLog(@"Get orderList FAILED!!!!");
+        }else{
+            NSLog(@"Now getting orderList");
+            
+             confirmedOrder* myCfOrderItem = cfOrderItem;
+            //self.tbl = self.waitingOrderList;
+            
+            // [self.table reloadData];
+            
+        }
+    }];
     
     
     [self.navigationController pushViewController:subOrderDtl animated:YES];
