@@ -137,8 +137,8 @@
             
             UINavigationController* navigationController = [[UINavigationController alloc] init];
             self.window.rootViewController = orderview;
-            [navigationController pushViewController:subOrderDtl animated:YES];
             [orderview presentViewController:navigationController animated:YES completion:nil];
+            [navigationController pushViewController:subOrderDtl animated:YES];
             
         }
     }];
