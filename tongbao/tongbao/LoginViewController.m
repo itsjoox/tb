@@ -34,6 +34,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    UIImage *img_m = [UIImage imageNamed:@"tongbao"];
+//    self.view.layer.contents = (id)img_m.CGImage;
+//    self.view.layer.backgroundColor = [UIColor clearColor].CGColor;
+
+    UIImage *matchImg = [UIImage imageNamed:@"tongbao"];
+    UIImage *backImage;
+    CGFloat width = self.view.frame.size.width;// self.view表示你的视图的大小
+    CGFloat height = self.view.frame.size.height;
+    UIGraphicsBeginImageContext(CGSizeMake(width, height));
+    [matchImg drawInRect:CGRectMake(0, 0, width, height)];//调整
+    backImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.view.backgroundColor = [UIColor colorWithPatternImage:backImage];
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:img_a];
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tongbao"]];
     // Do any additional setup after loading the view, typically from a nib.
     
 }
