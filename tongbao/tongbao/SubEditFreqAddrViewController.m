@@ -65,7 +65,7 @@
     NSInteger rowNo = indexPath.row;
     if (section==1) {
         if (rowNo == 0) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"删除订单" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"删除常用地址" message:@"" preferredStyle:UIAlertControllerStyleAlert];
             
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"放弃" style:UIAlertActionStyleCancel handler:nil];
             
@@ -77,7 +77,7 @@
                         NSLog(@"Delete Order FAILED!!!!");
                         
                         
-                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"删除订单失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"删除常用地址失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
                         [alertController addAction:okAction];
                         [self presentViewController:alertController animated:YES completion:nil];
@@ -89,7 +89,7 @@
                         NSLog(@"Delete Order succeed");
                         
                         
-                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"删除订单成功" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"删除常用地址成功" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                             
                             SubAddrViewController *setsubAddrVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];

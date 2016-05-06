@@ -65,7 +65,7 @@
         self.right.title = @"评价订单";
     }else if ([self.myOrderState  isEqual: @"canceled"]){
         self.left.title = @"删除订单";
-        self.right.title = @"再来一单";
+        self.right.title = @"评价订单";
     }
     
 }
