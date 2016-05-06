@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class OrderViewController;
-static NSString *appKey = @"0bfdf19308d2b4265b5d467d";
+static NSString *appKey = @"ca9fe909612197690db46060";
 static NSString *channel = @"Publish channel";
 static BOOL isProduction = FALSE;
 

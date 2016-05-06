@@ -21,6 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIImage *img_m = [UIImage imageNamed:@"tongbao"];
+    self.view.layer.contents = (id)img_m.CGImage;
     // Do any additional setup after loading the view, typically from a nib.
     
 }

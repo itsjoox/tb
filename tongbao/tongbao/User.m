@@ -215,6 +215,7 @@
                
                 NSString* myAlias= responseDic[@"id"];
                  NSLog(@"我的id是 %@",myAlias);
+                
                 [JPUSHService setTags:set alias:[NSString stringWithFormat:@"%@",myAlias] callbackSelector:nil object:self];
 
                 NSLog(@"user.m 头像地址！！ %@",responseDic[@"iconUrl"]);

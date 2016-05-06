@@ -74,8 +74,7 @@
                 if(remoteNotification!= nil){
                     NSLog(@"open through notification");
                 }
-                
-
+ 
             }
         }];
 
@@ -121,30 +120,28 @@
     NSString *customizeField2 = [userInfo valueForKey:@"id"];
     NSLog(@"content =[%@], badge=[%ld], sound=[%@], type  =[%@] id = [%@]",content,(long)badge,sound,customizeField1,customizeField2);
 //    
-//    [User getOrderDetail:@"124" withBlock:^(NSError *error, User *user) {
-//        if (error) {
-//            NSLog(@"get order detail failed");
-//        }else {
-//            NSLog(@"get order detail successfully");
-//            
-//        }
-//    }];
-    
+    [User getOrderDetail:@"124" withBlock:^(NSError *error, confirmedOrder *cfOrderItem) {
+        if (error) {
+            NSLog(@"get order detail failed");
+        }else {
+            NSLog(@"get order detail successfully");
+            //获取storyboard
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            
+            SubOrderDtlViewController* subOrderDtl = [storyboard instantiateViewControllerWithIdentifier: @"SubOrderDtl"];
+            OrderViewController* orderview = [storyboard instantiateViewControllerWithIdentifier:@"OrderView"];
 
-    //获取storyboard
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    
-    SubOrderDtlViewController* subOrderDtl = [storyboard instantiateViewControllerWithIdentifier: @"SubOrderDtl"];
-//    id view = [storyboard instantiateViewControllerWithIdentifier:@"OrderView"];
-//    self.window.rootViewController = view;
-
-//    confirmedOrder *cfOrderItem = [[confirmedOrder alloc]init];
-//    cfOrderItem= [self.tbl objectAtIndex:rowNo];
-//    
-//    subOrderDtl.myOrderID = [cfOrderItem.id stringValue];
-//    subOrderDtl.myOrderState = self.orderState;
-//    subOrderDtl.cfOrderItem = cfOrderItem;
-
+                subOrderDtl.myOrderID = [cfOrderItem.id stringValue];
+//                subOrderDtl.myOrderState = cfOrderItem.state;
+                subOrderDtl.cfOrderItem = cfOrderItem;
+            
+            UINavigationController* navigationController = [[UINavigationController alloc] init];
+            self.window.rootViewController = orderview;
+            [orderview presentViewController:navigationController animated:YES completion:nil];
+            [navigationController pushViewController:subOrderDtl animated:YES];
+            
+        }
+    }];
     
 
     
