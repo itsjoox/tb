@@ -120,7 +120,7 @@
     NSString *customizeField2 = [userInfo valueForKey:@"id"];
     NSLog(@"content =[%@], badge=[%ld], sound=[%@], type  =[%@] id = [%@]",content,(long)badge,sound,customizeField1,customizeField2);
 //    
-    [User getOrderDetail:@"124" withBlock:^(NSError *error, confirmedOrder *cfOrderItem) {
+    [User getOrderDetail:@"127" withBlock:^(NSError *error, confirmedOrder *cfOrderItem) {
         if (error) {
             NSLog(@"get order detail failed");
         }else {

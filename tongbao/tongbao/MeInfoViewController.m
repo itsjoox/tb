@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *myHeadPortrait;
 @property (weak, nonatomic) IBOutlet UITextField *myNickname;
 @property (weak, nonatomic) IBOutlet UILabel *myTelephone;
+@property (weak, nonatomic) IBOutlet UITextField *myPassword;
 
 
 @end
@@ -125,6 +126,43 @@
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
         
+    }else if(rowNo == 2){
+        NSLog(@"2");
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改密码" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField){
+            textField.placeholder = @"请输入新的密码";
+            textField.secureTextEntry = YES;
+        }];
+        //        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        //            textField.placeholder = @"密码";
+        //            textField.secureTextEntry = YES;
+        //        }];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            UITextField *new = alert.textFields.firstObject;
+            NSLog(@"修改后的密码！！%@",new.text);
+            [User modifyPassword:new.text withBlock:^(NSError *error, User *user)
+             {
+                 if (error) {
+                     NSLog(@"MODIFY FAILED!!!!");
+                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改失败" message:@"用户名或密码错误" preferredStyle:UIAlertControllerStyleAlert];
+                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
+                     [alertController addAction:okAction];
+                     [self presentViewController:alertController animated:YES completion:nil];
+                 }else{
+                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改成功" message:@"您的密码已更新" preferredStyle:UIAlertControllerStyleAlert];
+                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
+                     [alertController addAction:okAction];
+                     [self presentViewController:alertController animated:YES completion:nil];
+                 }
+             }];
+        }];
+        
+        [alert addAction:cancelAction];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+
     }
     
 }

@@ -75,6 +75,7 @@
 +(void) registerwithUsername: (NSString *)username andPassoword: (NSString *) password withBlock:(void (^)(NSError *error, User *user))completedBlock;
 
 +(void) modifyNickname: (NSString *)newName withBlock:(void (^)(NSError *error, User *user))completedBlock;
++(void) modifyPassword: (NSString *)newPwd withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) uploadImage: (UIImage *)newHead withBlock:(void (^)(NSError *error, User *user))completedBlock;
 +(void) modifyHeadportrait: (NSString *)newUrl withBlock:(void (^)(NSError *error, User *user))completedBlock;
 
