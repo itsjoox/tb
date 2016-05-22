@@ -24,6 +24,9 @@
     self.driverName.text = self.name;
     self.driverTel.text = self.tel;
     
+    self.driverName.enabled = FALSE;
+    self.driverTel.enabled = FALSE;
+    
     
 }
 
