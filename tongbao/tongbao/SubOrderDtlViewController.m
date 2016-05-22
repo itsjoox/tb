@@ -52,6 +52,12 @@
     
     self.loadTimeTxtFld.text = self.cfOrderItem.loadTime;
     
+    self.senderNameTxtFld.enabled = FALSE;
+    self.senderTelTxtFld.enabled = FALSE;
+    self.receiverNameTxtFld.enabled = FALSE;
+    self.receiverTelTxtFld.enabled = FALSE;
+    self.truckTypesTxtFld.enabled = FALSE;
+    self.loadTimeTxtFld.enabled = FALSE;
     
     
     if ([self.myOrderState  isEqual: @"waiting"]) {

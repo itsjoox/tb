@@ -326,6 +326,10 @@
     //idLbl.text = [self.tbl objectAtIndex:rowNo];
     timeLbl.text = cfOrderItem.time;
     
+    UILabel* typeLbl = (UILabel*)[cell viewWithTag:6];
+    
+    //idLbl.text = [self.tbl objectAtIndex:rowNo];
+    typeLbl.text = [confirmedOrder getTruckTypes:cfOrderItem.truckTypes];
     
     return cell;
     
@@ -360,7 +364,7 @@
             
             self.tbl = self.deliveringOrderList;
             self.orderState = @"delivering";
-             self.cellIdentifier = @"cell2";
+             self.cellIdentifier = @"cell1";
             
             NSLog(@"%@",self.deliveringOrderList);
             
@@ -375,7 +379,7 @@
              NSLog(@"%@",self.finishedOrderList);
             
             self.orderState = @"finished";
-             self.cellIdentifier = @"cell3";
+             self.cellIdentifier = @"cell1";
             [self.table reloadData];
             
              break;
@@ -387,7 +391,7 @@
             NSLog(@"%@",self.canceledOrderList);
             
             self.orderState = @"canceled";
-            self.cellIdentifier = @"cell3";
+            self.cellIdentifier = @"cell1";
             [self.table reloadData];
             
             break;
