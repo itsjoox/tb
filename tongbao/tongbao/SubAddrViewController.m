@@ -125,6 +125,12 @@
     // 获取cell内包含的Tag为1的UILabel
     UILabel* addrLbl = (UILabel*)[cell viewWithTag:1];
     addrLbl.text =addr.name;
+    UILabel* contactNameLbl = (UILabel*)[cell viewWithTag:2];
+    contactNameLbl.text =addr.contactName;
+    UILabel* contactPhoneLbl = (UILabel*)[cell viewWithTag:3];
+    contactPhoneLbl.text =addr.contactPhone;
+    
+    
     return cell;
      
 }

@@ -55,6 +55,15 @@
         }
     }];
     
+    Message* msgItem = [Message alloc];
+    msgItem.id = @"a10544";
+    msgItem.type = @"订单被抢到";
+    msgItem.content = @"您的订单994已被司机小旋风抢到";
+    msgItem.hasRead = @"0";
+    msgItem.time = @"2016:15:14:00";
+    [msgList addObject:msgItem];
+     NSLog(@"here");
+    NSLog(@"%@",msgItem);
     
     
 }

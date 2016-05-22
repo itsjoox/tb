@@ -28,7 +28,8 @@
     self.driverNameLbl.text = self.driver.nickName;
     self.driverTelLbl.text = self.driver.phoneNum;
     
-    
+    self.driverNameLbl.enabled = FALSE;
+    self.driverTelLbl.enabled = FALSE;
 }
 
 
