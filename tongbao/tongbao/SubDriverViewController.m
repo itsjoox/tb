@@ -23,7 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     //需要重新定义数据结构
-    self.freqDriverList = [[NSArray alloc]init];
+    self.freqDriverList = [[NSMutableArray alloc]init];
     self.table.dataSource = self;
     self.table.delegate = self;
 
@@ -154,7 +154,75 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
+//滑动删除
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //[dataArray removeObjectAtIndex:indexPath.row];
+        // Delete the row from the data source.
+        
+        
+        NSInteger rowNo = indexPath.row;
+        
+        
+        Driver *driverItem = [self.freqDriverList objectAtIndex:rowNo];
+        
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"删除司机" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"放弃" style:UIAlertActionStyleCancel handler:nil];
+        
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            
+            [User deleteFrequentDriver:driverItem.id withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Delete Driver FAILED!!!!");
+                    
+                    
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"删除司机失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
+                    [alertController addAction:okAction];
+                    [self presentViewController:alertController animated:YES completion:nil];
+                    
+                }else{
+                    
+                    
+                    
+                    NSLog(@"Delete Driver succeed");
+                    
+                    [self.freqDriverList removeObjectAtIndex:rowNo];
+                    
+                    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                    
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"删除司机成功" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                        
+                        
+                    }];
+                    [alertController addAction:okAction];
+                    [self presentViewController:alertController animated:YES completion:nil];
+                    
+                }
+            }];
+            
+        }];
+        
+        [alert addAction:cancelAction];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        
+        
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+    }
+}
 
 
 
