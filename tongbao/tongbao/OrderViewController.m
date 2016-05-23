@@ -118,88 +118,289 @@
 
 - (void) refreshTableView
 {
-    if (self.refreshControl.refreshing) {// 判断是否处于刷新状态
-        self.refreshControl.attributedTitle = [[NSAttributedString alloc] init];
+    
+    if ([self.orderState isEqualToString:@"waiting"]) {
+        NSLog(@"refreshWaiting");
         
-        [User showMyOrderList:@"0" withBlock:^(NSError *error, User *user) {
-            if(error){
-                NSLog(@"Get waitingOrderList FAILED!!!!");
-            }else{
-                NSLog(@"Now getting waitingOrderList");
-                
-                self.waitingOrderList = user.waitingOrderList;
-//                self.tbl = self.waitingOrderList;
-//                
-//                [self.table reloadData];
-                
-            }
-        }];
         
-        [User showMyOrderList:@"1" withBlock:^(NSError *error, User *user) {
-            if(error){
-                NSLog(@"Get deliveringOrderList FAILED!!!!");
-            }else{
-                NSLog(@"Now getting deliveringOrderList");
-                
-                self.deliveringOrderList = user.deliveringOrderList;
-                //self.tbl = self.waitingOrderList;
-                
-                // [self.table reloadData];
-                
-            }
-        }];
-        
-        [User showMyOrderList:@"2" withBlock:^(NSError *error, User *user) {
-            if(error){
-                NSLog(@"Get finishedOrderList FAILED!!!!");
-            }else{
-                NSLog(@"Now getting finishedOrderList");
-                
-                self.finishedOrderList = user.finishedOrderList;
-                //self.tbl = self.waitingOrderList;
-                
-                // [self.table reloadData];
-                
-            }
-        }];
-        
-        [User showMyOrderList:@"3" withBlock:^(NSError *error, User *user) {
-            if(error){
-                NSLog(@"Get canceledOrderList FAILED!!!!");
-            }else{
-                NSLog(@"Now getting canceledOrderList");
-                
-                self.canceledOrderList = user.canceledOrderList;
-                //self.tbl = self.waitingOrderList;
-                
-                // [self.table reloadData];
-                
-            }
-        }];
-        if ([self.orderState isEqualToString:@"waiting"]) {
-            NSLog(@"refreshWaiting");
-            self.tbl = self.waitingOrderList;
+        if (self.refreshControl.refreshing) {// 判断是否处于刷新状态
+            self.refreshControl.attributedTitle = [[NSAttributedString alloc] init];
             
-            [self.table reloadData];
-        }else if ([self.orderState isEqualToString:@"delivering"]) {
-            NSLog(@"refreshDelivering");
-            self.tbl = self.deliveringOrderList;
+            [User showMyOrderList:@"0" withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Get waitingOrderList FAILED!!!!");
+                }else{
+                    NSLog(@"Now getting waitingOrderList");
+                    
+                    self.waitingOrderList = user.waitingOrderList;
+                    //                self.tbl = self.waitingOrderList;
+                    //
+                    //                [self.table reloadData];
+                    
+                    self.tbl = self.waitingOrderList;
+                    
+                    [self.table reloadData];
+                    
+                }
+            }];
             
-            [self.table reloadData];
-        }else if ([self.orderState isEqualToString:@"finished"]) {
-            NSLog(@"refreshFinished");
-            self.tbl = self.finishedOrderList;
+            [User showMyOrderList:@"1" withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Get deliveringOrderList FAILED!!!!");
+                }else{
+                    NSLog(@"Now getting deliveringOrderList");
+                    
+                    self.deliveringOrderList = user.deliveringOrderList;
+                    //self.tbl = self.waitingOrderList;
+                    
+                    // [self.table reloadData];
+                    
+                }
+            }];
             
-            [self.table reloadData];
-        }else if ([self.orderState isEqualToString:@"canceled"]) {
-            NSLog(@"refreshCanceled");
-            self.tbl = self.canceledOrderList;
+            [User showMyOrderList:@"2" withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Get finishedOrderList FAILED!!!!");
+                }else{
+                    NSLog(@"Now getting finishedOrderList");
+                    
+                    self.finishedOrderList = user.finishedOrderList;
+                    //self.tbl = self.waitingOrderList;
+                    
+                    // [self.table reloadData];
+                    
+                }
+            }];
             
-            [self.table reloadData];
+            [User showMyOrderList:@"3" withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Get canceledOrderList FAILED!!!!");
+                }else{
+                    NSLog(@"Now getting canceledOrderList");
+                    
+                    self.canceledOrderList = user.canceledOrderList;
+                    //self.tbl = self.waitingOrderList;
+                    
+                    // [self.table reloadData];
+                    
+                }
+            }];
+            
+            [self.refreshControl endRefreshing];
+            //[self.table reloadData];
         }
-        [self.refreshControl endRefreshing];
-        //[self.table reloadData];
+
+        
+    }else if ([self.orderState isEqualToString:@"delivering"]) {
+        NSLog(@"refreshDelivering");
+
+        if (self.refreshControl.refreshing) {// 判断是否处于刷新状态
+            self.refreshControl.attributedTitle = [[NSAttributedString alloc] init];
+            
+            [User showMyOrderList:@"0" withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Get waitingOrderList FAILED!!!!");
+                }else{
+                    NSLog(@"Now getting waitingOrderList");
+                    
+                    self.waitingOrderList = user.waitingOrderList;
+                    //                self.tbl = self.waitingOrderList;
+                    //
+                    //                [self.table reloadData];
+                    
+                }
+            }];
+            
+            [User showMyOrderList:@"1" withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Get deliveringOrderList FAILED!!!!");
+                }else{
+                    NSLog(@"Now getting deliveringOrderList");
+                    
+                    self.deliveringOrderList = user.deliveringOrderList;
+                    self.tbl = self.deliveringOrderList;
+                    
+                    [self.table reloadData];
+                    
+                }
+            }];
+            
+            [User showMyOrderList:@"2" withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Get finishedOrderList FAILED!!!!");
+                }else{
+                    NSLog(@"Now getting finishedOrderList");
+                    
+                    self.finishedOrderList = user.finishedOrderList;
+                    //self.tbl = self.waitingOrderList;
+                    
+                    // [self.table reloadData];
+                    
+                }
+            }];
+            
+            [User showMyOrderList:@"3" withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Get canceledOrderList FAILED!!!!");
+                }else{
+                    NSLog(@"Now getting canceledOrderList");
+                    
+                    self.canceledOrderList = user.canceledOrderList;
+                    //self.tbl = self.waitingOrderList;
+                    
+                    // [self.table reloadData];
+                    
+                }
+            }];
+            
+            [self.refreshControl endRefreshing];
+            //[self.table reloadData];
+        }
+        
+        
+        
+    }else if ([self.orderState isEqualToString:@"finished"]) {
+        NSLog(@"refreshFinished");
+        
+        
+        if (self.refreshControl.refreshing) {// 判断是否处于刷新状态
+            self.refreshControl.attributedTitle = [[NSAttributedString alloc] init];
+            
+            [User showMyOrderList:@"0" withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Get waitingOrderList FAILED!!!!");
+                }else{
+                    NSLog(@"Now getting waitingOrderList");
+                    
+                    self.waitingOrderList = user.waitingOrderList;
+                    //                self.tbl = self.waitingOrderList;
+                    //
+                    //                [self.table reloadData];
+                    
+                }
+            }];
+            
+            [User showMyOrderList:@"1" withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Get deliveringOrderList FAILED!!!!");
+                }else{
+                    NSLog(@"Now getting deliveringOrderList");
+                    
+                    self.deliveringOrderList = user.deliveringOrderList;
+                    //self.tbl = self.waitingOrderList;
+                    
+                    // [self.table reloadData];
+                    
+                }
+            }];
+            
+            [User showMyOrderList:@"2" withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Get finishedOrderList FAILED!!!!");
+                }else{
+                    NSLog(@"Now getting finishedOrderList");
+                    
+                    self.finishedOrderList = user.finishedOrderList;
+                    self.tbl = self.finishedOrderList;
+                    
+                    [self.table reloadData];
+                    
+                }
+            }];
+            
+            [User showMyOrderList:@"3" withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Get canceledOrderList FAILED!!!!");
+                }else{
+                    NSLog(@"Now getting canceledOrderList");
+                    
+                    self.canceledOrderList = user.canceledOrderList;
+                    //self.tbl = self.waitingOrderList;
+                    
+                    // [self.table reloadData];
+                    
+                }
+            }];
+            
+            [self.refreshControl endRefreshing];
+            //[self.table reloadData];
+        }
+        
+        
+        
+    }else if ([self.orderState isEqualToString:@"canceled"]) {
+        NSLog(@"refreshCanceled");
+        
+        
+        if (self.refreshControl.refreshing) {// 判断是否处于刷新状态
+            self.refreshControl.attributedTitle = [[NSAttributedString alloc] init];
+            
+            [User showMyOrderList:@"0" withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Get waitingOrderList FAILED!!!!");
+                }else{
+                    NSLog(@"Now getting waitingOrderList");
+                    
+                    self.waitingOrderList = user.waitingOrderList;
+                    //                self.tbl = self.waitingOrderList;
+                    //
+                    //                [self.table reloadData];
+                    
+                }
+            }];
+            
+            [User showMyOrderList:@"1" withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Get deliveringOrderList FAILED!!!!");
+                }else{
+                    NSLog(@"Now getting deliveringOrderList");
+                    
+                    self.deliveringOrderList = user.deliveringOrderList;
+                    //self.tbl = self.waitingOrderList;
+                    
+                    // [self.table reloadData];
+                    
+                }
+            }];
+            
+            [User showMyOrderList:@"2" withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Get finishedOrderList FAILED!!!!");
+                }else{
+                    NSLog(@"Now getting finishedOrderList");
+                    
+                    self.finishedOrderList = user.finishedOrderList;
+                    //self.tbl = self.waitingOrderList;
+                    
+                    // [self.table reloadData];
+                    
+                }
+            }];
+            
+            [User showMyOrderList:@"3" withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Get canceledOrderList FAILED!!!!");
+                }else{
+                    NSLog(@"Now getting canceledOrderList");
+                    
+                    self.canceledOrderList = user.canceledOrderList;
+                    self.tbl = self.canceledOrderList;
+                    
+                    [self.table reloadData];
+                    
+                }
+            }];
+            
+            [self.refreshControl endRefreshing];
+            //[self.table reloadData];
+        }
+        
+        
+        
     }
+    
+    
+   [self.refreshControl endRefreshing];
     
 }
 
