@@ -22,4 +22,5 @@
 @property (copy, nonatomic) NSNumber* overPrice;
 @property (copy, nonatomic) NSNumber* baseDistance;
 
+
 @end
