@@ -146,7 +146,7 @@
              {
                  if (error) {
                      NSLog(@"MODIFY FAILED!!!!");
-                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改失败" message:@"用户名或密码错误" preferredStyle:UIAlertControllerStyleAlert];
+                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改失败" message:@"密码至少8位" preferredStyle:UIAlertControllerStyleAlert];
                      UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
                      [alertController addAction:okAction];
                      [self presentViewController:alertController animated:YES completion:nil];
