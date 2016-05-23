@@ -262,7 +262,9 @@
     }
 }
 
-
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
 
 
 - (void)didReceiveMemoryWarning {
