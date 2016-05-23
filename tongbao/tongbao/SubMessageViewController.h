@@ -13,6 +13,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *table;
 @property (strong, nonatomic) NSMutableArray* msgList;
 @property (strong, nonatomic) NSArray* dtls;
+@property (strong, nonatomic) NSMutableArray* tempList;
 
 @end
 

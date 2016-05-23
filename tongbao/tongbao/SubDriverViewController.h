@@ -12,6 +12,6 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *table;
 @property (strong, nonatomic) UIRefreshControl* refreshControl;
-@property (strong, nonatomic) NSArray* freqDriverList;
+@property (strong, nonatomic) NSMutableArray* freqDriverList;
 @property (strong, nonatomic) NSString* refreshStat;
 @end

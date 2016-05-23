@@ -125,6 +125,12 @@
     // 获取cell内包含的Tag为1的UILabel
     UILabel* addrLbl = (UILabel*)[cell viewWithTag:1];
     addrLbl.text =addr.name;
+    UILabel* contactNameLbl = (UILabel*)[cell viewWithTag:2];
+    contactNameLbl.text =addr.contactName;
+    UILabel* contactPhoneLbl = (UILabel*)[cell viewWithTag:3];
+    contactPhoneLbl.text =addr.contactPhone;
+    
+    
     return cell;
      
 }
@@ -176,6 +182,90 @@
     //返回时取消选中
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
+
+
+
+//滑动删除
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //[dataArray removeObjectAtIndex:indexPath.row];
+        // Delete the row from the data source.
+        
+        
+        NSInteger rowNo = indexPath.row;
+        
+        Address* addr = [self.freqAddrList objectAtIndex:rowNo];
+
+        
+       
+                    
+        
+        
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"删除常用地址" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"放弃" style:UIAlertActionStyleCancel handler:nil];
+        
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            
+            [User deleteFrequentAddress:addr.id withBlock:^(NSError *error, User *user) {
+                if(error){
+                    NSLog(@"Delete Order FAILED!!!!");
+                    
+                    
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"删除常用地址失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDestructive handler:nil];
+                    [alertController addAction:okAction];
+                    [self presentViewController:alertController animated:YES completion:nil];
+                    
+                }else{
+                    
+                    
+                    
+                    NSLog(@"Delete Order succeed");
+                    
+                    [self.freqAddrList removeObjectAtIndex:rowNo];
+                    
+                    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                    
+                    
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"删除常用地址成功" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                      
+                        
+                        
+                    }];
+                    [alertController addAction:okAction];
+                    [self presentViewController:alertController animated:YES completion:nil];
+                    
+                }
+            }];
+            
+        }];
+        
+        [alert addAction:cancelAction];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+
+        
+        
+        
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.orderNo.text = self.myMsgDtl;
+    self.orderNo.text = self.myOrderNo;
     self.msgTitle.text = self.myMsgTitle;
     self.msgDtl.text = self.myMsgDtl;
    
